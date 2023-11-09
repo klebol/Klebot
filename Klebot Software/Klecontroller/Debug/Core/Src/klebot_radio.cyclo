@@ -1,0 +1,12 @@
+../Core/Src/klebot_radio.c:24:6:Radio_Init	1
+../Core/Src/klebot_radio.c:45:21:Radio_RxBufferPut	2
+../Core/Src/klebot_radio.c:56:21:Radio_RxBufferGet	3
+../Core/Src/klebot_radio.c:76:21:Radio_TxBufferPut	2
+../Core/Src/klebot_radio.c:88:21:Radio_TxBufferSend	4
+../Core/Src/klebot_radio.c:118:21:Radio_SendConnectionCheck	1
+../Core/Src/klebot_radio.c:125:6:Radio_SetResponseACK	2
+../Core/Src/klebot_radio.c:139:6:Radio_Process	8
+../Core/Src/klebot_radio.c:187:6:nRF24_EventTxCallback	1
+../Core/Src/klebot_radio.c:193:6:nRF24_EventRxCallback	1
+../Core/Src/klebot_radio.c:202:6:nRF24_EventMrCallback	1
+../Core/Src/klebot_radio.c:207:13:Radio_NoConnectionCallback	1
