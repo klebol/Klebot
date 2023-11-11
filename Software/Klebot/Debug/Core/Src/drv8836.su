@@ -1,0 +1,3 @@
+../Core/Src/drv8836.c:9:6:DRV8836_Init	24	static
+../Core/Src/drv8836.c:26:6:DRV8836_SetDirection	32	static
+../Core/Src/drv8836.c:81:6:DRV8836_SetSpeed	16	static

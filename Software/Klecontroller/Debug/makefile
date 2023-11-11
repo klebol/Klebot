@@ -60,8 +60,8 @@ all: main-build
 main-build: Klecontroller.elf secondary-outputs
 
 # Tool invocations
-Klecontroller.elf Klecontroller.map: $(OBJS) $(USER_OBJS) D:\Embedded\KLEBOT\GIT\Klebot\ Software\Klecontroller\STM32F411RCTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Klecontroller.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\Embedded\KLEBOT\GIT\Klebot Software\Klecontroller\STM32F411RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Klecontroller.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Klecontroller.elf Klecontroller.map: $(OBJS) $(USER_OBJS) D:\Embedded\KLEBOT\GIT\Software\Klecontroller\STM32F411RCTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "Klecontroller.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\Embedded\KLEBOT\GIT\Software\Klecontroller\STM32F411RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Klecontroller.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
