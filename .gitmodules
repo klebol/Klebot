@@ -1,0 +1,6 @@
+[submodule "Klebot_PCB"]
+	path = Klebot_PCB
+	url = https://github.com/klebol/Klebot_PCB
+[submodule "Klecontroller_PCB"]
+	path = Klecontroller_PCB
+	url = https://github.com/klebol/Klecontroller_PCB
