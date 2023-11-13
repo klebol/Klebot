@@ -1,0 +1,11 @@
+../Core/Src/controller_inputs.c:28:6:Inputs_Init	1
+../Core/Src/controller_inputs.c:46:8:Inputs_GetLeftJoystickDev	2
+../Core/Src/controller_inputs.c:58:8:Inputs_GetRightJoystickDev	2
+../Core/Src/controller_inputs.c:70:6:Inputs_CalibrateLeftJoystickMax	1
+../Core/Src/controller_inputs.c:75:6:Inputs_CalibrateRightJoystickMax	1
+../Core/Src/controller_inputs.c:80:6:Inputs_CalibrateLeftJoystickMin	1
+../Core/Src/controller_inputs.c:85:6:Inputs_CalibrateRightJoystickMin	1
+../Core/Src/controller_inputs.c:90:6:Inputs_CalibrateRightJoystickIdle	1
+../Core/Src/controller_inputs.c:95:6:Inputs_CalibrateLeftJoystickIdle	1
+../Core/Src/controller_inputs.c:100:6:HAL_ADC_ConvCpltCallback	2
+../Core/Src/controller_inputs.c:126:8:Inputs_GetEncoderCount	4

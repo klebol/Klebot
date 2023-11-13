@@ -106,16 +106,16 @@ int main(void)
 
 
 
-  //Radio_Init(&hspi3);
+  Radio_Init(&hspi3);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	 // Radio_Process(&Parser_Klebot);
-	  DRV8836_SetDirection(&MotorDriver, Output_B, Dir);
-	  DRV8836_SetSpeed(&MotorDriver, Output_B, Spd);
+	  Radio_Process(&Parser_Klebot);
+	  //DRV8836_SetDirection(&MotorDriver, Output_B, Dir);
+	  //DRV8836_SetSpeed(&MotorDriver, Output_B, Spd);
 
 
     /* USER CODE END WHILE */

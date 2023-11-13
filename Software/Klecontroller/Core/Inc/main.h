@@ -57,6 +57,18 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define BUTTON_JOY1_Pin GPIO_PIN_0
+#define BUTTON_JOY1_GPIO_Port GPIOC
+#define JOY1_ADC_Y_Pin GPIO_PIN_1
+#define JOY1_ADC_Y_GPIO_Port GPIOC
+#define JOY1_ADC_X_Pin GPIO_PIN_2
+#define JOY1_ADC_X_GPIO_Port GPIOC
+#define BUTTON_JOY2_Pin GPIO_PIN_0
+#define BUTTON_JOY2_GPIO_Port GPIOA
+#define JOY2_ADC_Y_Pin GPIO_PIN_1
+#define JOY2_ADC_Y_GPIO_Port GPIOA
+#define JOY2_ADC_X_Pin GPIO_PIN_2
+#define JOY2_ADC_X_GPIO_Port GPIOA
 #define BUTTON_ENC_Pin GPIO_PIN_5
 #define BUTTON_ENC_GPIO_Port GPIOA
 #define ENC_A_Pin GPIO_PIN_6
