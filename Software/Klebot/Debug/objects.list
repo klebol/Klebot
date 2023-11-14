@@ -1,3 +1,4 @@
+"./Core/Src/PowerManegement.o"
 "./Core/Src/RingBuffer.o"
 "./Core/Src/drv8836.o"
 "./Core/Src/gpio.o"

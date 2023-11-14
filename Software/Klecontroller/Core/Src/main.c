@@ -102,6 +102,7 @@ int main(void)
   MX_SPI2_Init();
   MX_TIM3_Init();
   MX_ADC1_Init();
+  MX_TIM10_Init();
 
   /* Initialize interrupts */
   MX_NVIC_Init();
@@ -117,8 +118,7 @@ int main(void)
   {
 	  //Radio_Process(NULL);
 	  SimpleScheduler();
-
-
+	  Inputs_ButtonsRoutine();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

@@ -7,6 +7,7 @@
 
 #include "klebot_parser.h"
 #include "stdio.h"
+#include "klebot_commands.h"
 
 void Parser_Klebot(uint8_t *command, uint8_t length)
 {

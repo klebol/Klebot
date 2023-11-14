@@ -1,10 +1,17 @@
-19:04:53 **** Incremental Build of configuration Debug for project Klebot ****
-make -j12 all 
-arm-none-eabi-size   Klebot.elf 
-   text	   data	    bss	    dec	    hex	filename
-  13820	     20	   1988	  15828	   3dd4	Klebot.elf
-Finished building: default.size.stdout
- 
+11:49:11 **** Incremental Build of configuration Debug for project Klebot ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/klebot_parser.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F107xC -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/klebot_parser.d" -MT"Core/Src/klebot_parser.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/klebot_parser.o"
+../Core/Src/klebot_parser.c: In function 'Parser_Klebot':
+../Core/Src/klebot_parser.c:23:38: error: 'OK' undeclared (first use in this function); did you mean 'OB'?
+   23 |                 ResponseCommand[1] = OK;
+      |                                      ^~
+      |                                      OB
+../Core/Src/klebot_parser.c:23:38: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/klebot_parser.c:28:14: error: 'GET_TICK' undeclared (first use in this function)
+   28 |         case GET_TICK:
+      |              ^~~~~~~~
+make: *** [Core/Src/subdir.mk:67: Core/Src/klebot_parser.o] Error 1
+"make -j4 all" terminated with exit code 2. Build might be incomplete.
 
-19:04:54 Build Finished. 0 errors, 0 warnings. (took 410ms)
+11:49:12 Build Failed. 3 errors, 0 warnings. (took 845ms)
 

@@ -16,14 +16,12 @@ Joystick_t RightJoystick;
 uint8_t JoysitckCalibrationFlag;
 
 //Buttons Variables
-void(*EncoderButtonAction)(void);
-void(*UpButtonAction)(void);
-void(*DownButtonAction)(void);
-void(*RightButtonAction)(void);
-void(*LeftButtonAction)(void);
-void(*JoyLeftButtonAction)(void);
-void(*JoyRightButtonAction)(void);
+DB_Button_t ButtonUp;
 
+void ToggleLed(void)
+{
+	HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+}
 
 void Inputs_Init(void)
 {
@@ -38,6 +36,11 @@ void Inputs_Init(void)
 
 	/*Start Encoder timer */
 	HAL_TIM_Encoder_Start(&htim3, TIM_CHANNEL_ALL);
+
+	/*Debounce timer start */
+	HAL_TIM_Base_Start(&htim10);
+	DB_ButtonInit(&ButtonUp, BUTTON_UP_GPIO_Port, BUTTON_UP_Pin, 50);
+	DB_ButtonPressCallbackRegister(&ButtonUp, &ToggleLed);
 }
 
 //
@@ -138,63 +141,14 @@ int8_t Inputs_GetEncoderCount(void)
 	}
 }
 
-
-
 //
 // B U T T O N S
 //
 
 
-//void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
-//{
-//	static uint32_t LastTick;
-//
-//	if(HAL_GetTick() - LastTick > 200)
-//	{
-//
-//		switch(GPIO_Pin)
-//		{
-//		case ENC_BTN_Pin:
-//			if(NULL != EncoderButtonAction)
-//			{
-//				EncoderButtonAction();
-//			}
-//
-//			HAL_GPIO_TogglePin(LED_USER_GPIO_Port, LED_USER_Pin);
-//			break;
-//
-//		case UP_BTN_Pin:
-//			if(NULL != UpButtonAction)
-//			{
-//				UpButtonAction();
-//			}
-//			break;
-//
-//		case DOWN_BTN_Pin:
-//			if(NULL != DownButtonAction)
-//			{
-//				DownButtonAction();
-//			}
-//			break;
-//
-//		case RIGHT_BTN_Pin:
-//			if(NULL != RightButtonAction)
-//			{
-//				RightButtonAction();
-//			}
-//			break;
-//
-//		case LEFT_BTN_Pin:
-//			if(NULL != LeftButtonAction)
-//			{
-//				LeftButtonAction();
-//			}
-//			break;
-//
-//		default:
-//			break;
-//		}
-//		LastTick = HAL_GetTick();
-//	}
-//}
+void Inputs_ButtonsRoutine(void)
+{
+	DB_ButtonProcess(&ButtonUp, &htim10);
+}
+
 

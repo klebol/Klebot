@@ -1,0 +1,35 @@
+/*
+ * debounce.h
+ *
+ *  Created on: Nov 14, 2023
+ *      Author: Michal Klebokowski
+ */
+
+#ifndef INC_DEBOUNCE_H_
+#define INC_DEBOUNCE_H_
+
+#include "gpio.h"
+#include "tim.h"
+
+//
+
+typedef enum
+{
+	IDLE = 0,
+	DEBOUNCE,
+	PRESSED
+}DB_State_t;
+
+
+typedef struct
+{
+	uint16_t Button_Pin;
+	GPIO_TypeDef* Button_Port;
+	uint16_t DebounceTime_ms;
+	void(*ButtonPressAction)(void);
+	DB_State_t ButtonState;
+	uint16_t TimTick;
+
+}DB_Button_t;
+
+#endif /* INC_DEBOUNCE_H_ */

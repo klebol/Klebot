@@ -10,6 +10,7 @@
 
 #include "main.h"
 #include "joystick.h"
+#include "debounce.h"
 #include "adc.h"
 #include "dma.h"
 #include "i2c.h"
@@ -27,5 +28,7 @@
 void Inputs_Init(void);
 
 int8_t Inputs_GetEncoderCount(void);
+
+void Inputs_ButtonsRoutine(void);
 
 #endif /* INC_CONTROLLER_INPUTS_H_ */

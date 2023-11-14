@@ -26,7 +26,8 @@ Core/Src/klebot_parser.o: ../Core/Src/klebot_parser.c \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
- ../Core/Inc/klebot_commands.h ../Core/Inc/klebot_radio.h
+ ../Core/Inc/klebot_commands.h ../Core/Inc/klebot_radio.h \
+ ../Core/Inc/klebot_commands.h
 ../Core/Inc/klebot_parser.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:
@@ -57,3 +58,4 @@ Core/Src/klebot_parser.o: ../Core/Src/klebot_parser.c \
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h:
 ../Core/Inc/klebot_commands.h:
 ../Core/Inc/klebot_radio.h:
+../Core/Inc/klebot_commands.h:
