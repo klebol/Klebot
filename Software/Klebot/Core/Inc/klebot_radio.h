@@ -12,8 +12,8 @@
 //TODO: Select device
 //
 
-//#define CONTROLLER
-#define ROBOT
+#define CONTROLLER
+//#define ROBOT
 
 //
 //Options

@@ -9,6 +9,7 @@
 "./Core/Src/i2c.o"
 "./Core/Src/joystick.o"
 "./Core/Src/klebot_commands.o"
+"./Core/Src/klebot_parser.o"
 "./Core/Src/klebot_radio.o"
 "./Core/Src/main.o"
 "./Core/Src/menu.o"

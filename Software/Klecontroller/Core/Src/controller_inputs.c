@@ -39,7 +39,7 @@ void Inputs_Init(void)
 
 	/*Debounce timer start */
 	HAL_TIM_Base_Start(&htim10);
-	DB_ButtonInit(&ButtonUp, BUTTON_UP_GPIO_Port, BUTTON_UP_Pin, 50);
+	DB_ButtonInit(&ButtonUp, BUTTON_UP_GPIO_Port, BUTTON_UP_Pin, 500);
 	DB_ButtonPressCallbackRegister(&ButtonUp, &ToggleLed);
 }
 

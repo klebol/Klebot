@@ -29,6 +29,7 @@
 /* USER CODE BEGIN Includes */
 #include "nRF24.h"
 #include "klebot_radio.h"
+#include "klebot_parser.h"
 
 #include "simple_scheduler.h"
 #include "controller_inputs.h"
@@ -107,7 +108,7 @@ int main(void)
   /* Initialize interrupts */
   MX_NVIC_Init();
   /* USER CODE BEGIN 2 */
-  //Radio_Init(&hspi2);
+  Radio_Init(&hspi2);
   Inputs_Init();
   OLED_Init(&hi2c3);
   /* USER CODE END 2 */
@@ -116,7 +117,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  //Radio_Process(NULL);
+	  Radio_Process(&Parser_Klebot);
 	  SimpleScheduler();
 	  Inputs_ButtonsRoutine();
     /* USER CODE END WHILE */
