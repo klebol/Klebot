@@ -21,14 +21,27 @@
 
 
 
-
+// JOYSTICKS ID
 #define LEFT_JOYSTICK 0
 #define RIGHT_JOYSTICK 1
+
+// BUTTONS ID
+#define UP_BUTTON 0
+#define DOWN_BUTTON 1
+#define LJ_BUTTON 2
+#define RJ_BUTTON 3
+#define ENC_BUTTON 4
+
+//
+// FUNCTIONS
+//
 
 void Inputs_Init(void);
 
 int8_t Inputs_GetEncoderCount(void);
 
 void Inputs_ButtonsRoutine(void);
+
+void Inputs_ButtonsRegisterCallback(uint8_t ButtonID, void(*PressActionFun)(void), void(*HoldActionFun)(void));
 
 #endif /* INC_CONTROLLER_INPUTS_H_ */

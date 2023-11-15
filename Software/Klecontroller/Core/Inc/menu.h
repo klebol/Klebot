@@ -20,7 +20,7 @@
 //Define your first member (in main menu only (level 0) )
 #define MENU_FIRST_MEMBER &JoyCalib
 
-//Comment this definition of you don't want menu looping after last member
+//Comment this definition if you don't want menu looping after last member
 #define MENU_LOOPING
 
 

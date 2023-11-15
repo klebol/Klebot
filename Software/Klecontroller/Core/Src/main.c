@@ -54,7 +54,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
+uint32_t last_tick;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -108,6 +108,8 @@ int main(void)
   /* Initialize interrupts */
   MX_NVIC_Init();
   /* USER CODE BEGIN 2 */
+  HAL_GPIO_WritePin(KEEP_ALIVE_GPIO_Port, KEEP_ALIVE_Pin, GPIO_PIN_SET);
+
   Radio_Init(&hspi2);
   Inputs_Init();
   OLED_Init(&hi2c3);
@@ -117,9 +119,10 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  Radio_Process(&Parser_Klebot);
+	  Radio_Process(NULL);
 	  SimpleScheduler();
 	  Inputs_ButtonsRoutine();
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

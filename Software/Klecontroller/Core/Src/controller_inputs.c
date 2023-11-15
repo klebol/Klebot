@@ -17,11 +17,11 @@ uint8_t JoysitckCalibrationFlag;
 
 //Buttons Variables
 DB_Button_t ButtonUp;
+DB_Button_t ButtonDown;
+DB_Button_t ButtonLeftJ;
+DB_Button_t ButtonRightJ;
+DB_Button_t ButtonEncoder;
 
-void ToggleLed(void)
-{
-	HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
-}
 
 void Inputs_Init(void)
 {
@@ -37,10 +37,12 @@ void Inputs_Init(void)
 	/*Start Encoder timer */
 	HAL_TIM_Encoder_Start(&htim3, TIM_CHANNEL_ALL);
 
-	/*Debounce timer start */
-	HAL_TIM_Base_Start(&htim10);
-	DB_ButtonInit(&ButtonUp, BUTTON_UP_GPIO_Port, BUTTON_UP_Pin, 500);
-	DB_ButtonPressCallbackRegister(&ButtonUp, &ToggleLed);
+	/*Button debounce init */
+	DB_ButtonInit(&ButtonUp, BUTTON_UP_GPIO_Port, BUTTON_UP_Pin, 100, 1000);
+	DB_ButtonInit(&ButtonDown, BUTTON_DOWN_GPIO_Port, BUTTON_DOWN_Pin, 100, 1000);
+	DB_ButtonInit(&ButtonLeftJ, BUTTON_JOY1_GPIO_Port, BUTTON_JOY1_Pin, 100, 1000);
+	DB_ButtonInit(&ButtonRightJ, BUTTON_JOY2_GPIO_Port, BUTTON_JOY2_Pin, 100, 1000);
+	DB_ButtonInit(&ButtonEncoder, BUTTON_ENC_GPIO_Port, BUTTON_ENC_Pin, 100, 1000);
 }
 
 //
@@ -133,7 +135,7 @@ int8_t Inputs_GetEncoderCount(void)
 	if(CounterDif >= 4 || CounterDif <= -4)
 	{
 		LastTimerCounter = htim3.Instance->CNT;
-		return (int8_t)(CounterDif / 4);
+		return (int8_t)(-CounterDif / 4);
 	}
 	else
 	{
@@ -148,7 +150,34 @@ int8_t Inputs_GetEncoderCount(void)
 
 void Inputs_ButtonsRoutine(void)
 {
-	DB_ButtonProcess(&ButtonUp, &htim10);
+	DB_ButtonProcess(&ButtonUp);
+	DB_ButtonProcess(&ButtonDown);
+	DB_ButtonProcess(&ButtonRightJ);
+	DB_ButtonProcess(&ButtonLeftJ);
+	DB_ButtonProcess(&ButtonEncoder);
 }
 
+void Inputs_ButtonsRegisterCallback(uint8_t ButtonID, void(*PressActionFun)(void), void(*HoldActionFun)(void))
+{
+	switch(ButtonID)
+	{
+	case UP_BUTTON:
+		DB_ButtonPressCallbackRegister(&ButtonUp, PressActionFun, HoldActionFun);
+		break;
+	case DOWN_BUTTON:
+		DB_ButtonPressCallbackRegister(&ButtonDown, PressActionFun, HoldActionFun);
+		break;
+	case LJ_BUTTON:
+		DB_ButtonPressCallbackRegister(&ButtonLeftJ, PressActionFun, HoldActionFun);
+		break;
+	case RJ_BUTTON:
+		DB_ButtonPressCallbackRegister(&ButtonRightJ, PressActionFun, HoldActionFun);
+		break;
+	case ENC_BUTTON:
+		DB_ButtonPressCallbackRegister(&ButtonEncoder, PressActionFun, HoldActionFun);
+		break;
+	default:
+		break;
+	}
+}
 

@@ -113,7 +113,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  Radio_Process(NULL);
+	  Radio_Process(&Parser_Klebot);
 	  //DRV8836_SetDirection(&MotorDriver, Output_B, Dir);
 	  //DRV8836_SetSpeed(&MotorDriver, Output_B, Spd);
 

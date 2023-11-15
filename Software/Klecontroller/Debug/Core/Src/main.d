@@ -39,7 +39,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Core/Inc/klebot_radio.h ../Core/Inc/simple_scheduler.h \
  ../Core/Inc/menu.h ../Core/Inc/controller_inputs.h \
  ../Core/Inc/joystick.h ../Core/Inc/debounce.h ../Core/Inc/gpio.h \
- ../Core/Inc/tim.h ../Core/Inc/adc.h ../Core/Inc/dma.h ../Core/Inc/i2c.h \
+ ../Core/Inc/adc.h ../Core/Inc/dma.h ../Core/Inc/i2c.h ../Core/Inc/tim.h \
  ../Core/Inc/controller_inputs.h ../Core/Inc/ssd1106.h
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
@@ -93,9 +93,9 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Core/Inc/joystick.h:
 ../Core/Inc/debounce.h:
 ../Core/Inc/gpio.h:
-../Core/Inc/tim.h:
 ../Core/Inc/adc.h:
 ../Core/Inc/dma.h:
 ../Core/Inc/i2c.h:
+../Core/Inc/tim.h:
 ../Core/Inc/controller_inputs.h:
 ../Core/Inc/ssd1106.h:

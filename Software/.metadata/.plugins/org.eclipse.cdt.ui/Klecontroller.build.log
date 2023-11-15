@@ -1,10 +1,10 @@
-18:50:32 **** Incremental Build of configuration Debug for project Klecontroller ****
-make -j12 all 
+14:32:26 **** Incremental Build of configuration Debug for project Klecontroller ****
+make -j4 all 
 arm-none-eabi-size   Klecontroller.elf 
    text	   data	    bss	    dec	    hex	filename
-  30204	    244	   3772	  34220	   85ac	Klecontroller.elf
+  28064	    164	   3588	  31816	   7c48	Klecontroller.elf
 Finished building: default.size.stdout
  
 
-18:50:33 Build Finished. 0 errors, 0 warnings. (took 991ms)
+14:32:26 Build Finished. 0 errors, 0 warnings. (took 413ms)
 

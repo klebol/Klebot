@@ -6,13 +6,13 @@
  */
 #include "simple_scheduler.h"
 
-
-
-
-
 //
 //Programs
 //
+void ToggleLed(void)
+{
+	HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+}
 
 void MenuTask(void)
 {
@@ -23,10 +23,11 @@ void MenuTask(void)
 	{
 		Menu_RefreshScreen();
 		FirstEnterFlag = 1;
+
+		Inputs_ButtonsRegisterCallback(UP_BUTTON, Menu_Select, ToggleLed);
 	}
 
 	EncoderRotation = Inputs_GetEncoderCount();
-
 	if(EncoderRotation > 0)
 	{
 		Menu_Next();
@@ -42,3 +43,5 @@ void SimpleScheduler(void)
 {
 	MenuTask();
 }
+
+

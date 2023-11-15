@@ -1,10 +1,10 @@
-17:00:48 **** Incremental Build of configuration Debug for project Klebot ****
-make -j12 all 
+10:33:25 **** Incremental Build of configuration Debug for project Klebot ****
+make -j4 all 
 arm-none-eabi-size   Klebot.elf 
    text	   data	    bss	    dec	    hex	filename
-  18988	     20	   2076	  21084	   525c	Klebot.elf
+  21548	    100	   2404	  24052	   5df4	Klebot.elf
 Finished building: default.size.stdout
  
 
-17:00:48 Build Finished. 0 errors, 0 warnings. (took 407ms)
+10:33:25 Build Finished. 0 errors, 0 warnings. (took 364ms)
 

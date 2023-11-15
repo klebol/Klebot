@@ -8,39 +8,53 @@
 
 #include "debounce.h"
 
-
-void DB_ButtonInit(DB_Button_t *Button, GPIO_TypeDef* GPIOx, uint16_t Gpio_Pin, uint16_t Debounce_ms)
+void DB_ButtonInit(DB_Button_t *Button, GPIO_TypeDef* GPIOx, uint16_t Gpio_Pin, uint32_t DebounceTime_ms, uint32_t HoldTime_ms)
 {
 	Button->Button_Port = GPIOx;
 	Button->Button_Pin = Gpio_Pin;
-	Button->DebounceTime_ms = Debounce_ms;
+	Button->DebounceTime_ms = DebounceTime_ms;
+	Button->HoldTime_ms = HoldTime_ms;
 	Button->ButtonState = IDLE;
 	Button->ButtonPressAction = NULL;
+	Button->ButtonHoldAction = NULL;
 }
 
-
-void DB_ButtonPressCallbackRegister(DB_Button_t *Button, void(*ActionFun)(void))
+void DB_ButtonPressCallbackRegister(DB_Button_t *Button, void(*PressActionFun)(void), void(*HoldActionFun)(void))
 {
-	Button->ButtonPressAction = ActionFun;
+	Button->ButtonPressAction = PressActionFun;
+	Button->ButtonHoldAction = HoldActionFun;
 }
 
-void DB_ButtonProcess(DB_Button_t *Button, TIM_HandleTypeDef *htim)	//pass a handle to timer with 1ms tick! Don't forget to start a timer in main loop
+static uint8_t DB_IsButtonPressed(DB_Button_t *Button)
+{
+	if(GPIO_PIN_RESET == HAL_GPIO_ReadPin(Button->Button_Port, Button->Button_Pin) )
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+void DB_ButtonProcess(DB_Button_t *Button)	//pass a handle to timer with 1ms tick! Don't forget to start a timer in main loop
 {
 	switch(Button->ButtonState)
 	{
 	case IDLE:
-		if(GPIO_PIN_RESET == HAL_GPIO_ReadPin(Button->Button_Port, Button->Button_Pin) )
+		if(DB_IsButtonPressed(Button))
 		{
 			Button->ButtonState = DEBOUNCE;
-			Button->TimTick = htim->Instance->CNT;
+			Button->LastTick = HAL_GetTick();
 		}
 		break;
 	case DEBOUNCE:
-		if( (htim->Instance->CNT) - (Button->TimTick) >= (Button->DebounceTime_ms) )
+		if(HAL_GetTick() - (Button->LastTick) > (Button->DebounceTime_ms) )
 		{
-			if(GPIO_PIN_RESET == HAL_GPIO_ReadPin(Button->Button_Port, Button->Button_Pin) )
+			if(DB_IsButtonPressed(Button))
 			{
 				Button->ButtonState = PRESSED;
+				Button->LastTick = HAL_GetTick();
 			}
 			else
 			{
@@ -49,11 +63,28 @@ void DB_ButtonProcess(DB_Button_t *Button, TIM_HandleTypeDef *htim)	//pass a han
 		}
 		break;
 	case PRESSED:
-		if(NULL != Button->ButtonPressAction)
+		if(HAL_GetTick() - (Button->LastTick) > 50 )
 		{
-			Button->ButtonPressAction();
+			if(DB_IsButtonPressed(Button))
+			{
+				Button->ButtonState = HOLD;
+				Button->LastTick = HAL_GetTick();
+			}
+			else if(NULL != Button->ButtonPressAction)
+			{
+				Button->ButtonPressAction();
+				Button->ButtonState = IDLE;
+			}
 		}
-		Button->ButtonState = IDLE;
 		break;
+	case HOLD:
+		if(HAL_GetTick() - (Button->LastTick) > (Button->HoldTime_ms) )
+		{
+			if(DB_IsButtonPressed(Button) && NULL != Button->ButtonPressAction)
+			{
+				Button->ButtonHoldAction();
+			}
+			Button->ButtonState = IDLE;
+		}
 	}
 }
