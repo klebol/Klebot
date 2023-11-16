@@ -12,11 +12,12 @@
 /*--------------Name, *Next, *Prev, *Child, *Parent, *Function---
  * WARNING: First member's *Prev pointer have to be NULL,
  * & Last member's *Next pointer have to be NULL!  */
-	Menu_t JoyCalib = {"Joystick Calib", NULL, NULL, &JoyCalib1, NULL, NULL};
+	Menu_t JoyCalib = {"Joystick Calib", &DiodeBlink, NULL, &JoyCalib1, NULL, NULL};
 		Menu_t JoyCalib1 = {"Left X", &JoyCalib2, NULL, NULL, &JoyCalib, NULL};
 		Menu_t JoyCalib2 = {"Left Y", &JoyCalib3, &JoyCalib1, NULL, &JoyCalib, NULL};
 		Menu_t JoyCalib3 = {"Right X", &JoyCalib4, &JoyCalib2, NULL, &JoyCalib, NULL};
 		Menu_t JoyCalib4 = {"Right Y", NULL, &JoyCalib3, NULL, &JoyCalib, NULL};
+	Menu_t DiodeBlink = {"Blink diode", NULL, &JoyCalib, NULL, NULL, &SetTestBlink};
 
 //
 //End of member list
@@ -44,7 +45,7 @@ void Menu_RefreshScreen(void)
 	uint8_t i = 0;
 	uint8_t CenterCalculate;
 
-	if(LastMenuPtr == MenuCurrentMember) return;
+	//if(LastMenuPtr == MenuCurrentMember) return;  TODO: IS THIS NEEDED?
 
 	while(LevelsIndexes[MenuLevel] > (LevelsFirstMembersToDisplay[MenuLevel] + MENU_ROWS_TO_DISPLAY - 1) )		//while our menu member is in out of screen range...
 	{

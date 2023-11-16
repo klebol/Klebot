@@ -84,7 +84,7 @@ void DB_ButtonProcess(DB_Button_t *Button)	//pass a handle to timer with 1ms tic
 	case HOLD:
 		if(HAL_GetTick() - (Button->LastTick) > (Button->HoldTime_ms) )
 		{
-			if(DB_IsButtonPressed(Button) && NULL != Button->ButtonPressAction)
+			if(DB_IsButtonPressed(Button) && NULL != Button->ButtonHoldAction)
 			{
 				Button->ButtonHoldAction();
 			}

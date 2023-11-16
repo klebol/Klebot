@@ -1,5 +1,4 @@
-../Core/Src/simple_scheduler.c:17:6:Scheduler_SetProgramPointer	1
-../Core/Src/simple_scheduler.c:22:6:ToggleLed	1
-../Core/Src/simple_scheduler.c:27:13:MenuTaskInit	1
-../Core/Src/simple_scheduler.c:35:13:MenuTask	3
-../Core/Src/simple_scheduler.c:51:6:SimpleScheduler	4
+../Core/Src/simple_scheduler.c:19:6:ToggleLed	1
+../Core/Src/simple_scheduler.c:24:13:MenuTaskInit	1
+../Core/Src/simple_scheduler.c:32:13:MenuTask	3
+../Core/Src/simple_scheduler.c:48:6:SimpleScheduler	4

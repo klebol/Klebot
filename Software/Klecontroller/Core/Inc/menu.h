@@ -52,6 +52,7 @@ extern Menu_t JoyCalib;
 	extern Menu_t JoyCalib2;
 	extern Menu_t JoyCalib3;
 	extern Menu_t JoyCalib4;
+extern Menu_t DiodeBlink;
 
 //
 //Funciotns

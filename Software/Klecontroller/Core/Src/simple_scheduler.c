@@ -8,16 +8,13 @@
 
 
 
-uint8_t (*ProgramToPerform)(void);
+
 
 //
 //=====
 //
 
-void Scheduler_SetProgramPointer(uint8_t (*Program)(void))
-{
-	ProgramToPerform = Program;
-}
+
 
 void ToggleLed(void)
 {
@@ -28,7 +25,7 @@ static void MenuTaskInit(void)
 {
 	Inputs_ButtonsRegisterCallback(ENC_BUTTON, Menu_Select, Menu_Back);
 	Inputs_ButtonsRegisterCallback(UP_BUTTON, Menu_Select, NULL);
-	Inputs_ButtonsRegisterCallback(UP_BUTTON, Menu_Back, NULL);
+	Inputs_ButtonsRegisterCallback(DOWN_BUTTON, Menu_Back, NULL);
 	Menu_RefreshScreen();
 }
 
@@ -51,26 +48,24 @@ static void MenuTask(void)
 void SimpleScheduler(void)
 {
 	static uint8_t StartupInitFlag = 0;
-	uint8_t IsSubProgramCompleted;
+	Programs_status_t SubProgramStatus;
 
 	if(0 == StartupInitFlag)
 	{
 		MenuTaskInit();								//Init for menu
+		StartupInitFlag = 1;
 	}
 
 	Inputs_ButtonsRoutine();
+	SubProgramStatus = Programs_PerformProgram();
 
-	if(ProgramToPerform != NULL)					//if there is a pointer to program
+	if(SubProgramStatus == PROGRAM_COMPLETED)
 	{
-		IsSubProgramCompleted = ProgramToPerform();	//keep executing it till it's completed
-		if(IsSubProgramCompleted)
-		{
-			ProgramToPerform = NULL;				//when it's completed NULL the pointer in order to go to the menu in next loop
-			Inputs_ClearButtonsCallbacks();			//clear callbacks for buttons after last subprogram
-			MenuTaskInit(); 						//Init for menu again
-		}
+		Programs_ClearProgram();					//clear program pointer to go to menu next time
+		Inputs_ClearButtonsCallbacks();				//clear callbacks for buttons after last subprogram
+		MenuTaskInit(); 							//Init for menu again
 	}
-	else											//if there is no pointer to program, perform menu task
+	else if(SubProgramStatus == NO_PROGRAM_SET)		//if there is no pointer to program, perform menu task
 	{
 		MenuTask();
 	}
