@@ -4,10 +4,7 @@
  *  Created on: 15 mar 2023
  *      Author: Michal Klebokowski
  */
-#include "main.h"
 #include "menu.h"
-#include "string.h"
-#include "ssd1106.h"
 
 //
 //TODO: 1. Define here your menu members, remember to add extern declarations in menu.h file!

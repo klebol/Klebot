@@ -6,26 +6,35 @@
  */
 #include "simple_scheduler.h"
 
+
+
+uint8_t (*ProgramToPerform)(void);
+
 //
-//Programs
+//=====
 //
+
+void Scheduler_SetProgramPointer(uint8_t (*Program)(void))
+{
+	ProgramToPerform = Program;
+}
+
 void ToggleLed(void)
 {
 	HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
 }
 
-void MenuTask(void)
+static void MenuTaskInit(void)
 {
-	static uint8_t FirstEnterFlag = 0;
+	Inputs_ButtonsRegisterCallback(ENC_BUTTON, Menu_Select, Menu_Back);
+	Inputs_ButtonsRegisterCallback(UP_BUTTON, Menu_Select, NULL);
+	Inputs_ButtonsRegisterCallback(UP_BUTTON, Menu_Back, NULL);
+	Menu_RefreshScreen();
+}
+
+static void MenuTask(void)
+{
 	int8_t EncoderRotation = 0;
-
-	if(0 == FirstEnterFlag)
-	{
-		Menu_RefreshScreen();
-		FirstEnterFlag = 1;
-
-		Inputs_ButtonsRegisterCallback(UP_BUTTON, Menu_Select, ToggleLed);
-	}
 
 	EncoderRotation = Inputs_GetEncoderCount();
 	if(EncoderRotation > 0)
@@ -41,7 +50,30 @@ void MenuTask(void)
 
 void SimpleScheduler(void)
 {
-	MenuTask();
+	static uint8_t StartupInitFlag = 0;
+	uint8_t IsSubProgramCompleted;
+
+	if(0 == StartupInitFlag)
+	{
+		MenuTaskInit();								//Init for menu
+	}
+
+	Inputs_ButtonsRoutine();
+
+	if(ProgramToPerform != NULL)					//if there is a pointer to program
+	{
+		IsSubProgramCompleted = ProgramToPerform();	//keep executing it till it's completed
+		if(IsSubProgramCompleted)
+		{
+			ProgramToPerform = NULL;				//when it's completed NULL the pointer in order to go to the menu in next loop
+			Inputs_ClearButtonsCallbacks();			//clear callbacks for buttons after last subprogram
+			MenuTaskInit(); 						//Init for menu again
+		}
+	}
+	else											//if there is no pointer to program, perform menu task
+	{
+		MenuTask();
+	}
 }
 
 

@@ -44,4 +44,6 @@ void Inputs_ButtonsRoutine(void);
 
 void Inputs_ButtonsRegisterCallback(uint8_t ButtonID, void(*PressActionFun)(void), void(*HoldActionFun)(void));
 
+void Inputs_ClearButtonsCallbacks(void);
+
 #endif /* INC_CONTROLLER_INPUTS_H_ */

@@ -2,6 +2,7 @@
 "./Core/Src/adc.o"
 "./Core/Src/bitmaps.o"
 "./Core/Src/controller_inputs.o"
+"./Core/Src/controller_programs.o"
 "./Core/Src/debounce.o"
 "./Core/Src/dma.o"
 "./Core/Src/fonts.o"

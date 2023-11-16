@@ -1,0 +1,69 @@
+  /*
+ * simple_scheduler.c
+ *
+ *  Created on: 7 maj 2023
+ *      Author: miqix
+ */
+#include "simple_scheduler.h"
+
+
+uint8_t (*ProgramToPerform)(void);
+
+//
+//Programs
+//
+void ToggleLed(void)
+{
+	HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+}
+
+void MenuTask(void)
+{
+	static uint8_t FirstEnterFlag = 0;
+	int8_t EncoderRotation = 0;
+
+	if(0 == FirstEnterFlag)
+	{
+		Inputs_ButtonsRegisterCallback(ENC_BUTTON, Menu_Select, Menu_Back);
+		Inputs_ButtonsRegisterCallback(UP_BUTTON, Menu_Select, NULL);
+		Inputs_ButtonsRegisterCallback(UP_BUTTON, Menu_Back, NULL);
+
+		Menu_RefreshScreen();
+		FirstEnterFlag = 1;
+
+
+	}
+
+	EncoderRotation = Inputs_GetEncoderCount();
+	if(EncoderRotation > 0)
+	{
+		Menu_Next();
+	}
+	else if(EncoderRotation < 0)
+	{
+		Menu_Prev();
+	}
+
+}
+
+void SimpleScheduler(void)
+{
+	uint8_t IsProgramCompleted;
+
+	Inputs_ButtonsRoutine();
+
+	if(ProgramToPerform != NULL)					//if there is a pointer to program
+	{
+		IsProgramCompleted = ProgramToPerform();	//keep executing it till it's completed
+		if(IsProgramCompleted)
+		{
+			ProgramToPerform = NULL;				//when it's completed NULL the pointer in order to go to the menu in next loop
+		}
+	}
+	else											//if there is no pointer to program, perform menu task
+	{
+		MenuTask();
+	}
+}
+
+

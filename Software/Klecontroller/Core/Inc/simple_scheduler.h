@@ -11,6 +11,7 @@
 #include "main.h"
 #include "menu.h"
 #include "controller_inputs.h"
+#include "controller_programs.h"
 
 
 void SimpleScheduler(void);

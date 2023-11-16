@@ -2,3 +2,6 @@
 1699946026311	Delete resource 'Klecontroller'
 1699976378260	Delete resource 'Klebot/Core/Inc/klebot_commands.h'
 1699976401781	Delete resource 'Klecontroller/Core/Inc/klebot_commands.h'
+1700122626256	Delete resource 'Klecontroller/Core/Inc/serial_debug.h'
+1700122631456	Delete resource 'Klecontroller/Core/Src/serial_debug.c'
+1700124998375	Delete resource 'swd_debug'

@@ -1,0 +1,4 @@
+../Core/Src/debounce.c:28:16:DB_IsButtonPressed	8	static
+../Core/Src/debounce.c:11:6:DB_ButtonInit	0	static
+../Core/Src/debounce.c:22:6:DB_ButtonPressCallbackRegister	0	static
+../Core/Src/debounce.c:40:6:DB_ButtonProcess	16	static

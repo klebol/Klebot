@@ -1,0 +1,10 @@
+09:55:07 **** Incremental Build of configuration Debug for project swd_debug ****
+make -j4 all 
+arm-none-eabi-size   swd_debug.elf 
+   text	   data	    bss	    dec	    hex	filename
+  15284	    112	   3824	  19220	   4b14	swd_debug.elf
+Finished building: default.size.stdout
+ 
+
+09:55:07 Build Finished. 0 errors, 0 warnings. (took 309ms)
+

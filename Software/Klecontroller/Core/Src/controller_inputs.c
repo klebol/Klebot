@@ -38,11 +38,11 @@ void Inputs_Init(void)
 	HAL_TIM_Encoder_Start(&htim3, TIM_CHANNEL_ALL);
 
 	/*Button debounce init */
-	DB_ButtonInit(&ButtonUp, BUTTON_UP_GPIO_Port, BUTTON_UP_Pin, 100, 1000);
-	DB_ButtonInit(&ButtonDown, BUTTON_DOWN_GPIO_Port, BUTTON_DOWN_Pin, 100, 1000);
-	DB_ButtonInit(&ButtonLeftJ, BUTTON_JOY1_GPIO_Port, BUTTON_JOY1_Pin, 100, 1000);
-	DB_ButtonInit(&ButtonRightJ, BUTTON_JOY2_GPIO_Port, BUTTON_JOY2_Pin, 100, 1000);
-	DB_ButtonInit(&ButtonEncoder, BUTTON_ENC_GPIO_Port, BUTTON_ENC_Pin, 100, 1000);
+	DB_ButtonInit(&ButtonUp, BUTTON_UP_GPIO_Port, BUTTON_UP_Pin, 80, 2000);
+	DB_ButtonInit(&ButtonDown, BUTTON_DOWN_GPIO_Port, BUTTON_DOWN_Pin, 80, 2000);
+	DB_ButtonInit(&ButtonLeftJ, BUTTON_JOY1_GPIO_Port, BUTTON_JOY1_Pin, 80, 2000);
+	DB_ButtonInit(&ButtonRightJ, BUTTON_JOY2_GPIO_Port, BUTTON_JOY2_Pin, 80, 2000);
+	DB_ButtonInit(&ButtonEncoder, BUTTON_ENC_GPIO_Port, BUTTON_ENC_Pin, 80, 2000);
 }
 
 //
@@ -179,5 +179,14 @@ void Inputs_ButtonsRegisterCallback(uint8_t ButtonID, void(*PressActionFun)(void
 	default:
 		break;
 	}
+}
+
+void Inputs_ClearButtonsCallbacks(void)
+{
+	DB_ButtonPressCallbackRegister(&ButtonUp, NULL, NULL);
+	DB_ButtonPressCallbackRegister(&ButtonDown, NULL, NULL);
+	DB_ButtonPressCallbackRegister(&ButtonLeftJ, NULL, NULL);
+	DB_ButtonPressCallbackRegister(&ButtonRightJ, NULL, NULL);
+	DB_ButtonPressCallbackRegister(&ButtonEncoder, NULL, NULL);
 }
 

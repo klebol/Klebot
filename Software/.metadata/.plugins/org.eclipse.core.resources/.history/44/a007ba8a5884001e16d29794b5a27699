@@ -1,0 +1,11 @@
+/*
+ * serial_debug.c
+ *
+ *  Created on: Nov 16, 2023
+ *      Author: Michal Klebokowski
+ */
+
+int __io_putchar(int ch)
+{
+	ITM_SendChar(ch);
+}

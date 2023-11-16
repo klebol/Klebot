@@ -1,0 +1,15 @@
+../Core/Src/ssd1106.c:40:20:OLED_SendCmd	32	static
+../Core/Src/ssd1106.c:69:13:OLED_ClearDisp	168	static
+../Core/Src/ssd1106.c:85:13:OLED_SetDeviceCursor	32	static
+../Core/Src/ssd1106.c:108:13:OLED_InvertDisplay	0	static
+../Core/Src/ssd1106.c:126:13:OLED_MoveCursor	0	static
+../Core/Src/ssd1106.c:139:6:OLED_GetCursorPosition	0	static
+../Core/Src/ssd1106.c:149:13:OLED_WriteToBuffer	24	static
+../Core/Src/ssd1106.c:180:13:OLED_SendBuffer	48	static
+../Core/Src/ssd1106.c:192:6:OLED_ClearBuffer	0	static
+../Core/Src/ssd1106.c:202:13:OLED_ChangeFont	0	static
+../Core/Src/ssd1106.c:62:13:OLED_Init	24	static
+../Core/Src/ssd1106.c:219:13:OLED_WriteChar	24	static
+../Core/Src/ssd1106.c:262:13:OLED_WriteString	16	static
+../Core/Src/ssd1106.c:278:13:OLED_WriteInt	16	static
+../Core/Src/ssd1106.c:294:13:OLED_DrawBitmapFlash	72	dynamic

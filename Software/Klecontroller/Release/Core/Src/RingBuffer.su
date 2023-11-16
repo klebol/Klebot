@@ -1,0 +1,2 @@
+../Core/Src/RingBuffer.c:12:18:RBuffer_Write	8	static
+../Core/Src/RingBuffer.c:25:18:RBuffer_Read	8	static

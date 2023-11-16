@@ -1,0 +1,6 @@
+../Core/Src/joystick.c:12:20:JoyS_Init	0	static
+../Core/Src/joystick.c:24:20:JoyS_SetIdleValues	16	static
+../Core/Src/joystick.c:38:20:Joy_SetMaxValue	0	static
+../Core/Src/joystick.c:56:20:Joy_SetMinValue	0	static
+../Core/Src/joystick.c:74:8:Joy_GetDeviationPercent	0	static
+../Core/Src/joystick.c:104:8:Joy_GetDeviationPercentCal	12	static

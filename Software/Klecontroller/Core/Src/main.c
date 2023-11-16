@@ -27,6 +27,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "stdio.h"
+
 #include "nRF24.h"
 #include "klebot_radio.h"
 #include "klebot_parser.h"
@@ -121,7 +123,9 @@ int main(void)
   {
 	  Radio_Process(NULL);
 	  SimpleScheduler();
-	  Inputs_ButtonsRoutine();
+
+
+
 
     /* USER CODE END WHILE */
 
@@ -193,6 +197,12 @@ static void MX_NVIC_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+int __io_putchar(int ch)
+{
+	ITM_SendChar(ch);
+	return ch;
+}
+
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
 	if(GPIO_Pin == NRF24_IRQ_Pin)
@@ -201,6 +211,8 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 	}
 
 }
+
+
 /* USER CODE END 4 */
 
 /**

@@ -11,3 +11,4 @@
 ../Core/Src/controller_inputs.c:131:8:Inputs_GetEncoderCount	16	static
 ../Core/Src/controller_inputs.c:151:6:Inputs_ButtonsRoutine	8	static
 ../Core/Src/controller_inputs.c:160:6:Inputs_ButtonsRegisterCallback	24	static
+../Core/Src/controller_inputs.c:184:6:Inputs_ClearButtonsCallbacks	8	static
