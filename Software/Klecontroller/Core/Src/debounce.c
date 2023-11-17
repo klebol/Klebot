@@ -59,25 +59,27 @@ void DB_ButtonProcess(DB_Button_t *Button)	//pass a handle to timer with 1ms tic
 			else
 			{
 				Button->ButtonState = IDLE;
+				printf("Debounce: Button bounced \n");
 			}
 		}
 		break;
 	case PRESSED:
-		if(HAL_GetTick() - (Button->LastTick) > 50 )
+
+		if(0 == DB_IsButtonPressed(Button))
 		{
-			if(DB_IsButtonPressed(Button))
+			if(NULL != Button->ButtonPressAction)
+			{
+				Button->ButtonPressAction();
+			}
+			Button->ButtonState = IDLE;
+			printf("Debounce: Button pressed! \n");
+		}
+		else
+		{
+			if(HAL_GetTick() - (Button->LastTick) > 80 )
 			{
 				Button->ButtonState = HOLD;
 				Button->LastTick = HAL_GetTick();
-			}
-			else
-			{
-				if(NULL != Button->ButtonPressAction)
-				{
-					Button->ButtonPressAction();
-				}
-				Button->ButtonState = IDLE;
-				printf("Debounce: Button pressed! \n");
 			}
 		}
 		break;
@@ -87,10 +89,9 @@ void DB_ButtonProcess(DB_Button_t *Button)	//pass a handle to timer with 1ms tic
 			if(DB_IsButtonPressed(Button) && NULL != Button->ButtonHoldAction)
 			{
 				Button->ButtonHoldAction();
+				printf("Debounce: Button held! \r\n");
 			}
-
 			Button->ButtonState = IDLE;
-			printf("Debounce: Button held! \r\n");
 		}
 	}
 }

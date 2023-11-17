@@ -38,11 +38,11 @@ void Inputs_Init(void)
 	HAL_TIM_Encoder_Start(&htim3, TIM_CHANNEL_ALL);
 
 	/*Button debounce init */
-	DB_ButtonInit(&ButtonUp, BUTTON_UP_GPIO_Port, BUTTON_UP_Pin, 80, 2000);
-	DB_ButtonInit(&ButtonDown, BUTTON_DOWN_GPIO_Port, BUTTON_DOWN_Pin, 80, 2000);
-	DB_ButtonInit(&ButtonLeftJ, BUTTON_JOY1_GPIO_Port, BUTTON_JOY1_Pin, 80, 2000);
-	DB_ButtonInit(&ButtonRightJ, BUTTON_JOY2_GPIO_Port, BUTTON_JOY2_Pin, 80, 2000);
-	DB_ButtonInit(&ButtonEncoder, BUTTON_ENC_GPIO_Port, BUTTON_ENC_Pin, 80, 2000);
+	DB_ButtonInit(&ButtonUp, BUTTON_UP_GPIO_Port, BUTTON_UP_Pin, 50, 2000);
+	DB_ButtonInit(&ButtonDown, BUTTON_DOWN_GPIO_Port, BUTTON_DOWN_Pin, 50, 2000);
+	DB_ButtonInit(&ButtonLeftJ, BUTTON_JOY1_GPIO_Port, BUTTON_JOY1_Pin, 50, 2000);
+	DB_ButtonInit(&ButtonRightJ, BUTTON_JOY2_GPIO_Port, BUTTON_JOY2_Pin, 50, 2000);
+	DB_ButtonInit(&ButtonEncoder, BUTTON_ENC_GPIO_Port, BUTTON_ENC_Pin, 50, 2000);
 }
 
 //

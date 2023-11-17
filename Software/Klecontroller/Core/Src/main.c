@@ -117,6 +117,8 @@ int main(void)
   OLED_Init(&hi2c3);
   /* USER CODE END 2 */
 
+
+
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
