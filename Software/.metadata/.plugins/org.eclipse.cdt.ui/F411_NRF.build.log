@@ -1,0 +1,10 @@
+13:01:00 **** Incremental Build of configuration Debug for project F411_NRF ****
+make -j4 all 
+arm-none-eabi-size   F411_NRF.elf 
+   text	   data	    bss	    dec	    hex	filename
+  14252	    100	   2036	  16388	   4004	F411_NRF.elf
+Finished building: default.size.stdout
+ 
+
+13:01:00 Build Finished. 0 errors, 0 warnings. (took 305ms)
+

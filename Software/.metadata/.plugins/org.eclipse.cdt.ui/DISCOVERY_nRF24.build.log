@@ -1,0 +1,10 @@
+13:59:54 **** Incremental Build of configuration Debug for project DISCOVERY_nRF24 ****
+make -j4 all 
+arm-none-eabi-size   DISCOVERY_nRF24.elf 
+   text	   data	    bss	    dec	    hex	filename
+  21012	    104	   3368	  24484	   5fa4	DISCOVERY_nRF24.elf
+Finished building: default.size.stdout
+ 
+
+13:59:54 Build Finished. 0 errors, 0 warnings. (took 351ms)
+

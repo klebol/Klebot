@@ -1,0 +1,10 @@
+14:05:24 **** Incremental Build of configuration Debug for project NUCLEO_nRF24 ****
+make -j4 all 
+arm-none-eabi-size   NUCLEO_nRF24.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23100	     20	   3700	  26820	   68c4	NUCLEO_nRF24.elf
+Finished building: default.size.stdout
+ 
+
+14:05:24 Build Finished. 0 errors, 0 warnings. (took 360ms)
+

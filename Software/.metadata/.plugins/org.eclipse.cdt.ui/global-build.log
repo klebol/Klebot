@@ -1,14 +1,42 @@
-14:51:41 **** Incremental Build of configuration Debug for project Klecontroller ****
+13:59:09 **** Incremental Build of configuration Debug for project DISCOVERY_nRF24 ****
 make -j4 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "Klecontroller.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\pawel\Desktop\Michal\Klebot\Software\Klecontroller\STM32F411RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Klecontroller.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: Klecontroller.elf
+arm-none-eabi-size   DISCOVERY_nRF24.elf 
+   text	   data	    bss	    dec	    hex	filename
+  21012	    104	   3368	  24484	   5fa4	DISCOVERY_nRF24.elf
+Finished building: default.size.stdout
  
+13:59:54 **** Incremental Build of configuration Debug for project DISCOVERY_nRF24 ****
+make -j4 all 
+arm-none-eabi-size   DISCOVERY_nRF24.elf 
+   text	   data	    bss	    dec	    hex	filename
+  21012	    104	   3368	  24484	   5fa4	DISCOVERY_nRF24.elf
+Finished building: default.size.stdout
+ 
+14:00:23 **** Incremental Build of configuration Debug for project NUCLEO_nRF24 ****
+make -j4 all 
+arm-none-eabi-size   NUCLEO_nRF24.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23100	     20	   3700	  26820	   68c4	NUCLEO_nRF24.elf
+Finished building: default.size.stdout
+ 
+14:04:42 **** Incremental Build of configuration Debug for project Klebot ****
+make -j4 all 
+arm-none-eabi-size   Klebot.elf 
+   text	   data	    bss	    dec	    hex	filename
+  21548	    100	   2404	  24052	   5df4	Klebot.elf
+Finished building: default.size.stdout
+ 
+14:05:24 **** Incremental Build of configuration Debug for project NUCLEO_nRF24 ****
+make -j4 all 
+arm-none-eabi-size   NUCLEO_nRF24.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23100	     20	   3700	  26820	   68c4	NUCLEO_nRF24.elf
+Finished building: default.size.stdout
+ 
+14:08:18 **** Incremental Build of configuration Debug for project Klecontroller ****
+make -j4 all 
 arm-none-eabi-size   Klecontroller.elf 
-arm-none-eabi-objdump -h -S  Klecontroller.elf  > "Klecontroller.list"
    text	   data	    bss	    dec	    hex	filename
   33488	    280	   3936	  37704	   9348	Klecontroller.elf
 Finished building: default.size.stdout
- 
-Finished building: Klecontroller.list
  
