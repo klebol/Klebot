@@ -1,0 +1,18 @@
+/*
+ * app_freeride.h
+ *
+ *  Created on: Nov 29, 2023
+ *      Author: miqix
+ */
+
+#ifndef INC_APP_FREERIDE_H_
+#define INC_APP_FREERIDE_H_
+
+
+//
+//Free Ride app commands set
+//
+
+#define FREERIDE_HEADER 0xA1
+
+#endif /* INC_APP_FREERIDE_H_ */

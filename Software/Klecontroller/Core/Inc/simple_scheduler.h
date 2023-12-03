@@ -12,6 +12,8 @@
 #include "menu.h"
 #include "controller_inputs.h"
 #include "controller_programs.h"
+#include "controller_parser.h"
+#include "klebot_radio.h"
 
 
 void SimpleScheduler(void);

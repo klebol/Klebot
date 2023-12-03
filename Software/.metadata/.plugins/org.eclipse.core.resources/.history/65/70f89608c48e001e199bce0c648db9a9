@@ -1,0 +1,49 @@
+/*
+ * klebot_programs.h
+ *
+ *  Created on: Nov 29, 2023
+ *      Author: miqix
+ */
+
+#ifndef INC_KLEBOT_PROGRAMS_H_
+#define INC_KLEBOT_PROGRAMS_H_
+
+#include "drv8836.h"
+
+//
+// --- Program Identifiers for commands ---
+//
+
+#define START_PROGRAM 0x10
+
+// Free Ride
+#define FREERIDE_PROG 0xA1
+	#define LEFT_MOTOR_SPEED 0x20
+	#define RIGHT_MOTOR_SPEED 0x21
+
+//
+// --- Status typedef ---
+//
+
+typedef enum
+{
+	NO_PROGRAM_SET,
+	PROGRAM_COMPLETED,
+	PROGRAM_IN_PROGESS
+}Programs_status_t;
+
+
+//
+// --- Functions ---
+//
+
+Programs_status_t (*Programs_GetProgram(void))(void);
+void Programs_ClearProgram(void);
+
+Programs_status_t Programs_PerformProgram(void);
+
+Programs_status_t FreeRide (void);
+
+void FreeRide_Parser(uint8_t *command, uint8_t length);
+
+#endif /* INC_KLEBOT_PROGRAMS_H_ */

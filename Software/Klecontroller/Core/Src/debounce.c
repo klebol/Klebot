@@ -76,7 +76,7 @@ void DB_ButtonProcess(DB_Button_t *Button)	//pass a handle to timer with 1ms tic
 		}
 		else
 		{
-			if(HAL_GetTick() - (Button->LastTick) > 80 )
+			if(HAL_GetTick() - (Button->LastTick) > 150 )
 			{
 				Button->ButtonState = HOLD;
 				Button->LastTick = HAL_GetTick();

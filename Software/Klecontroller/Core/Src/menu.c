@@ -10,14 +10,33 @@
 //TODO: 1. Define here your menu members, remember to add extern declarations in menu.h file!
 //
 /*--------------Name, *Next, *Prev, *Child, *Parent, *Function---
+ *
  * WARNING: First member's *Prev pointer have to be NULL,
  * & Last member's *Next pointer have to be NULL!  */
-	Menu_t JoyCalib = {"Joystick Calib", &DiodeBlink, NULL, &JoyCalib1, NULL, NULL};
+
+Menu_t RobotModes = {"Robot's modes", &DebugTools, NULL, &FreeRide, NULL, NULL};
+	Menu_t FreeRide = {"Free Ride", NULL, NULL, NULL, &RobotModes, &SetFreeRideControll};
+
+Menu_t DebugTools = {"Debug tools", &Settings, &RobotModes, &DiodeBlink, NULL, NULL};
+	Menu_t DiodeBlink = {"Blink diode", &DiodeTest, NULL, NULL, &DebugTools, &SetTestBlink};
+	Menu_t DiodeTest = {"Diode test", NULL, &DiodeBlink, NULL, &DebugTools, &Programs_DiodeTestSet};
+
+
+Menu_t Settings = {"Settings", NULL, &DebugTools, &JoyCalib, NULL, NULL};
+	Menu_t JoyCalib = {"Joystick Calib", NULL, NULL, &JoyCalib1, &Settings, NULL};
 		Menu_t JoyCalib1 = {"Left X", &JoyCalib2, NULL, NULL, &JoyCalib, NULL};
 		Menu_t JoyCalib2 = {"Left Y", &JoyCalib3, &JoyCalib1, NULL, &JoyCalib, NULL};
 		Menu_t JoyCalib3 = {"Right X", &JoyCalib4, &JoyCalib2, NULL, &JoyCalib, NULL};
 		Menu_t JoyCalib4 = {"Right Y", NULL, &JoyCalib3, NULL, &JoyCalib, NULL};
-	Menu_t DiodeBlink = {"Blink diode", NULL, &JoyCalib, NULL, NULL, &SetTestBlink};
+
+
+
+
+
+
+
+
+
 
 //
 //End of member list
@@ -40,7 +59,7 @@ static uint8_t MenuLevel;
 
 void Menu_RefreshScreen(void)
 {
-	static Menu_t *LastMenuPtr = NULL;
+	//static Menu_t *LastMenuPtr = NULL;
 	Menu_t *Tmp;
 	uint8_t i = 0;
 	uint8_t CenterCalculate;
@@ -83,7 +102,7 @@ void Menu_RefreshScreen(void)
 		Tmp = Tmp->Next;
 	}
 	OLED_SendBuffer();
-	LastMenuPtr = MenuCurrentMember;
+	//LastMenuPtr = MenuCurrentMember;
 
 }
 
@@ -133,16 +152,16 @@ void Menu_Prev(void)
 
 void Menu_Select(void)
 {
+	if(MenuCurrentMember->FunctionPtr != NULL)			//if there is a function pointer...
+	{
+		MenuCurrentMember->FunctionPtr();
+	}
+
 	if(MenuCurrentMember->Child != NULL)				//if there is a child...
 	{
 		MenuCurrentMember = MenuCurrentMember->Child;
 		FirstMemberToDisplayPtr = MenuCurrentMember;
 		MenuLevel++;
-	}
-
-	if(MenuCurrentMember->FunctionPtr != NULL)			//if there is a function pointer...
-	{
-		MenuCurrentMember->FunctionPtr();
 	}
 
 	Menu_RefreshScreen();

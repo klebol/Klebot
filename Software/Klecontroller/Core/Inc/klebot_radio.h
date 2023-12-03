@@ -8,6 +8,12 @@
 #ifndef INC_KLEBOT_RADIO_H_
 #define INC_KLEBOT_RADIO_H_
 
+#include "nRF24.h"
+#include "RingBuffer.h"
+#include "nRF24_Defs.h"
+#include "spi.h"
+#include "klebot_commands.h"
+
 //
 //TODO: Select device
 //
@@ -23,11 +29,6 @@
 #define PACKET_SEND_DELAY 50 		// [ms]
 
 
-//
-//COMMANDS CODES
-//
-#define COMM_END 0x04
-#define CONNECTION_HOLD 0x05
 
 //
 //Typedefs
@@ -47,11 +48,15 @@ typedef enum
 
 void Radio_Init(SPI_HandleTypeDef *hspi);	//Init
 
-void Radio_Process( void (*UserParser)(uint8_t *command, uint8_t length) ); //Process for main loop, pass function for parsing received data
+void Radio_Process(void); //Process for main loop, pass function for parsing received data
 
 Klebot_Radio_Status Radio_TxBufferPut(uint8_t *Command, uint8_t Length);	//Put data in TX ring buffer
 
 void Radio_NoConnectionCallback(void);										//Callback for no connection
+
+void Radio_HandlerIRQ(void);
+
+void Radio_NewCommandReceivedCallback(uint8_t *command, uint8_t length);
 
 
 #endif /* INC_KLEBOT_RADIO_H_ */

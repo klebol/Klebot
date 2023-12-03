@@ -1,0 +1,26 @@
+/*
+ * klebot_commands.h
+ *
+ *  Created on: Dec 1, 2023
+ *      Author: miqix
+ */
+
+#ifndef INC_KLEBOT_COMMANDS_H_
+#define INC_KLEBOT_COMMANDS_H_
+
+//
+//Connection related commands
+//
+#define COMM_END 0x04
+#define CONNECTION_HOLD 0x05
+#define SOURCE_BLOCKED 0x06
+
+//
+//Status identifiers
+//
+
+#define _OK 0x00
+#define _ERROR 0x01
+
+
+#endif /* INC_KLEBOT_COMMANDS_H_ */

@@ -1,0 +1,22 @@
+/*
+ * app_freeride.h
+ *
+ *  Created on: Nov 29, 2023
+ *      Author: miqix
+ */
+
+#ifndef INC_APP_FREERIDE_H_
+#define INC_APP_FREERIDE_H_
+
+#include "drv8836.h"
+
+//
+//Free Ride app commands set
+//
+
+#define FREERIDE_APP 0xA1
+
+void FreeRide (void);
+void FreeRide_Parser(uint8_t *command, uint8_t length);
+
+#endif /* INC_APP_FREERIDE_H_ */

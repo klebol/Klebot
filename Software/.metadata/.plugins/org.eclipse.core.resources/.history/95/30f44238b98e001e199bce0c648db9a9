@@ -1,0 +1,18 @@
+/*
+ * app_freeride.c
+ *
+ *  Created on: Nov 29, 2023
+ *      Author: miqix
+ */
+
+#include "app_freeride.h"
+
+void FreeRide (void)
+{
+
+}
+
+void FreeRide_Parser(uint8_t *command, uint8_t length)
+{
+
+}

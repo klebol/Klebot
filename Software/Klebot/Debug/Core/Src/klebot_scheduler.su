@@ -1,0 +1,2 @@
+../Core/Src/klebot_scheduler.c:12:6:KlebotScheduler	16	static
+../Core/Src/klebot_scheduler.c:51:6:Radio_NewCommandReceivedCallback	16	static

@@ -23,7 +23,7 @@
 #define MENU_MAX_LEVELS_NUMBER 4
 
 //Define your first member (in main menu only (level 0) )
-#define MENU_FIRST_MEMBER &JoyCalib
+#define MENU_FIRST_MEMBER &RobotModes
 
 //Comment this definition if you don't want menu looping after last member
 #define MENU_LOOPING
@@ -47,12 +47,19 @@ struct Menu_Struct {
 //TODO: 3. Declare with extern here your menu members from menu.c file
 //
 
-extern Menu_t JoyCalib;
-	extern Menu_t JoyCalib1;
-	extern Menu_t JoyCalib2;
-	extern Menu_t JoyCalib3;
-	extern Menu_t JoyCalib4;
-extern Menu_t DiodeBlink;
+extern Menu_t RobotModes;
+	extern Menu_t FreeRide;
+
+extern Menu_t DebugTools;
+	extern Menu_t DiodeBlink;
+	extern Menu_t DiodeTest;
+
+extern Menu_t Settings;
+	extern Menu_t JoyCalib;
+		extern Menu_t JoyCalib1;
+		extern Menu_t JoyCalib2;
+		extern Menu_t JoyCalib3;
+		extern Menu_t JoyCalib4;
 
 //
 //Funciotns

@@ -50,6 +50,8 @@ void SimpleScheduler(void)
 	static uint8_t StartupInitFlag = 0;
 	Programs_status_t SubProgramStatus;
 
+	Radio_Process();
+
 	if(0 == StartupInitFlag)
 	{
 		MenuTaskInit();								//Init for menu
@@ -69,6 +71,19 @@ void SimpleScheduler(void)
 	{
 		MenuTask();
 	}
+	else if(SubProgramStatus == PROGRAM_LAUNCH_ERROR)
+	{
+		Programs_ClearProgram();					//clear program pointer to go to menu next time
+		Inputs_ClearButtonsCallbacks();				//clear callbacks for buttons after last subprogram
+		MenuTaskInit(); 							//Init for menu again
+	}
 }
 
+//
+//
+//
 
+void Radio_NewCommandReceivedCallback(uint8_t *command, uint8_t length)
+{
+	Parser_Controller(command, length);
+}

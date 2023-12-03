@@ -46,9 +46,9 @@
 ../Core/Src/nRF24.c:488:9:nRF24_RXAvailible	16	static
 ../Core/Src/nRF24.c:503:6:nRF24_IRQ_Handler	4	static
 ../Core/Src/nRF24.c:509:6:nRF24_IRQ_Read	16	static
-../Core/Src/nRF24.c:540:17:nRF24_WriteAckPayload	16	static
-../Core/Src/nRF24.c:553:13:nRF24_EventRxCallback	4	static
-../Core/Src/nRF24.c:558:13:nRF24_EventTxCallback	4	static
-../Core/Src/nRF24.c:563:13:nRF24_EventMrCallback	4	static
-../Core/Src/nRF24.c:568:6:nRF24_Event	8	static
-../Core/Src/nRF24.c:591:6:nRF24_Init	16	static
+../Core/Src/nRF24.c:544:13:nRF24_EventRxCallback	4	static
+../Core/Src/nRF24.c:549:13:nRF24_EventTxCallback	4	static
+../Core/Src/nRF24.c:554:13:nRF24_EventMrCallback	4	static
+../Core/Src/nRF24.c:559:6:nRF24_Event	8	static
+../Core/Src/nRF24.c:582:6:nRF24_Init	16	static
+../Core/Src/nRF24.c:630:17:nRF24_WriteAckPayload	16	static

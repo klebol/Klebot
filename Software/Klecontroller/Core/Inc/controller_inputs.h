@@ -46,4 +46,8 @@ void Inputs_ButtonsRegisterCallback(uint8_t ButtonID, void(*PressActionFun)(void
 
 void Inputs_ClearButtonsCallbacks(void);
 
+int8_t Inputs_GetLeftJoystickDev(uint8_t axis);
+
+int8_t Inputs_GetRightJoystickDev(uint8_t axis);
+
 #endif /* INC_CONTROLLER_INPUTS_H_ */

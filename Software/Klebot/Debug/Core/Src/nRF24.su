@@ -51,4 +51,4 @@
 ../Core/Src/nRF24.c:554:13:nRF24_EventMrCallback	4	static
 ../Core/Src/nRF24.c:559:6:nRF24_Event	8	static
 ../Core/Src/nRF24.c:582:6:nRF24_Init	16	static
-../Core/Src/nRF24.c:630:6:nRF24_WriteAckPayload	16	static
+../Core/Src/nRF24.c:630:17:nRF24_WriteAckPayload	16	static

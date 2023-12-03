@@ -1,0 +1,45 @@
+/*
+ * klebot_parser.h
+ *
+ *  Created on: 29 maj 2023
+ *      Author: Michal Klebokowski
+ */
+
+#ifndef INC_KLEBOT_PARSER_H_
+#define INC_KLEBOT_PARSER_H_
+
+#include "stdio.h"
+#include "klebot_radio.h"
+#include "klebot_programs.h"
+
+
+//
+//Connection related commands
+//
+#define COMM_END 0x04
+#define CONNECTION_HOLD 0x05
+#define SOURCE_BLOCKED 0x06
+
+//
+//Status identifiers
+//
+
+#define _OK 0x00
+#define _ERROR 0x01
+
+//
+//Apps related commands
+//
+
+#define START_APP 0x10
+
+
+
+
+
+void Parser_Klebot(uint8_t *command, uint8_t length);
+
+
+
+
+#endif /* INC_KLEBOT_PARSER_H_ */

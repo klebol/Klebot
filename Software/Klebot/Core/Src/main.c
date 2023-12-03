@@ -25,10 +25,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "klebot_scheduler.h"
 #include "klebot_radio.h"
-#include "nRF24.h"
-#include "klebot_parser.h"
-
 #include "drv8836.h"
 /* USER CODE END Includes */
 
@@ -50,9 +48,12 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-DRV8836_t MotorDriver;
-DRV8836_Direction_t Dir;
-uint16_t Spd;
+//DRV8836_t MotorDriver1;
+//DRV8836_Direction_t Dir;
+//uint16_t Spd;
+//
+//DRV8836_Direction_t Dir1;
+//uint16_t Spd1;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -100,7 +101,7 @@ int main(void)
   MX_TIM3_Init();
   MX_TIM4_Init();
   /* USER CODE BEGIN 2 */
-  DRV8836_Init(&MotorDriver, &htim3, TIM_CHANNEL_1, TIM_CHANNEL_2, TIM_CHANNEL_3, TIM_CHANNEL_4);
+  //DRV8836_Init(&MotorDriver1, &htim3, TIM_CHANNEL_1, TIM_CHANNEL_2, TIM_CHANNEL_3, TIM_CHANNEL_4);
   HAL_GPIO_WritePin(DRV_NSLEEP_GPIO_Port, DRV_NSLEEP_Pin, GPIO_PIN_SET);
   HAL_GPIO_WritePin(DRV_MODE_GPIO_Port, DRV_MODE_Pin, GPIO_PIN_RESET);
 
@@ -113,9 +114,17 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  Radio_Process(&Parser_Klebot);
-	  //DRV8836_SetDirection(&MotorDriver, Output_B, Dir);
-	  //DRV8836_SetSpeed(&MotorDriver, Output_B, Spd);
+	  KlebotScheduler();
+
+
+
+
+
+//	  DRV8836_SetDirection(&MotorDriver1, Output_B, Dir);
+//	  DRV8836_SetSpeed(&MotorDriver1, Output_B, Spd);
+//
+//	  DRV8836_SetDirection(&MotorDriver1, Output_A, Dir1);
+//	  DRV8836_SetSpeed(&MotorDriver1, Output_A, Spd1);
 
 
     /* USER CODE END WHILE */
@@ -175,7 +184,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
 	if(GPIO_Pin == NRF24_IRQ_Pin)
 	{
-		nRF24_IRQ_Handler();
+		Radio_HandlerIRQ();
 	}
 }
 /* USER CODE END 4 */

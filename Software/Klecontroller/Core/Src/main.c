@@ -31,7 +31,7 @@
 
 #include "nRF24.h"
 #include "klebot_radio.h"
-#include "klebot_parser.h"
+#include "controller_parser.h"
 
 #include "simple_scheduler.h"
 #include "controller_inputs.h"
@@ -123,7 +123,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  Radio_Process(NULL);
+
 	  SimpleScheduler();
 
 
@@ -202,6 +202,7 @@ static void MX_NVIC_Init(void)
 int __io_putchar(int ch)
 {
 	ITM_SendChar(ch);
+
 	return ch;
 }
 

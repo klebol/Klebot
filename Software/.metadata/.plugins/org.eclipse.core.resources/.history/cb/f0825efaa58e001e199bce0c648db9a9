@@ -1,0 +1,49 @@
+/*
+ * klebot_parser.c
+ *
+ *  Created on: 29 maj 2023
+ *      Author: Michal Klebokowski
+ */
+
+#include "klebot_parser.h"
+
+uint8_t CurrentDataSourceID = RADIO_DATA_SOURCE;
+
+void Parser_Klebot(uint8_t *command, uint8_t length)							//main parser funciton
+{
+	uint8_t *CurrentByte = command;
+	uint8_t ResponseCommand[MAX_COMMAND_LENGTH];
+	uint8_t CommandLength = 0;
+	uint32_t tick = 0;
+	uint8_t len = 0;
+
+
+	switch(*CurrentByte)
+	{
+	case
+
+	default:
+
+		break;
+	}
+
+
+	switch(CommandSource)
+	{
+	case RADIO_DATA_SOURCE:
+		Radio_TxBufferPut(ResponseCommand, CommandLength);
+		break;
+	case UART_DATA_SOURCE:
+		//send via uart
+		break;
+	case USB_DATA_SOURCE:
+		//send via usb
+		break;
+	}
+
+}
+
+void Parser_SetDataSrc(uint8_t DataSourceID)
+{
+	CurrentDataSourceID = DataSourceID;
+}

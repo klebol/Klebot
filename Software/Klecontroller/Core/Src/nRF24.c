@@ -537,15 +537,6 @@ void nRF24_IRQ_Read(void)
 	}
 }
 
-nRF24_TX_Status nRF24_WriteAckPayload(uint8_t pipe, uint8_t * data, uint8_t size)
-{
-	if(size > 32)
-			return NRF24_NO_TRANSMITTED_PACKET;
-	pipe &= 0x07;
-	nRF24_WriteRegisters((NRF24_CMD_W_ACK_PAYLOAD | pipe), data, size);
-	return NRF24_TRANSMITTED_PACKET;
-}
-
 //
 // nRF24 Event for Interrupt mode
 //
@@ -636,4 +627,13 @@ void nRF24_Init(SPI_HandleTypeDef *hspi)
 //
 //
 
+nRF24_TX_Status nRF24_WriteAckPayload(uint8_t pipe, uint8_t * data, uint8_t size)
+{
+	if(size > 32)
+		return NRF24_NO_TRANSMITTED_PACKET;
 
+	pipe &= 0x07;
+	nRF24_WriteRegisters((NRF24_CMD_W_ACK_PAYLOAD | pipe), data, size);
+
+	return NRF24_TRANSMITTED_PACKET;
+}

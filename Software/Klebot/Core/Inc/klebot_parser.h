@@ -8,10 +8,22 @@
 #ifndef INC_KLEBOT_PARSER_H_
 #define INC_KLEBOT_PARSER_H_
 
-#include "main.h"
-#include "klebot_commands.h"
+#include "stdio.h"
 #include "klebot_radio.h"
+#include "klebot_programs.h"
+
+
+
+
+
+
+
+
+
 
 void Parser_Klebot(uint8_t *command, uint8_t length);
+
+
+
 
 #endif /* INC_KLEBOT_PARSER_H_ */
