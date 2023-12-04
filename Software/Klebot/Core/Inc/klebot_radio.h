@@ -58,5 +58,7 @@ void Radio_HandlerIRQ(void);
 
 void Radio_NewCommandReceivedCallback(uint8_t *command, uint8_t length);
 
+Klebot_Radio_Status Radio_GetConnectionStatus(void);
+
 
 #endif /* INC_KLEBOT_RADIO_H_ */

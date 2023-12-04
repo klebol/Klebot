@@ -23,6 +23,12 @@ void Parser_Klebot(uint8_t *command, uint8_t length)							//main parser funcito
 		FreeRide_Parser(CurrentByte, Length);
 		break;
 
+	case DIODE_TEST:
+		CurrentByte++;
+		Length--;
+		Programs_DiodeTestParser(CurrentByte, Length);
+
+
 	default:
 
 		break;

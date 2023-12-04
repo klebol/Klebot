@@ -1,6 +1,0 @@
-../Core/Src/klebot_programs.c:17:6:Programs_SetProgram	16	static
-../Core/Src/klebot_programs.c:22:21:Programs_GetProgram	4	static
-../Core/Src/klebot_programs.c:27:6:Programs_ClearProgram	4	static
-../Core/Src/klebot_programs.c:32:19:Programs_PerformProgram	16	static
-../Core/Src/klebot_programs.c:54:19:FreeRide	16	static
-../Core/Src/klebot_programs.c:65:6:FreeRide_Parser	24	static

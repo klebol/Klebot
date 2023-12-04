@@ -11,7 +11,7 @@
 #include "nRF24.h"
 #include "klebot_radio.h"
 #include "klebot_parser.h"
-#include "klebot_programs.h"
+#include "Programs/klebot_programs.h"
 
 //
 //Command sources defines

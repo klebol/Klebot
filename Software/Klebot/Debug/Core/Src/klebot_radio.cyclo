@@ -6,9 +6,10 @@
 ../Core/Src/klebot_radio.c:115:21:Radio_SendConnectionCheck	1
 ../Core/Src/klebot_radio.c:134:6:Radio_SetResponseACK	2
 ../Core/Src/klebot_radio.c:148:6:Radio_Process	4
-../Core/Src/klebot_radio.c:202:6:Radio_HandlerIRQ	1
-../Core/Src/klebot_radio.c:207:13:Radio_NoConnectionCallback	1
-../Core/Src/klebot_radio.c:212:13:Radio_NewCommandReceivedCallback	1
-../Core/Src/klebot_radio.c:219:6:nRF24_EventTxCallback	1
-../Core/Src/klebot_radio.c:225:6:nRF24_EventRxCallback	2
-../Core/Src/klebot_radio.c:241:6:nRF24_EventMrCallback	1
+../Core/Src/klebot_radio.c:203:21:Radio_GetConnectionStatus	1
+../Core/Src/klebot_radio.c:211:6:Radio_HandlerIRQ	1
+../Core/Src/klebot_radio.c:216:13:Radio_NoConnectionCallback	1
+../Core/Src/klebot_radio.c:221:13:Radio_NewCommandReceivedCallback	1
+../Core/Src/klebot_radio.c:228:6:nRF24_EventTxCallback	1
+../Core/Src/klebot_radio.c:234:6:nRF24_EventRxCallback	2
+../Core/Src/klebot_radio.c:250:6:nRF24_EventMrCallback	1

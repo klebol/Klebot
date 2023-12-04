@@ -92,7 +92,7 @@ Programs_status_t Programs_DiodeTestProgram(void)
 		Inputs_ButtonsRegisterCallback(DOWN_BUTTON, &Programs_DiodeTestSendOffCmd, NULL);
 		Programs_SendProgramStartCommand(DIODE_TEST);
 		FirstEntry = 1;
-		LaunchTimeoutStamp = HAL_GetTick();				//timestamp in first entry for counting program lauch on klebot timeout
+		LaunchTimeoutStamp = HAL_GetTick();				//timestamp in first entry for counting program launch on klebot timeout
 		OLED_ClearBuffer(BLACK);
 		OLED_SendBuffer();
 	}
@@ -114,10 +114,12 @@ Programs_status_t Programs_DiodeTestProgram(void)
 		return PROGRAM_COMPLETED;
 	}
 
+	OLED_ClearBuffer(BLACK);
 	OLED_MoveCursor(0, 0);
 	OLED_WriteString("LED STATE:", WHITE);
 	OLED_MoveCursor(0, 16);
 	OLED_WriteInt(DiodeTestDatabase.DiodeState, WHITE);
+	OLED_SendBuffer();
 
 	return PROGRAM_IN_PROGRESS;
 }

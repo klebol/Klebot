@@ -1,7 +1,7 @@
-13:19:03 **** Incremental Build of configuration Debug for project Klecontroller ****
+19:14:30 **** Incremental Build of configuration Debug for project Klebot ****
 make -j12 all 
-arm-none-eabi-size   Klecontroller.elf 
+arm-none-eabi-size   Klebot.elf 
    text	   data	    bss	    dec	    hex	filename
-  35028	    400	   3952	  39380	   99d4	Klecontroller.elf
+  20856	     20	   2100	  22976	   59c0	Klebot.elf
 Finished building: default.size.stdout
  

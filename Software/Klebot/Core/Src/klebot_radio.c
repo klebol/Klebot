@@ -197,6 +197,15 @@ void Radio_Process(void)			//Process to put in main loop
 }
 
 //
+//Get connection status
+//
+
+Klebot_Radio_Status Radio_GetConnectionStatus(void)
+{
+	return ConnectionStatus;
+}
+
+//
 //Klebot radio callbacks to use
 //
 void Radio_HandlerIRQ(void)

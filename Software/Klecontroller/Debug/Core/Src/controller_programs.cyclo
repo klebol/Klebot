@@ -7,9 +7,9 @@
 ../Core/Src/controller_programs.c:70:6:Programs_DiodeTestSendOffCmd	1
 ../Core/Src/controller_programs.c:78:6:Programs_DiodeTestExitProgram	1
 ../Core/Src/controller_programs.c:84:19:Programs_DiodeTestProgram	5
-../Core/Src/controller_programs.c:126:6:Programs_DiodeTestParser	4
-../Core/Src/controller_programs.c:156:6:Programs_DiodeTestSet	1
-../Core/Src/controller_programs.c:191:19:TestBlinkProgram	6
-../Core/Src/controller_programs.c:250:6:SetTestBlink	1
-../Core/Src/controller_programs.c:256:6:SetFreeRideControll	1
-../Core/Src/controller_programs.c:261:19:FreeRideControll	4
+../Core/Src/controller_programs.c:128:6:Programs_DiodeTestParser	4
+../Core/Src/controller_programs.c:158:6:Programs_DiodeTestSet	1
+../Core/Src/controller_programs.c:193:19:TestBlinkProgram	6
+../Core/Src/controller_programs.c:252:6:SetTestBlink	1
+../Core/Src/controller_programs.c:258:6:SetFreeRideControll	1
+../Core/Src/controller_programs.c:263:19:FreeRideControll	4
