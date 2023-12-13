@@ -77,6 +77,12 @@ void SimpleScheduler(void)
 		Inputs_ClearButtonsCallbacks();				//clear callbacks for buttons after last subprogram
 		MenuTaskInit(); 							//Init for menu again
 	}
+	else if(SubProgramStatus == PROGRAM_EXIT_ERROR)
+	{
+		Programs_ClearProgram();					//clear program pointer to go to menu next time
+		Inputs_ClearButtonsCallbacks();				//clear callbacks for buttons after last subprogram
+		MenuTaskInit(); 							//Init for menu again
+	}
 }
 
 //

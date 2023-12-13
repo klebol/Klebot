@@ -1,0 +1,167 @@
+/*
+ * DiodeTest_Prog.c
+ *
+ *  Created on: Dec 9, 2023
+ *      Author: Michal Klebokowski
+ */
+
+#include "Programs/DiodeTest_Prog.h"
+
+DiodeTestProgramData_t DiodeTestDatabase;
+
+
+//
+// -- Setting LED on/off --
+//
+static void Programs_DiodeTestSendOnCmd(void)
+{
+	uint8_t Buffer[2];
+	Buffer[0] = DIODE_TEST;
+	Buffer[1] = DIODE_SET_ON;
+	Radio_TxBufferPut(Buffer, 2);
+}
+
+static void Programs_DiodeTestSendOffCmd(void)
+{
+	uint8_t Buffer[2];
+	Buffer[0] = DIODE_TEST;
+	Buffer[1] = DIODE_SET_OFF;
+	Radio_TxBufferPut(Buffer, 2);
+}
+
+//
+// -- Main Diode Test Program for Controller --
+//
+
+Programs_status_t Programs_DiodeTestProgram(void)
+{
+	static uint8_t FirstEntry = 0;
+	static uint32_t TimeoutStamp = 0;
+	/*First entry, code which will be performed only at the first entry to this program after launching it */
+	if(0 == FirstEntry)
+	{
+		/* Setting proper buttons funcionality for this program */
+		Inputs_ClearButtonsCallbacks();
+		Inputs_ButtonsRegisterCallback(UP_BUTTON, &Programs_DiodeTestSendOnCmd, &Programs_DiodeTestExitProgram);
+		Inputs_ButtonsRegisterCallback(DOWN_BUTTON, &Programs_DiodeTestSendOffCmd, NULL);
+		/* Clearing display */
+		OLED_ClearBuffer(BLACK);
+		OLED_MoveCursor(0, 0);
+		OLED_WriteString("Launching...", WHITE);
+		OLED_SendBuffer();
+		/* Timestamp for counting timeout for program launch on Klebot */
+		TimeoutStamp = HAL_GetTick();
+		FirstEntry = 1;
+	}
+
+	/* Check if we had response from robot that program has properly started
+	 * (parser is writing CurrentRobotProgramID if robot sends start ACK*/
+	if(DIODE_TEST != Programs_GetCurrentRobotProgramID() )
+	{
+		if(HAL_GetTick() - TimeoutStamp > PROGRAM_START_TIMEOUT_MS)
+		{
+			FirstEntry = 0;
+			return PROGRAM_LAUNCH_ERROR;
+		}
+		else
+		{
+			return PROGRAM_IN_PROGRESS;
+		}
+
+	}
+
+	/* Program exit  */
+	if(1 == DiodeTestDatabase.ProgramExitFlag)
+	{
+		/* Timestamp for counting timeout for program exit on Klebot */
+		TimeoutStamp = HAL_GetTick();
+
+		/* If there was an exit ACK, CurrentRobotProgramID was cleared by parser */
+		if(NO_PROGRAM_SET == Programs_GetCurrentRobotProgramID() )
+		{
+			DiodeTestDatabase.ProgramExitFlag = 0;
+			DiodeTestDatabase.DiodeState = 0;
+			FirstEntry = 0;
+			return PROGRAM_COMPLETED;
+		}
+		/* If ACK have not came before timeout, exit program with error */
+		else if(HAL_GetTick() - TimeoutStamp > PROGRAM_EXIT_TIMEOUT_MS)
+		{
+			DiodeTestDatabase.ProgramExitFlag = 0;
+			DiodeTestDatabase.DiodeState = 0;
+			FirstEntry = 0;
+			return PROGRAM_EXIT_ERROR;
+		}
+
+
+	}
+
+	OLED_ClearBuffer(BLACK);
+	OLED_MoveCursor(0, 0);
+	OLED_WriteString("LED STATE:", WHITE);
+	OLED_MoveCursor(0, 16);
+	OLED_WriteInt(DiodeTestDatabase.DiodeState, WHITE);
+	OLED_SendBuffer();
+
+	return PROGRAM_IN_PROGRESS;
+}
+
+//
+// -- Program start/exit --
+//
+
+void Programs_DiodeTestSet(void)
+{
+	Programs_SendProgramStartCommand(DIODE_TEST);		//send start command to robot
+	Programs_SetProgram(Programs_DiodeTestProgram);		//set this program in this device
+}
+
+void Programs_DiodeTestExitProgram(void)
+{
+	DiodeTestDatabase.ProgramExitFlag = 1;
+	Programs_SendProgramExitCommand(DIODE_TEST);
+}
+
+//
+// -- Program Parser --
+//
+
+void Programs_DiodeTestParser(uint8_t *command, uint8_t length)
+{
+	uint8_t *CurrentByte = command;
+	//uint8_t Length = length;
+
+	switch(*CurrentByte)
+	{
+	case START_PROGRAM:
+		CurrentByte++;
+		if(ACK == *CurrentByte)
+		{
+			Programs_SetCurrentRobotProgramID(DIODE_TEST);				//ack that program has started
+		}
+		else
+		{
+			//ERROR
+		}
+
+		break;
+	case DIODE_REAL_STATE:
+		CurrentByte++;
+		DiodeTestDatabase.DiodeState = *CurrentByte;
+		break;
+
+	case EXIT_PROGRAM:
+		CurrentByte++;
+		if(ACK == *CurrentByte)
+		{
+			Programs_ClearCurrentRobotProgramID();
+		}
+
+	default:
+
+		break;
+	}
+}
+
+
+

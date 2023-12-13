@@ -1,0 +1,6 @@
+../Core/Src/Programs/DiodeTest_Prog.c:16:13:Programs_DiodeTestSendOnCmd	1
+../Core/Src/Programs/DiodeTest_Prog.c:24:13:Programs_DiodeTestSendOffCmd	1
+../Core/Src/Programs/DiodeTest_Prog.c:36:19:Programs_DiodeTestProgram	7
+../Core/Src/Programs/DiodeTest_Prog.c:104:6:Programs_DiodeTestSet	1
+../Core/Src/Programs/DiodeTest_Prog.c:118:6:Programs_DiodeTestExitProgram	1
+../Core/Src/Programs/DiodeTest_Prog.c:130:6:Programs_DiodeTestParser	7

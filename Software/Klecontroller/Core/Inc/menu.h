@@ -11,7 +11,8 @@
 #include "main.h"
 #include "string.h"
 #include "ssd1106.h"
-#include "controller_programs.h"
+#include "Programs/controller_programs.h"
+#include "Programs/DiodeTest_Prog.h"
 
 //
 //TODO: 2.Setup here for your needs

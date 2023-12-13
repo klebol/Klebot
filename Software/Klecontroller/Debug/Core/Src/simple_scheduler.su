@@ -2,4 +2,4 @@
 ../Core/Src/simple_scheduler.c:24:13:MenuTaskInit	8	static
 ../Core/Src/simple_scheduler.c:32:13:MenuTask	16	static
 ../Core/Src/simple_scheduler.c:48:6:SimpleScheduler	16	static
-../Core/Src/simple_scheduler.c:86:6:Radio_NewCommandReceivedCallback	16	static
+../Core/Src/simple_scheduler.c:92:6:Radio_NewCommandReceivedCallback	16	static

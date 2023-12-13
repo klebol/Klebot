@@ -39,9 +39,9 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  17 .debug_macro  00020ffc  00000000  00000000  00034dbd  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_line   000187c2  00000000  00000000  00055db9  2**0
+ 18 .debug_line   000187c3  00000000  00000000  00055db9  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_str    000bd643  00000000  00000000  0006e57b  2**0
+ 19 .debug_str    000bd643  00000000  00000000  0006e57c  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  20 .debug_frame  0000490c  00000000  00000000  0012bbc0  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
@@ -5258,9 +5258,9 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef* timHandle)
 
 0800216c <Programs_DiodeTestProgram>:
 
-
-uint8_t ProgramExitFlag;
-
+//
+// -- Main Diode Test Program for Robot --
+//
 Programs_status_t Programs_DiodeTestProgram(void)
 {
  800216c:	b580      	push	{r7, lr}
@@ -5312,8 +5312,9 @@ Programs_status_t Programs_DiodeTestProgram(void)
  80021b0:	20000214 	.word	0x20000214
 
 080021b4 <Programs_DiodeTestParser>:
-
-
+//
+// -- Diode Test Program Parser --
+//
 
 void Programs_DiodeTestParser(uint8_t *command, uint8_t length)
 {
@@ -5327,9 +5328,8 @@ void Programs_DiodeTestParser(uint8_t *command, uint8_t length)
  80021c0:	687b      	ldr	r3, [r7, #4]
  80021c2:	60fb      	str	r3, [r7, #12]
 	uint8_t Buffer[3];
-		//uint8_t Length = length;
 
-		switch(*CurrentByte)
+	switch(*CurrentByte)
  80021c4:	68fb      	ldr	r3, [r7, #12]
  80021c6:	781b      	ldrb	r3, [r3, #0]
  80021c8:	3b10      	subs	r3, #16
@@ -5355,88 +5355,86 @@ void Programs_DiodeTestParser(uint8_t *command, uint8_t length)
  8002210:	08002287 	.word	0x08002287
  8002214:	08002231 	.word	0x08002231
  8002218:	08002255 	.word	0x08002255
-		{
-		case START_PROGRAM:
-			if(PROGRAMS_OK == Programs_SetProgram(Programs_DiodeTestProgram) )
+	{
+	case START_PROGRAM:
+		if(PROGRAMS_OK == Programs_SetProgram(Programs_DiodeTestProgram) )
  800221c:	481d      	ldr	r0, [pc, #116]	; (8002294 <Programs_DiodeTestParser+0xe0>)
  800221e:	f000 f83f 	bl	80022a0 <Programs_SetProgram>
  8002222:	4603      	mov	r3, r0
  8002224:	2b00      	cmp	r3, #0
  8002226:	d130      	bne.n	800228a <Programs_DiodeTestParser+0xd6>
-			{
-				Programs_SendProgramStartedACK(DIODE_TEST);
+		{
+			Programs_SendProgramStartedACK(DIODE_TEST);
  8002228:	20d0      	movs	r0, #208	; 0xd0
  800222a:	f000 f871 	bl	8002310 <Programs_SendProgramStartedACK>
-			}
-			break;
+		}
+		break;
  800222e:	e02c      	b.n	800228a <Programs_DiodeTestParser+0xd6>
-		case DIODE_SET_ON:
-			HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
+
+	case DIODE_SET_ON:
+		HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
  8002230:	2200      	movs	r2, #0
  8002232:	2101      	movs	r1, #1
  8002234:	4818      	ldr	r0, [pc, #96]	; (8002298 <Programs_DiodeTestParser+0xe4>)
  8002236:	f000 fc67 	bl	8002b08 <HAL_GPIO_WritePin>
-			Buffer[0] = DIODE_TEST;
+		Buffer[0] = DIODE_TEST;
  800223a:	23d0      	movs	r3, #208	; 0xd0
  800223c:	723b      	strb	r3, [r7, #8]
-			Buffer[1] = DIODE_REAL_STATE;
+		Buffer[1] = DIODE_REAL_STATE;
  800223e:	2322      	movs	r3, #34	; 0x22
  8002240:	727b      	strb	r3, [r7, #9]
-			Buffer[2] = 1;
+		Buffer[2] = 1;
  8002242:	2301      	movs	r3, #1
  8002244:	72bb      	strb	r3, [r7, #10]
-			Radio_TxBufferPut(Buffer, 3);
+		Radio_TxBufferPut(Buffer, 3);
  8002246:	f107 0308 	add.w	r3, r7, #8
  800224a:	2103      	movs	r1, #3
  800224c:	4618      	mov	r0, r3
  800224e:	f7fe fde5 	bl	8000e1c <Radio_TxBufferPut>
-
-			break;
+		break;
  8002252:	e01b      	b.n	800228c <Programs_DiodeTestParser+0xd8>
 
-		case DIODE_SET_OFF:
-			HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
+	case DIODE_SET_OFF:
+		HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
  8002254:	2201      	movs	r2, #1
  8002256:	2101      	movs	r1, #1
  8002258:	480f      	ldr	r0, [pc, #60]	; (8002298 <Programs_DiodeTestParser+0xe4>)
  800225a:	f000 fc55 	bl	8002b08 <HAL_GPIO_WritePin>
-			Buffer[0] = DIODE_TEST;
+		Buffer[0] = DIODE_TEST;
  800225e:	23d0      	movs	r3, #208	; 0xd0
  8002260:	723b      	strb	r3, [r7, #8]
-			Buffer[1] = DIODE_REAL_STATE;
+		Buffer[1] = DIODE_REAL_STATE;
  8002262:	2322      	movs	r3, #34	; 0x22
  8002264:	727b      	strb	r3, [r7, #9]
-			Buffer[2] = 0;
+		Buffer[2] = 0;
  8002266:	2300      	movs	r3, #0
  8002268:	72bb      	strb	r3, [r7, #10]
-			Radio_TxBufferPut(Buffer, 3);
+		Radio_TxBufferPut(Buffer, 3);
  800226a:	f107 0308 	add.w	r3, r7, #8
  800226e:	2103      	movs	r1, #3
  8002270:	4618      	mov	r0, r3
  8002272:	f7fe fdd3 	bl	8000e1c <Radio_TxBufferPut>
-			break;
+		break;
  8002276:	e009      	b.n	800228c <Programs_DiodeTestParser+0xd8>
 
-		case EXIT_PROGRAM:
-			ProgramExitFlag = 1;
+	case EXIT_PROGRAM:
+		ProgramExitFlag = 1;
  8002278:	4b08      	ldr	r3, [pc, #32]	; (800229c <Programs_DiodeTestParser+0xe8>)
  800227a:	2201      	movs	r2, #1
  800227c:	701a      	strb	r2, [r3, #0]
-			Programs_SendProgramExitACK(DIODE_TEST);
+		Programs_SendProgramExitACK(DIODE_TEST);
  800227e:	20d0      	movs	r0, #208	; 0xd0
  8002280:	f000 f85c 	bl	800233c <Programs_SendProgramExitACK>
-
-			break;
+		break;
  8002284:	e002      	b.n	800228c <Programs_DiodeTestParser+0xd8>
 
-		default:
-
-			break;
+	default:
+		break;
  8002286:	bf00      	nop
  8002288:	e000      	b.n	800228c <Programs_DiodeTestParser+0xd8>
-			break;
+		break;
  800228a:	bf00      	nop
-		}
+	}
 
 }
  800228c:	bf00      	nop
@@ -5448,10 +5446,10 @@ void Programs_DiodeTestParser(uint8_t *command, uint8_t length)
  800229c:	20000214 	.word	0x20000214
 
 080022a0 <Programs_SetProgram>:
-//
-// --------------------- General functions to manage programs ---------------------
+// -- General functions to manage programs --
 //
 
+/* Function for setting current pointer to program */
 Programs_error_t Programs_SetProgram(uint8_t (*Program)(void))
 {
  80022a0:	b480      	push	{r7}
@@ -5509,19 +5507,22 @@ void Programs_ClearProgram(void)
 
 080022e4 <Programs_PerformProgram>:
 
+/* Program performing function, made for being put in while loop */
 Programs_status_t Programs_PerformProgram(void)
 {
  80022e4:	b580      	push	{r7, lr}
  80022e6:	b082      	sub	sp, #8
  80022e8:	af00      	add	r7, sp, #0
 	Programs_status_t status;
-	if(NULL != ProgramToPerform)		//if there is a program to perform
+	/* If there is a program to perform... */
+	if(NULL != ProgramToPerform)
  80022ea:	4b08      	ldr	r3, [pc, #32]	; (800230c <Programs_PerformProgram+0x28>)
  80022ec:	681b      	ldr	r3, [r3, #0]
  80022ee:	2b00      	cmp	r3, #0
  80022f0:	d005      	beq.n	80022fe <Programs_PerformProgram+0x1a>
 	{
-		status = ProgramToPerform();	//perform it and return it's status
+	/* Perform it and return it's status */
+		status = ProgramToPerform();
  80022f2:	4b06      	ldr	r3, [pc, #24]	; (800230c <Programs_PerformProgram+0x28>)
  80022f4:	681b      	ldr	r3, [r3, #0]
  80022f6:	4798      	blx	r3
@@ -5545,6 +5546,9 @@ Programs_status_t Programs_PerformProgram(void)
  800230c:	20000230 	.word	0x20000230
 
 08002310 <Programs_SendProgramStartedACK>:
+//
+// -- Sending acknowledgements for controller about starting/exiting programs --
+//
 
 Programs_error_t Programs_SendProgramStartedACK(uint8_t ProgramID)
 {

@@ -11,9 +11,10 @@ DRV8836_t MotorDriver; // TEMPORARY FOR TEST!!!!
 Programs_status_t (*ProgramToPerform)(void);	//pointer to program to execute
 
 //
-// --------------------- General functions to manage programs ---------------------
+// -- General functions to manage programs --
 //
 
+/* Function for setting current pointer to program */
 Programs_error_t Programs_SetProgram(uint8_t (*Program)(void))
 {
 	if(NULL == ProgramToPerform)
@@ -27,7 +28,8 @@ Programs_error_t Programs_SetProgram(uint8_t (*Program)(void))
 	}
 }
 
-Programs_status_t (*Programs_GetProgram(void))(void)	//super weird syntax function which returns out current pointer to program
+/* Function which returns current pointer to program */
+Programs_status_t (*Programs_GetProgram(void))(void)
 {
 	return ProgramToPerform;
 }
@@ -37,12 +39,15 @@ void Programs_ClearProgram(void)
 	ProgramToPerform = NULL;
 }
 
+/* Program performing function, made for being put in while loop */
 Programs_status_t Programs_PerformProgram(void)
 {
 	Programs_status_t status;
-	if(NULL != ProgramToPerform)		//if there is a program to perform
+	/* If there is a program to perform... */
+	if(NULL != ProgramToPerform)
 	{
-		status = ProgramToPerform();	//perform it and return it's status
+	/* Perform it and return it's status */
+		status = ProgramToPerform();
 	}
 	else
 	{
@@ -50,6 +55,10 @@ Programs_status_t Programs_PerformProgram(void)
 	}
 	return status;
 }
+
+//
+// -- Sending acknowledgements for controller about starting/exiting programs --
+//
 
 Programs_error_t Programs_SendProgramStartedACK(uint8_t ProgramID)
 {
