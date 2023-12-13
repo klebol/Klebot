@@ -70,6 +70,8 @@ The PCB for robot is based on STM32F107RCT6, Cortex-M3 microcontroller. Periphel
 
 
 ## Photos
-
+<img src="Photos/Both_Pcbs.jpg" alt="Klebot PCB" width="1008" height="756">
+<img src="Photos/Controller_Pcb.jpg" alt="Klebot PCB" width="1008" height="756">
+<img src="Photos/Klebot_Pcb.jpg" alt="Klebot PCB" width="756" height="1008">
 
 
