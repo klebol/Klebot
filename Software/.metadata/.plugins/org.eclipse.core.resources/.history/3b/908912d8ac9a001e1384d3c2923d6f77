@@ -1,0 +1,13 @@
+/*
+ * motor_encoder.h
+ *
+ *  Created on: Dec 14, 2023
+ *      Author: miqix
+ */
+
+#ifndef INC_MOTORS_MOTOR_ENCODER_H_
+#define INC_MOTORS_MOTOR_ENCODER_H_
+
+
+
+#endif /* INC_MOTORS_MOTOR_ENCODER_H_ */

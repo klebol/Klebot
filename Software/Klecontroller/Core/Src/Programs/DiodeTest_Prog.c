@@ -8,7 +8,7 @@
 #include "Programs/DiodeTest_Prog.h"
 
 DiodeTestProgramData_t DiodeTestDatabase;
-uint32_t TimeoutStamp;
+
 
 //
 // -- Setting LED on/off --
@@ -60,7 +60,7 @@ Programs_status_t Programs_DiodeTestProgram(void)
 			return PROGRAM_COMPLETED;
 		}
 		/* If ACK have not came before timeout, exit program with error */
-		else if(HAL_GetTick() - TimeoutStamp > PROGRAM_EXIT_TIMEOUT_MS)
+		else if(HAL_GetTick() - DiodeTestDatabase.TimeoutStamp > PROGRAM_EXIT_TIMEOUT_MS)
 		{
 			DiodeTestDatabase.ProgramExitFlag = 0;
 			DiodeTestDatabase.DiodeState = 0;
@@ -75,7 +75,7 @@ Programs_status_t Programs_DiodeTestProgram(void)
 	 * (parser is writing CurrentRobotProgramID if robot sends start ACK*/
 	if(DIODE_TEST != Programs_GetCurrentRobotProgramID() )
 	{
-		if(HAL_GetTick() - TimeoutStamp > PROGRAM_START_TIMEOUT_MS)
+		if(HAL_GetTick() - DiodeTestDatabase.TimeoutStamp > PROGRAM_START_TIMEOUT_MS)
 		{
 			FirstEntry = 0;
 			return PROGRAM_LAUNCH_ERROR;
@@ -112,7 +112,7 @@ void Programs_DiodeTestSet(void)
 	Inputs_ButtonsRegisterCallback(UP_BUTTON, &Programs_DiodeTestSendOnCmd, &Programs_DiodeTestExitProgram);
 	Inputs_ButtonsRegisterCallback(DOWN_BUTTON, &Programs_DiodeTestSendOffCmd, NULL);
 	/* Timestamp for counting timeout for program launch on Klebot */
-	TimeoutStamp = HAL_GetTick();
+	DiodeTestDatabase.TimeoutStamp = HAL_GetTick();
 }
 
 void Programs_DiodeTestExitProgram(void)
@@ -120,7 +120,7 @@ void Programs_DiodeTestExitProgram(void)
 	DiodeTestDatabase.ProgramExitFlag = 1;
 	Programs_SendProgramExitCommand(DIODE_TEST);
 	/* Timestamp for counting timeout for program exit on Klebot */
-	TimeoutStamp = HAL_GetTick();
+	DiodeTestDatabase.TimeoutStamp = HAL_GetTick();
 }
 
 //

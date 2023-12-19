@@ -1,4 +1,6 @@
 "./Core/Src/Programs/DiodeTest_Prog.o"
+"./Core/Src/Programs/MotorTest_Prog.o"
+"./Core/Src/Programs/PROGRAM_TEMPLATE.o"
 "./Core/Src/Programs/controller_programs.o"
 "./Core/Src/RingBuffer.o"
 "./Core/Src/adc.o"

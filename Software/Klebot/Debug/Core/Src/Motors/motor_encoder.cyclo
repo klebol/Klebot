@@ -1,0 +1,2 @@
+../Core/Src/Motors/motor_encoder.c:10:6:MotorEnc_Init	1
+../Core/Src/Motors/motor_encoder.c:16:6:MotorEnc_Uptade	8

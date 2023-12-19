@@ -1,0 +1,5 @@
+../Core/Src/Programs/PROGRAM_TEMPLATE.c:17:13:Programs_TEMPLATE_CommandSend	16	static
+../Core/Src/Programs/PROGRAM_TEMPLATE.c:30:19:Programs_TEMPLATEProgram	8	static
+../Core/Src/Programs/PROGRAM_TEMPLATE.c:95:6:Programs_TEMPLATESet	8	static
+../Core/Src/Programs/PROGRAM_TEMPLATE.c:109:6:Programs_TEMPLATEExitProgram	8	static
+../Core/Src/Programs/PROGRAM_TEMPLATE.c:121:6:Programs_TEMPLATEParser	24	static

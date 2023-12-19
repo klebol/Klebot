@@ -11,4 +11,6 @@
 #include "Programs/klebot_programs.h"
 #include "gpio.h"
 
+void Programs_DiodeTestParser(uint8_t *command, uint8_t length);
+
 #endif /* INC_PROGRAMS_DIODETEST_PROG_H_ */

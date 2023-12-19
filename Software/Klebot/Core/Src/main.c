@@ -28,6 +28,7 @@
 #include "klebot_scheduler.h"
 #include "klebot_radio.h"
 #include "drv8836.h"
+#include "Motors/motor_encoder.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -48,18 +49,23 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-//DRV8836_t MotorDriver1;
-//DRV8836_Direction_t Dir;
-//uint16_t Spd;
+DRV8836_t MotorDriver1;
+MotorEncoder_t MotorEncoderA;
+
+DRV8836_Direction_t Dir;
+uint16_t Spd;
 //
-//DRV8836_Direction_t Dir1;
-//uint16_t Spd1;
+DRV8836_Direction_t Dir1;
+uint16_t Spd1;
+
+
+int16_t EncPos;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
-
+int8_t GetEncoderCount(void);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -100,11 +106,15 @@ int main(void)
   MX_TIM1_Init();
   MX_TIM3_Init();
   MX_TIM4_Init();
+  MX_TIM7_Init();
   /* USER CODE BEGIN 2 */
-  //DRV8836_Init(&MotorDriver1, &htim3, TIM_CHANNEL_1, TIM_CHANNEL_2, TIM_CHANNEL_3, TIM_CHANNEL_4);
+  DRV8836_Init(&MotorDriver1, &htim3, TIM_CHANNEL_1, TIM_CHANNEL_2, TIM_CHANNEL_3, TIM_CHANNEL_4);
   HAL_GPIO_WritePin(DRV_NSLEEP_GPIO_Port, DRV_NSLEEP_Pin, GPIO_PIN_SET);
   HAL_GPIO_WritePin(DRV_MODE_GPIO_Port, DRV_MODE_Pin, GPIO_PIN_RESET);
 
+  MotorEnc_Init(&MotorEncoderA, &htim1);
+
+  HAL_TIM_Base_Start_IT(&htim7);
 
 
   Radio_Init(&hspi3);
@@ -114,12 +124,12 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  KlebotScheduler();
+	  //KlebotScheduler();
 
+	  DRV8836_SetMotor(&MotorDriver1, Output_A , Dir, Spd);
+	  DRV8836_SetMotor(&MotorDriver1, Output_B , Dir1, Spd1);
 
-
-
-
+	 // EncPos += GetEncoderCount();
 //	  DRV8836_SetDirection(&MotorDriver1, Output_B, Dir);
 //	  DRV8836_SetSpeed(&MotorDriver1, Output_B, Spd);
 //
@@ -180,6 +190,39 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+
+int __io_putchar(int ch)
+{
+	ITM_SendChar(ch);
+
+	return ch;
+}
+
+int8_t GetEncoderCount(void)
+{
+	static uint16_t LastTimerCounter = 0;
+	int CounterDif = htim1.Instance->CNT - LastTimerCounter;
+	if(CounterDif >= 4 || CounterDif <= -4)
+	{
+		LastTimerCounter = htim1.Instance->CNT;
+		return (int8_t)(-CounterDif / 4);
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+	if(htim->Instance == TIM7)
+	{
+		MotorEnc_Uptade(&MotorEncoderA);
+	}
+}
+
+
+
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
 	if(GPIO_Pin == NRF24_IRQ_Pin)

@@ -7,6 +7,7 @@
 
 #include "klebot_scheduler.h"
 
+
 uint8_t CommandSource = RADIO_DATA_SOURCE;
 
 
@@ -33,6 +34,8 @@ void KlebotScheduler(void)
 {
 	static uint8_t StartupInitFlag = 0;
 	Programs_status_t SubProgramStatus;
+
+
 
 	Radio_Process();
 

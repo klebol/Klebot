@@ -30,7 +30,9 @@ Core/Src/klebot_scheduler.o: ../Core/Src/klebot_scheduler.c \
  ../Core/Inc/nRF24_Defs.h ../Core/Inc/spi.h ../Core/Inc/klebot_commands.h \
  ../Core/Inc/klebot_parser.h ../Core/Inc/Programs/klebot_programs.h \
  ../Core/Inc/klebot_commands.h ../Core/Inc/klebot_radio.h \
- ../Core/Inc/drv8836.h ../Core/Inc/tim.h ../Core/Inc/tim.h
+ ../Core/Inc/drv8836.h ../Core/Inc/tim.h ../Core/Inc/tim.h \
+ ../Core/Inc/Programs/DiodeTest_Prog.h \
+ ../Core/Inc/Programs/klebot_programs.h ../Core/Inc/gpio.h
 ../Core/Inc/klebot_scheduler.h:
 ../Core/Inc/nRF24.h:
 ../Core/Inc/main.h:
@@ -72,3 +74,6 @@ Core/Src/klebot_scheduler.o: ../Core/Src/klebot_scheduler.c \
 ../Core/Inc/drv8836.h:
 ../Core/Inc/tim.h:
 ../Core/Inc/tim.h:
+../Core/Inc/Programs/DiodeTest_Prog.h:
+../Core/Inc/Programs/klebot_programs.h:
+../Core/Inc/gpio.h:

@@ -15,6 +15,7 @@ typedef struct
 {
 	uint8_t DiodeState;
 	uint8_t ProgramExitFlag;
+	uint32_t TimeoutStamp;
 }DiodeTestProgramData_t;
 
 

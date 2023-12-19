@@ -1,7 +1,8 @@
-LeftJoystick
-AdcSamplesMean
 Dir
 Dir1
 Spd
 Spd1
-MotorDriver
+MotorDriver1
+EncPos
+htim1
+MotorEncoderA
