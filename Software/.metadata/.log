@@ -3260,3 +3260,18 @@ java.lang.NullPointerException: Cannot invoke "org.eclipse.debug.core.DebugPlugi
 
 !ENTRY org.eclipse.core.jobs 2 2 2023-12-19 20:08:08.032
 !MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: org.eclipse.cdt.dsf.gdb.internal.ui.console.GdbBasicCliConsole$InputReadJob
+!SESSION 2023-12-19 20:10:41.872 -----------------------------------------------
+eclipse.buildId=Version 1.13.2
+java.version=17.0.6
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=pl_PL
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2023-12-19 20:10:47.261
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2023-12-19 20:10:47.263
+!MESSAGE Log4j2 initialized with config file D:\Embedded\KLEBOT\GIT\Software\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2023-12-19 20:10:51.968
+!MESSAGE Started RMI Server, listening on port 41337
