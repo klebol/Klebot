@@ -60,7 +60,7 @@ void MotorEnc_Uptade(MotorEncoder_t *encoder)
 		}
 	}
 
-	encoder->RPM = (encoder->Velocity * 6000) / 1400;
+	encoder->RPM = (encoder->Velocity * 6000) / 1400; //define constants
 	encoder->LastCounter = NewCounter;
 
 }

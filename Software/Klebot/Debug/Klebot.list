@@ -769,7 +769,7 @@ void MotorEnc_Uptade(MotorEncoder_t *encoder)
 		}
 	}
 
-	encoder->RPM = (encoder->Velocity * 6000) / 1400;
+	encoder->RPM = (encoder->Velocity * 6000) / 1400; //define constants
  800089a:	687b      	ldr	r3, [r7, #4]
  800089c:	f9b3 3004 	ldrsh.w	r3, [r3, #4]
  80008a0:	461a      	mov	r2, r3
@@ -4010,8 +4010,8 @@ void MX_TIM1_Init(void)
   sConfig.EncoderMode = TIM_ENCODERMODE_TI12;
  8001b7c:	2303      	movs	r3, #3
  8001b7e:	60fb      	str	r3, [r7, #12]
-  sConfig.IC1Polarity = TIM_ICPOLARITY_RISING;
- 8001b80:	2300      	movs	r3, #0
+  sConfig.IC1Polarity = TIM_ICPOLARITY_FALLING;
+ 8001b80:	2302      	movs	r3, #2
  8001b82:	613b      	str	r3, [r7, #16]
   sConfig.IC1Selection = TIM_ICSELECTION_DIRECTTI;
  8001b84:	2301      	movs	r3, #1
@@ -4019,11 +4019,11 @@ void MX_TIM1_Init(void)
   sConfig.IC1Prescaler = TIM_ICPSC_DIV1;
  8001b88:	2300      	movs	r3, #0
  8001b8a:	61bb      	str	r3, [r7, #24]
-  sConfig.IC1Filter = 15;
- 8001b8c:	230f      	movs	r3, #15
+  sConfig.IC1Filter = 0;
+ 8001b8c:	2300      	movs	r3, #0
  8001b8e:	61fb      	str	r3, [r7, #28]
-  sConfig.IC2Polarity = TIM_ICPOLARITY_RISING;
- 8001b90:	2300      	movs	r3, #0
+  sConfig.IC2Polarity = TIM_ICPOLARITY_FALLING;
+ 8001b90:	2302      	movs	r3, #2
  8001b92:	623b      	str	r3, [r7, #32]
   sConfig.IC2Selection = TIM_ICSELECTION_DIRECTTI;
  8001b94:	2301      	movs	r3, #1
@@ -4031,8 +4031,8 @@ void MX_TIM1_Init(void)
   sConfig.IC2Prescaler = TIM_ICPSC_DIV1;
  8001b98:	2300      	movs	r3, #0
  8001b9a:	62bb      	str	r3, [r7, #40]	; 0x28
-  sConfig.IC2Filter = 15;
- 8001b9c:	230f      	movs	r3, #15
+  sConfig.IC2Filter = 0;
+ 8001b9c:	2300      	movs	r3, #0
  8001b9e:	62fb      	str	r3, [r7, #44]	; 0x2c
   if (HAL_TIM_Encoder_Init(&htim1, &sConfig) != HAL_OK)
  8001ba0:	f107 030c 	add.w	r3, r7, #12
@@ -4322,11 +4322,11 @@ void MX_TIM4_Init(void)
  8001d4c:	4b18      	ldr	r3, [pc, #96]	; (8001db0 <MX_TIM4_Init+0xa0>)
  8001d4e:	2200      	movs	r2, #0
  8001d50:	619a      	str	r2, [r3, #24]
-  sConfig.EncoderMode = TIM_ENCODERMODE_TI1;
- 8001d52:	2301      	movs	r3, #1
+  sConfig.EncoderMode = TIM_ENCODERMODE_TI12;
+ 8001d52:	2303      	movs	r3, #3
  8001d54:	60fb      	str	r3, [r7, #12]
-  sConfig.IC1Polarity = TIM_ICPOLARITY_RISING;
- 8001d56:	2300      	movs	r3, #0
+  sConfig.IC1Polarity = TIM_ICPOLARITY_FALLING;
+ 8001d56:	2302      	movs	r3, #2
  8001d58:	613b      	str	r3, [r7, #16]
   sConfig.IC1Selection = TIM_ICSELECTION_DIRECTTI;
  8001d5a:	2301      	movs	r3, #1
@@ -4337,8 +4337,8 @@ void MX_TIM4_Init(void)
   sConfig.IC1Filter = 0;
  8001d62:	2300      	movs	r3, #0
  8001d64:	61fb      	str	r3, [r7, #28]
-  sConfig.IC2Polarity = TIM_ICPOLARITY_RISING;
- 8001d66:	2300      	movs	r3, #0
+  sConfig.IC2Polarity = TIM_ICPOLARITY_FALLING;
+ 8001d66:	2302      	movs	r3, #2
  8001d68:	623b      	str	r3, [r7, #32]
   sConfig.IC2Selection = TIM_ICSELECTION_DIRECTTI;
  8001d6a:	2301      	movs	r3, #1
