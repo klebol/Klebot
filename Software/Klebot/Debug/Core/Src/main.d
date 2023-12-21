@@ -25,9 +25,10 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
+ ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h \
  ../Core/Inc/i2c.h ../Core/Inc/main.h ../Core/Inc/spi.h ../Core/Inc/tim.h \
- ../Core/Inc/gpio.h ../Core/Inc/klebot_scheduler.h ../Core/Inc/nRF24.h \
- ../Core/Inc/klebot_radio.h ../Core/Inc/RingBuffer.h \
+ ../Core/Inc/usart.h ../Core/Inc/gpio.h ../Core/Inc/klebot_scheduler.h \
+ ../Core/Inc/nRF24.h ../Core/Inc/klebot_radio.h ../Core/Inc/RingBuffer.h \
  ../Core/Inc/nRF24_Defs.h ../Core/Inc/spi.h ../Core/Inc/klebot_commands.h \
  ../Core/Inc/klebot_parser.h ../Core/Inc/Programs/klebot_programs.h \
  ../Core/Inc/klebot_commands.h ../Core/Inc/klebot_radio.h \
@@ -62,10 +63,12 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h:
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h:
 ../Core/Inc/i2c.h:
 ../Core/Inc/main.h:
 ../Core/Inc/spi.h:
 ../Core/Inc/tim.h:
+../Core/Inc/usart.h:
 ../Core/Inc/gpio.h:
 ../Core/Inc/klebot_scheduler.h:
 ../Core/Inc/nRF24.h:

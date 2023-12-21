@@ -6,6 +6,10 @@
  */
 #include "Motors/motor_encoder.h"
 
+int16_t VelocityFilterBuffer[100];
+int32_t FilterSum;
+uint16_t OldestMember;
+
 
 void MotorEnc_Init(MotorEncoder_t *encoder, TIM_HandleTypeDef *htim)
 {
@@ -60,7 +64,26 @@ void MotorEnc_Uptade(MotorEncoder_t *encoder)
 		}
 	}
 
-	encoder->RPM = (encoder->Velocity * 6000) / 1400; //define constants
+	encoder->RPM = (encoder->Velocity * (1000 / ENCODER_SAMPLING_TIME_MS) * 60 ) / PULSES_PER_ROTATION; //define constants
 	encoder->LastCounter = NewCounter;
+}
+
+void MotorEnc_FilterVelocity(MotorEncoder_t *encoder)
+{
+
+
+	//static float VelocityIIR;
+
+
+	float alpha = 0.1;
+	encoder->VelocityFiltered = alpha * (float) encoder->Velocity + (1.0f - alpha) * encoder->VelocityFiltered;
+
+
+//	FilterSum = FilterSum + VelocityIIR - VelocityFilterBuffer[OldestMember];
+//	encoder->VelocityFiltered = FilterSum / 100;
+//	VelocityFilterBuffer[OldestMember] = VelocityIIR;
+//	OldestMember = (OldestMember + 1) % 100;
+
+
 
 }

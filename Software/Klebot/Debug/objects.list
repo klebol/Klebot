@@ -16,6 +16,7 @@
 "./Core/Src/sysmem.o"
 "./Core/Src/system_stm32f1xx.o"
 "./Core/Src/tim.o"
+"./Core/Src/usart.o"
 "./Core/Src/Programs/DiodeTest_Prog.o"
 "./Core/Src/Programs/klebot_programs.o"
 "./Core/Startup/startup_stm32f107rctx.o"
@@ -34,3 +35,4 @@
 "./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_spi.o"
 "./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.o"
 "./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.o"
+"./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.o"

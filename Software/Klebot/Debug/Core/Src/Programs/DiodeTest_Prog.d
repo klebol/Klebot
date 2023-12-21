@@ -28,6 +28,7 @@ Core/Src/Programs/DiodeTest_Prog.o: ../Core/Src/Programs/DiodeTest_Prog.c \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
+ ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h \
  ../Core/Inc/RingBuffer.h ../Core/Inc/nRF24_Defs.h ../Core/Inc/spi.h \
  ../Core/Inc/klebot_commands.h ../Core/Inc/drv8836.h ../Core/Inc/tim.h \
  ../Core/Inc/tim.h ../Core/Inc/gpio.h
@@ -63,6 +64,7 @@ Core/Src/Programs/DiodeTest_Prog.o: ../Core/Src/Programs/DiodeTest_Prog.c \
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h:
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h:
 ../Core/Inc/RingBuffer.h:
 ../Core/Inc/nRF24_Defs.h:
 ../Core/Inc/spi.h:

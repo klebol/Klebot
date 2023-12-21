@@ -21,6 +21,7 @@
 #include "i2c.h"
 #include "spi.h"
 #include "tim.h"
+#include "usart.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -29,6 +30,9 @@
 #include "klebot_radio.h"
 #include "drv8836.h"
 #include "Motors/motor_encoder.h"
+
+#include "stdio.h"
+#include "string.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -52,7 +56,7 @@
 DRV8836_t MotorDriver1;
 MotorEncoder_t MotorEncoderA;
 
-DRV8836_Direction_t Dir;
+DRV8836_Direction_t Dir = 1;
 uint16_t Spd;
 //
 DRV8836_Direction_t Dir1;
@@ -60,6 +64,13 @@ uint16_t Spd1;
 
 
 int16_t EncPos;
+
+uint32_t LastTick;
+uint8_t IncOrDec;
+
+
+uint8_t USB_Buffer[10];
+uint8_t USB_Buffer_Length;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -107,6 +118,7 @@ int main(void)
   MX_TIM3_Init();
   MX_TIM4_Init();
   MX_TIM7_Init();
+  MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
   DRV8836_Init(&MotorDriver1, &htim3, TIM_CHANNEL_1, TIM_CHANNEL_2, TIM_CHANNEL_3, TIM_CHANNEL_4);
   HAL_GPIO_WritePin(DRV_NSLEEP_GPIO_Port, DRV_NSLEEP_Pin, GPIO_PIN_SET);
@@ -128,6 +140,25 @@ int main(void)
 
 	  DRV8836_SetMotor(&MotorDriver1, Output_A , Dir, Spd);
 	  DRV8836_SetMotor(&MotorDriver1, Output_B , Dir1, Spd1);
+
+	  if(HAL_GetTick() - LastTick > 100)
+	  {
+		  if(IncOrDec == 0)
+		  {
+			  Spd++;
+			  if(Spd > 254) IncOrDec = 1;
+		  }
+		  else
+		  {
+			  Spd--;
+			  if(Spd < 160) IncOrDec = 0;
+		  }
+		  LastTick = HAL_GetTick();
+
+
+	  }
+
+
 
 	 // EncPos += GetEncoderCount();
 //	  DRV8836_SetDirection(&MotorDriver1, Output_B, Dir);
@@ -218,6 +249,11 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 	if(htim->Instance == TIM7)
 	{
 		MotorEnc_Uptade(&MotorEncoderA);
+		MotorEnc_FilterVelocity(&MotorEncoderA);
+
+		USB_Buffer_Length = sprintf((char*) USB_Buffer, "$%d %d;",(int16_t) MotorEncoderA.VelocityFiltered, MotorEncoderA.Velocity );
+		HAL_UART_Transmit(&huart2, USB_Buffer, USB_Buffer_Length, 500);
+
 	}
 }
 
@@ -228,6 +264,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 	if(GPIO_Pin == NRF24_IRQ_Pin)
 	{
 		Radio_HandlerIRQ();
+
 	}
 }
 /* USER CODE END 4 */
