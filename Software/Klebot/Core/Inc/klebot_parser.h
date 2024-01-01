@@ -12,6 +12,7 @@
 #include "klebot_radio.h"
 #include "Programs/klebot_programs.h"
 #include "Programs/DiodeTest_Prog.h"
+#include "Programs/MotorsDebug_Prog.h"
 
 
 

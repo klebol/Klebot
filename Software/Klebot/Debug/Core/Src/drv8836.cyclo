@@ -1,4 +1,2 @@
 ../Core/Src/drv8836.c:9:6:DRV8836_Init	13
-../Core/Src/drv8836.c:26:6:DRV8836_SetMotor	31
-../Core/Src/drv8836.c:84:6:DRV8836_SetDirection	31
-../Core/Src/drv8836.c:139:6:DRV8836_SetSpeed	4
+../Core/Src/drv8836.c:26:17:DRV8836_SetMotor	32

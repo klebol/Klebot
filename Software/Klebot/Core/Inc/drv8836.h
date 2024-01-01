@@ -30,6 +30,14 @@ typedef enum
 	Output_B = 1
 }DRV8836_Output_t;
 
+typedef enum
+{
+	DRV8836_OK,
+	DRV8836_ERROR
+}DRV8836_Error_t;
+
+
+
 typedef struct
 {
 	uint8_t sleep;
@@ -46,9 +54,7 @@ typedef struct
 
 
 void DRV8836_Init(DRV8836_t *ic, TIM_HandleTypeDef *htim, uint16_t a_forward_channel, uint16_t a_reverse_channel, uint16_t b_forward_channel, uint16_t b_reverse_channel);
-void DRV8836_SetMotor(DRV8836_t *ic, DRV8836_Output_t output, DRV8836_Direction_t direction, uint16_t speed);
-void DRV8836_SetDirection(DRV8836_t *ic, DRV8836_Output_t output, DRV8836_Direction_t direction);
-void DRV8836_SetSpeed(DRV8836_t *ic, DRV8836_Output_t output, uint16_t speed);
+DRV8836_Error_t DRV8836_SetMotor(DRV8836_t *ic, DRV8836_Output_t output, DRV8836_Direction_t direction, uint16_t speed);
 
 
 #endif /* INC_DRV8836_H_ */

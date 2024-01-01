@@ -6,7 +6,7 @@
  */
 #include "Programs/DiodeTest_Prog.h"
 
-uint8_t ProgramExitFlag;
+static uint8_t ProgramExitFlag;
 
 //
 // -- Main Diode Test Program for Robot --

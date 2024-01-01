@@ -4,5 +4,3 @@
 ../Core/Src/Programs/klebot_programs.c:43:19:Programs_PerformProgram	2
 ../Core/Src/Programs/klebot_programs.c:63:18:Programs_SendProgramStartedACK	1
 ../Core/Src/Programs/klebot_programs.c:72:18:Programs_SendProgramExitACK	1
-../Core/Src/Programs/klebot_programs.c:114:19:FreeRide	2
-../Core/Src/Programs/klebot_programs.c:125:6:FreeRide_Parser	6

@@ -19,7 +19,8 @@ Menu_t RobotModes = {"Robot's modes", &DebugTools, NULL, &FreeRide, NULL, NULL};
 
 Menu_t DebugTools = {"Debug tools", &Settings, &RobotModes, &DiodeBlink, NULL, NULL};
 	Menu_t DiodeBlink = {"Blink diode", &DiodeTest, NULL, NULL, &DebugTools, &SetTestBlink};
-	Menu_t DiodeTest = {"Diode test", NULL, &DiodeBlink, NULL, &DebugTools, &Programs_DiodeTestSet};
+	Menu_t DiodeTest = {"Diode test", &MotorsTest, &DiodeBlink, NULL, &DebugTools, &Programs_DiodeTestSet};
+	Menu_t MotorsTest = {"Motors test", NULL, &DiodeTest, NULL, &DebugTools, &Programs_MotorsDebugControllSet};
 
 
 Menu_t Settings = {"Settings", NULL, &DebugTools, &JoyCalib, NULL, NULL};

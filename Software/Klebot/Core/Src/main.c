@@ -28,8 +28,7 @@
 /* USER CODE BEGIN Includes */
 #include "klebot_scheduler.h"
 #include "klebot_radio.h"
-#include "drv8836.h"
-#include "Motors/motor_encoder.h"
+#include "Motors/motors.h"
 
 #include "stdio.h"
 #include "string.h"
@@ -53,24 +52,24 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-DRV8836_t MotorDriver1;
-MotorEncoder_t MotorEncoderA;
-
-DRV8836_Direction_t Dir = 1;
-uint16_t Spd;
+//DRV8836_t MotorDriver1;
+//MotorEncoder_t MotorEncoderA;
+////
+//DRV8836_Direction_t Dir;
+//uint16_t Spd;
+//////
+//DRV8836_Direction_t Dir1;
+//uint16_t Spd1;
 //
-DRV8836_Direction_t Dir1;
-uint16_t Spd1;
-
-
-int16_t EncPos;
-
-uint32_t LastTick;
-uint8_t IncOrDec;
-
-
-uint8_t USB_Buffer[10];
-uint8_t USB_Buffer_Length;
+//
+//int16_t EncPos;
+//
+//uint32_t LastTick;
+//uint8_t IncOrDec;
+//
+//
+//uint8_t USB_Buffer[10];
+//uint8_t USB_Buffer_Length;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -120,13 +119,14 @@ int main(void)
   MX_TIM7_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-  DRV8836_Init(&MotorDriver1, &htim3, TIM_CHANNEL_1, TIM_CHANNEL_2, TIM_CHANNEL_3, TIM_CHANNEL_4);
+  //DRV8836_Init(&MotorDriver1, &htim3, TIM_CHANNEL_1, TIM_CHANNEL_2, TIM_CHANNEL_3, TIM_CHANNEL_4);
   HAL_GPIO_WritePin(DRV_NSLEEP_GPIO_Port, DRV_NSLEEP_Pin, GPIO_PIN_SET);
   HAL_GPIO_WritePin(DRV_MODE_GPIO_Port, DRV_MODE_Pin, GPIO_PIN_RESET);
 
-  MotorEnc_Init(&MotorEncoderA, &htim1);
-
+  //MotorEnc_Init(&MotorEncoderA, &htim4);
+  Motors_Init();
   HAL_TIM_Base_Start_IT(&htim7);
+
 
 
   Radio_Init(&hspi3);
@@ -136,28 +136,31 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  //KlebotScheduler();
+	  KlebotScheduler();
 
-	  DRV8836_SetMotor(&MotorDriver1, Output_A , Dir, Spd);
-	  DRV8836_SetMotor(&MotorDriver1, Output_B , Dir1, Spd1);
-
-	  if(HAL_GetTick() - LastTick > 100)
-	  {
-		  if(IncOrDec == 0)
-		  {
-			  Spd++;
-			  if(Spd > 254) IncOrDec = 1;
-		  }
-		  else
-		  {
-			  Spd--;
-			  if(Spd < 160) IncOrDec = 0;
-		  }
-		  LastTick = HAL_GetTick();
-
-
-	  }
-
+//	  Motors_SetMotorSpeed(Output_A, Spd);
+//	  Motors_SetMotorSpeed(Output_B, Spd1);
+//
+//	  Motors_SetMotorDirection(Output_A, Dir);
+//	  Motors_SetMotorDirection(Output_B, Dir1);
+//
+//	  if(HAL_GetTick() - LastTick > 100)
+//	  {
+//		  if(IncOrDec == 0)
+//		  {
+//			  Spd1++;
+//			  if(Spd1 > 254) IncOrDec = 1;
+//		  }
+//		  else
+//		  {
+//			  Spd1--;
+//			  if(Spd1 < 160) IncOrDec = 0;
+//		  }
+//		  LastTick = HAL_GetTick();
+//
+//
+//	  }
+//
 
 
 	 // EncPos += GetEncoderCount();
@@ -248,11 +251,12 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
 	if(htim->Instance == TIM7)
 	{
-		MotorEnc_Uptade(&MotorEncoderA);
-		MotorEnc_FilterVelocity(&MotorEncoderA);
+		Motors_EncoderSample();
 
-		USB_Buffer_Length = sprintf((char*) USB_Buffer, "$%d %d;",(int16_t) MotorEncoderA.VelocityFiltered, MotorEncoderA.Velocity );
-		HAL_UART_Transmit(&huart2, USB_Buffer, USB_Buffer_Length, 500);
+//		USB_Buffer_Length = sprintf((char*) USB_Buffer, "$%d %d;",(int16_t) MotorEncoderA.VelocityFiltered, MotorEncoderA.Velocity );
+//		//USB_Buffer_Length = sprintf((char*) USB_Buffer, "$%d;", MotorEncoderA.Velocity );
+//		//USB_Buffer_Length = sprintf((char*) USB_Buffer, "$%d;",(int16_t) MotorEncoderA.Position );
+//		HAL_UART_Transmit(&huart2, USB_Buffer, USB_Buffer_Length, 500);
 
 	}
 }

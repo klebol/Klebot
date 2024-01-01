@@ -41,7 +41,8 @@ Core/Src/controller_parser.o: ../Core/Src/controller_parser.c \
  ../Core/Inc/adc.h ../Core/Inc/dma.h ../Core/Inc/i2c.h ../Core/Inc/tim.h \
  ../Core/Inc/menu.h ../Core/Inc/ssd1106.h \
  ../Core/Inc/Programs/DiodeTest_Prog.h \
- ../Core/Inc/Programs/controller_programs.h ../Core/Inc/klebot_radio.h
+ ../Core/Inc/Programs/controller_programs.h ../Core/Inc/klebot_radio.h \
+ ../Core/Inc/Programs/MotorsDebugControll_Prog.h
 ../Core/Inc/controller_parser.h:
 ../Core/Inc/klebot_radio.h:
 ../Core/Inc/nRF24.h:
@@ -99,3 +100,4 @@ Core/Src/controller_parser.o: ../Core/Src/controller_parser.c \
 ../Core/Inc/Programs/DiodeTest_Prog.h:
 ../Core/Inc/Programs/controller_programs.h:
 ../Core/Inc/klebot_radio.h:
+../Core/Inc/Programs/MotorsDebugControll_Prog.h:

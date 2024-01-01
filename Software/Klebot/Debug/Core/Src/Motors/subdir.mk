@@ -5,13 +5,16 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../Core/Src/Motors/motor_encoder.c 
+../Core/Src/Motors/motor_encoder.c \
+../Core/Src/Motors/motors.c 
 
 OBJS += \
-./Core/Src/Motors/motor_encoder.o 
+./Core/Src/Motors/motor_encoder.o \
+./Core/Src/Motors/motors.o 
 
 C_DEPS += \
-./Core/Src/Motors/motor_encoder.d 
+./Core/Src/Motors/motor_encoder.d \
+./Core/Src/Motors/motors.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -21,7 +24,7 @@ Core/Src/Motors/%.o Core/Src/Motors/%.su Core/Src/Motors/%.cyclo: ../Core/Src/Mo
 clean: clean-Core-2f-Src-2f-Motors
 
 clean-Core-2f-Src-2f-Motors:
-	-$(RM) ./Core/Src/Motors/motor_encoder.cyclo ./Core/Src/Motors/motor_encoder.d ./Core/Src/Motors/motor_encoder.o ./Core/Src/Motors/motor_encoder.su
+	-$(RM) ./Core/Src/Motors/motor_encoder.cyclo ./Core/Src/Motors/motor_encoder.d ./Core/Src/Motors/motor_encoder.o ./Core/Src/Motors/motor_encoder.su ./Core/Src/Motors/motors.cyclo ./Core/Src/Motors/motors.d ./Core/Src/Motors/motors.o ./Core/Src/Motors/motors.su
 
 .PHONY: clean-Core-2f-Src-2f-Motors
 

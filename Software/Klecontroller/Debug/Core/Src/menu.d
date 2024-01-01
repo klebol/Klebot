@@ -39,7 +39,8 @@ Core/Src/menu.o: ../Core/Src/menu.c ../Core/Inc/menu.h ../Core/Inc/main.h \
  ../Core/Inc/menu.h ../Core/Inc/klebot_radio.h ../Core/Inc/nRF24.h \
  ../Core/Inc/RingBuffer.h ../Core/Inc/nRF24_Defs.h ../Core/Inc/spi.h \
  ../Core/Inc/klebot_commands.h ../Core/Inc/Programs/DiodeTest_Prog.h \
- ../Core/Inc/Programs/controller_programs.h
+ ../Core/Inc/Programs/controller_programs.h \
+ ../Core/Inc/Programs/MotorsDebugControll_Prog.h
 ../Core/Inc/menu.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
@@ -96,3 +97,4 @@ Core/Src/menu.o: ../Core/Src/menu.c ../Core/Inc/menu.h ../Core/Inc/main.h \
 ../Core/Inc/klebot_commands.h:
 ../Core/Inc/Programs/DiodeTest_Prog.h:
 ../Core/Inc/Programs/controller_programs.h:
+../Core/Inc/Programs/MotorsDebugControll_Prog.h:

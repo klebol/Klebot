@@ -1,6 +1,6 @@
-../Core/Src/menu.c:60:6:Menu_RefreshScreen	16	static
-../Core/Src/menu.c:109:6:Menu_Next	8	static
-../Core/Src/menu.c:130:6:Menu_Prev	8	static
-../Core/Src/menu.c:153:6:Menu_Select	8	static
-../Core/Src/menu.c:170:6:Menu_Back	16	static
-../Core/Src/menu.c:190:9:Menu_CountMembers	16	static
+../Core/Src/menu.c:61:6:Menu_RefreshScreen	16	static
+../Core/Src/menu.c:110:6:Menu_Next	8	static
+../Core/Src/menu.c:131:6:Menu_Prev	8	static
+../Core/Src/menu.c:154:6:Menu_Select	8	static
+../Core/Src/menu.c:171:6:Menu_Back	16	static
+../Core/Src/menu.c:191:9:Menu_CountMembers	16	static

@@ -23,6 +23,12 @@ void Parser_Controller(uint8_t *command, uint8_t length)							//main parser fun
 
 		break;
 
+	case MOTORS_DEBUG:
+		CurrentByte++;
+		Length--;
+		Programs_MotorsDebugControllParser(CurrentByte, Length);;
+		break;
+
 	default:
 
 		break;

@@ -6,7 +6,7 @@
  */
 #include "Programs/klebot_programs.h"
 
-DRV8836_t MotorDriver; // TEMPORARY FOR TEST!!!!
+
 
 Programs_status_t (*ProgramToPerform)(void);	//pointer to program to execute
 
@@ -108,57 +108,57 @@ Programs_error_t Programs_SendProgramExitACK(uint8_t ProgramID)
 
 
 
+////
+//// --- Free Ride Program ---
+////
+//Programs_status_t FreeRide (void)
+//{
+//	static uint8_t StartupInitFlag = 0;
+//	if(0 == StartupInitFlag)
+//	{
+//		DRV8836_Init(&MotorDriver, &htim3, TIM_CHANNEL_1, TIM_CHANNEL_2, TIM_CHANNEL_3, TIM_CHANNEL_4);
+//		StartupInitFlag = 1;
+//	}
+//	return PROGRAM_IN_PROGRESS;
+//}
 //
-// --- Free Ride Program ---
+//void FreeRide_Parser(uint8_t *command, uint8_t length)
+//{
+//	uint8_t *CurrentByte = command;
+//	//uint8_t Length = length;
 //
-Programs_status_t FreeRide (void)
-{
-	static uint8_t StartupInitFlag = 0;
-	if(0 == StartupInitFlag)
-	{
-		DRV8836_Init(&MotorDriver, &htim3, TIM_CHANNEL_1, TIM_CHANNEL_2, TIM_CHANNEL_3, TIM_CHANNEL_4);
-		StartupInitFlag = 1;
-	}
-	return PROGRAM_IN_PROGRESS;
-}
-
-void FreeRide_Parser(uint8_t *command, uint8_t length)
-{
-	uint8_t *CurrentByte = command;
-	//uint8_t Length = length;
-
-	switch(*CurrentByte)
-	{
-	case START_PROGRAM:
-		Programs_SetProgram(FreeRide);
-		break;
-	case EXIT_PROGRAM:
-
-		break;
-	case LEFT_MOTOR_SPEED:
-		CurrentByte++;
-		DRV8836_SetSpeed(&MotorDriver, Output_A, *CurrentByte);
-		break;
-
-	case RIGHT_MOTOR_SPEED:
-		CurrentByte++;
-		DRV8836_SetSpeed(&MotorDriver, Output_B, *CurrentByte);
-		break;
-
-	case LEFT_MOTOR_DIRECTION:
-		CurrentByte++;
-		DRV8836_SetDirection(&MotorDriver, Output_A, *CurrentByte);
-		break;
-
-	case RIGHT_MOTOR_DIRECTION:
-		CurrentByte++;
-		DRV8836_SetDirection(&MotorDriver, Output_B, *CurrentByte);
-		break;
-
-	default:
-		break;
-	}
-
-
-
-}
+//	switch(*CurrentByte)
+//	{
+//	case START_PROGRAM:
+//		Programs_SetProgram(FreeRide);
+//		break;
+//	case EXIT_PROGRAM:
+//
+//		break;
+//	case LEFT_MOTOR_SPEED:
+//		CurrentByte++;
+//		//DRV8836_SetSpeed(&MotorDriver, Output_A, *CurrentByte);
+//		break;
+//
+//	case RIGHT_MOTOR_SPEED:
+//		CurrentByte++;
+//		//DRV8836_SetSpeed(&MotorDriver, Output_B, *CurrentByte);
+//		break;
+//
+//	case LEFT_MOTOR_DIRECTION:
+//		CurrentByte++;
+//		//DRV8836_SetDirection(&MotorDriver, Output_A, *CurrentByte);
+//		break;
+//
+//	case RIGHT_MOTOR_DIRECTION:
+//		CurrentByte++;
+//		//DRV8836_SetDirection(&MotorDriver, Output_B, *CurrentByte);
+//		break;
+//
+//	default:
+//		break;
+//	}
+//
+//
+//
+//}

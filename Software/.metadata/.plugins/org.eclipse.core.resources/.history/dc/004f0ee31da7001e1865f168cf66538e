@@ -1,0 +1,25 @@
+/*
+ * motors.c
+ *
+ *  Created on: Dec 30, 2023
+ *      Author: miqix
+ */
+
+#include "Motors/motors.h"
+
+DRV8836_t MotorDriver;
+MotorEncoder_t MotorEncoderA;
+MotorEncoder_t MotorEncoderB;
+
+
+void Motors_Init(void)
+{
+	DRV8836_Init(&MotorDriver, &htim3, TIM_CHANNEL_1, TIM_CHANNEL_2, TIM_CHANNEL_3, TIM_CHANNEL_4);
+	MotorEnc_Init(&MotorEncoderA, &htim1);
+	MotorEnc_Init(&MotorEncoderB, &htim4);
+}
+
+void Motors_SetMotor(DRV8836_Output_t MotorAB)
+{
+
+}

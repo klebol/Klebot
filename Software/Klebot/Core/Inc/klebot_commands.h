@@ -47,4 +47,8 @@
 	#define DIODE_SET_OFF 0x21
 	#define DIODE_REAL_STATE 0x22
 
+#define MOTORS_DEBUG 0xD1
+	#define MOTOR_SET_PWM 0x20
+	#define MOTOR_SET_DIRECTION 0x21
+
 #endif /* INC_KLEBOT_COMMANDS_H_ */

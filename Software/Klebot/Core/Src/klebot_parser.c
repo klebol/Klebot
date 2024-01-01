@@ -20,15 +20,19 @@ void Parser_Klebot(uint8_t *command, uint8_t length)							//main parser funcito
 	case FREERIDE_PROG:
 		CurrentByte++;
 		Length--;
-		FreeRide_Parser(CurrentByte, Length);
+		//FreeRide_Parser(CurrentByte, Length);
 		break;
 
 	case DIODE_TEST:
 		CurrentByte++;
 		Length--;
 		Programs_DiodeTestParser(CurrentByte, Length);
+		break;
 
-
+	case MOTORS_DEBUG:
+		CurrentByte++;
+		Length--;
+		Programs_MotorsDebugParser(CurrentByte, Length);
 	default:
 
 		break;

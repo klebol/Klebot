@@ -78,7 +78,7 @@ void MotorEnc_FilterVelocity(MotorEncoder_t *encoder)
 	float alpha = 0.1;
 	encoder->VelocityFiltered = alpha * (float) encoder->Velocity + (1.0f - alpha) * encoder->VelocityFiltered;
 
-
+//
 //	FilterSum = FilterSum + VelocityIIR - VelocityFilterBuffer[OldestMember];
 //	encoder->VelocityFiltered = FilterSum / 100;
 //	VelocityFilterBuffer[OldestMember] = VelocityIIR;

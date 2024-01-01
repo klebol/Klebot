@@ -35,6 +35,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Core/Inc/drv8836.h ../Core/Inc/tim.h \
  ../Core/Inc/Programs/DiodeTest_Prog.h \
  ../Core/Inc/Programs/klebot_programs.h \
+ ../Core/Inc/Programs/MotorsDebug_Prog.h ../Core/Inc/Motors/motors.h \
  ../Core/Inc/Motors/motor_encoder.h
 ../Core/Inc/main.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:
@@ -85,4 +86,6 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Core/Inc/tim.h:
 ../Core/Inc/Programs/DiodeTest_Prog.h:
 ../Core/Inc/Programs/klebot_programs.h:
+../Core/Inc/Programs/MotorsDebug_Prog.h:
+../Core/Inc/Motors/motors.h:
 ../Core/Inc/Motors/motor_encoder.h:

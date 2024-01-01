@@ -6,14 +6,17 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
 ../Core/Src/Programs/DiodeTest_Prog.c \
+../Core/Src/Programs/MotorsDebug_Prog.c \
 ../Core/Src/Programs/klebot_programs.c 
 
 OBJS += \
 ./Core/Src/Programs/DiodeTest_Prog.o \
+./Core/Src/Programs/MotorsDebug_Prog.o \
 ./Core/Src/Programs/klebot_programs.o 
 
 C_DEPS += \
 ./Core/Src/Programs/DiodeTest_Prog.d \
+./Core/Src/Programs/MotorsDebug_Prog.d \
 ./Core/Src/Programs/klebot_programs.d 
 
 
@@ -24,7 +27,7 @@ Core/Src/Programs/%.o Core/Src/Programs/%.su Core/Src/Programs/%.cyclo: ../Core/
 clean: clean-Core-2f-Src-2f-Programs
 
 clean-Core-2f-Src-2f-Programs:
-	-$(RM) ./Core/Src/Programs/DiodeTest_Prog.cyclo ./Core/Src/Programs/DiodeTest_Prog.d ./Core/Src/Programs/DiodeTest_Prog.o ./Core/Src/Programs/DiodeTest_Prog.su ./Core/Src/Programs/klebot_programs.cyclo ./Core/Src/Programs/klebot_programs.d ./Core/Src/Programs/klebot_programs.o ./Core/Src/Programs/klebot_programs.su
+	-$(RM) ./Core/Src/Programs/DiodeTest_Prog.cyclo ./Core/Src/Programs/DiodeTest_Prog.d ./Core/Src/Programs/DiodeTest_Prog.o ./Core/Src/Programs/DiodeTest_Prog.su ./Core/Src/Programs/MotorsDebug_Prog.cyclo ./Core/Src/Programs/MotorsDebug_Prog.d ./Core/Src/Programs/MotorsDebug_Prog.o ./Core/Src/Programs/MotorsDebug_Prog.su ./Core/Src/Programs/klebot_programs.cyclo ./Core/Src/Programs/klebot_programs.d ./Core/Src/Programs/klebot_programs.o ./Core/Src/Programs/klebot_programs.su
 
 .PHONY: clean-Core-2f-Src-2f-Programs
 

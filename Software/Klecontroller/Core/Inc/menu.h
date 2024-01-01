@@ -13,6 +13,7 @@
 #include "ssd1106.h"
 #include "Programs/controller_programs.h"
 #include "Programs/DiodeTest_Prog.h"
+#include "Programs/MotorsDebugControll_Prog.h"
 
 //
 //TODO: 2.Setup here for your needs
@@ -54,6 +55,7 @@ extern Menu_t RobotModes;
 extern Menu_t DebugTools;
 	extern Menu_t DiodeBlink;
 	extern Menu_t DiodeTest;
+	extern Menu_t MotorsTest;
 
 extern Menu_t Settings;
 	extern Menu_t JoyCalib;

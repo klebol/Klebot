@@ -42,6 +42,7 @@ Core/Src/simple_scheduler.o: ../Core/Src/simple_scheduler.c \
  ../Core/Inc/nRF24_Defs.h ../Core/Inc/spi.h ../Core/Inc/klebot_commands.h \
  ../Core/Inc/Programs/DiodeTest_Prog.h \
  ../Core/Inc/Programs/controller_programs.h \
+ ../Core/Inc/Programs/MotorsDebugControll_Prog.h \
  ../Core/Inc/controller_inputs.h ../Core/Inc/controller_parser.h \
  ../Core/Inc/klebot_radio.h
 ../Core/Inc/simple_scheduler.h:
@@ -100,6 +101,7 @@ Core/Src/simple_scheduler.o: ../Core/Src/simple_scheduler.c \
 ../Core/Inc/klebot_commands.h:
 ../Core/Inc/Programs/DiodeTest_Prog.h:
 ../Core/Inc/Programs/controller_programs.h:
+../Core/Inc/Programs/MotorsDebugControll_Prog.h:
 ../Core/Inc/controller_inputs.h:
 ../Core/Inc/controller_parser.h:
 ../Core/Inc/klebot_radio.h:

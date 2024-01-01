@@ -1,0 +1,5 @@
+../Core/Src/Motors/motors.c:15:6:Motors_Init	16	static
+../Core/Src/Motors/motors.c:22:6:Motors_SetMotor	16	static
+../Core/Src/Motors/motors.c:27:16:Motors_SetMotorSpeed	16	static
+../Core/Src/Motors/motors.c:45:16:Motors_SetMotorDirection	16	static
+../Core/Src/Motors/motors.c:64:6:Motors_EncoderSample	8	static
