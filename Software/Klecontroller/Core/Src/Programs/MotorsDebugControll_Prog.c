@@ -6,6 +6,11 @@
  */
 
 #include "Programs/MotorsDebugControll_Prog.h"
+#include "Programs/controller_programs.h"
+#include "klebot_radio.h"
+#include "klebot_commands.h"
+#include "ssd1106.h"
+#include "controller_inputs.h"
 
 MotorsProgramData_t MotorsProgramDatabase;
 

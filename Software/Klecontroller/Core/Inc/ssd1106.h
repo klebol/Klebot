@@ -11,6 +11,8 @@
 #define DISPLAY_WIDTH        128
 #define DISPLAY_HEIGHT        64
 
+#include "i2c.h"
+
 #if DISPLAY_WIDTH == 128
 #define COLLUMN_CENTER_OFFSET 2 //For displays with 128p width (SSD1106 is 132x64 driver, when display has 128p, pixels are centered in RAM)
 #elif DISPLAY_WIDTH == 132

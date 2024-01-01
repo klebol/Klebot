@@ -8,12 +8,7 @@
 #ifndef MENU_MENU_H_
 #define MENU_MENU_H_
 
-#include "main.h"
-#include "string.h"
-#include "ssd1106.h"
-#include "Programs/controller_programs.h"
-#include "Programs/DiodeTest_Prog.h"
-#include "Programs/MotorsDebugControll_Prog.h"
+#include "stdint.h"
 
 //
 //TODO: 2.Setup here for your needs
@@ -50,10 +45,9 @@ struct Menu_Struct {
 //
 
 extern Menu_t RobotModes;
-	extern Menu_t FreeRide;
+	//extern Menu_t FreeRide;
 
 extern Menu_t DebugTools;
-	extern Menu_t DiodeBlink;
 	extern Menu_t DiodeTest;
 	extern Menu_t MotorsTest;
 

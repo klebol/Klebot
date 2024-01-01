@@ -6,6 +6,11 @@
  */
 
 #include "controller_inputs.h"
+#include "joystick.h"
+#include "debounce.h"
+#include "adc.h"
+#include "tim.h"
+
 
 
 //JoyStick Variables

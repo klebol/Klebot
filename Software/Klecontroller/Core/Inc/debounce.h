@@ -8,7 +8,6 @@
 #ifndef INC_DEBOUNCE_H_
 #define INC_DEBOUNCE_H_
 
-#include "stdio.h"
 #include "gpio.h"
 
 typedef enum

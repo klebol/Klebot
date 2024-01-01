@@ -12,6 +12,7 @@
 //	To init the joystick you have to set your ADC separately
 //	and pass pointers to measured values to joystick via init function
 
+#include "stdint.h"
 
 #define X_AXIS 0
 #define Y_AXIS 1

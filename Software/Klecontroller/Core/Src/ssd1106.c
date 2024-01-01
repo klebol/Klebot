@@ -8,7 +8,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "main.h"
 #include "ssd1106.h"
 #include "fonts.h"
 #include "bitmaps.h"

@@ -8,11 +8,7 @@
 #ifndef INC_KLEBOT_RADIO_H_
 #define INC_KLEBOT_RADIO_H_
 
-#include "nRF24.h"
-#include "RingBuffer.h"
-#include "nRF24_Defs.h"
 #include "spi.h"
-#include "klebot_commands.h"
 
 //
 //TODO: Select device

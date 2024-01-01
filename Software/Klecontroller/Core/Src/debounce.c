@@ -7,6 +7,7 @@
 
 
 #include "debounce.h"
+#include "stdio.h"
 
 void DB_ButtonInit(DB_Button_t *Button, GPIO_TypeDef* GPIOx, uint16_t Gpio_Pin, uint32_t DebounceTime_ms, uint32_t HoldTime_ms)
 {

@@ -5,6 +5,10 @@
  *      Author: Michal Klebokowski
  */
 #include "menu.h"
+#include "string.h"
+#include "ssd1106.h"
+#include "Programs/DiodeTest_Prog.h"
+#include "Programs/MotorsDebugControll_Prog.h"
 
 //
 //TODO: 1. Define here your menu members, remember to add extern declarations in menu.h file!
@@ -14,12 +18,11 @@
  * WARNING: First member's *Prev pointer have to be NULL,
  * & Last member's *Next pointer have to be NULL!  */
 
-Menu_t RobotModes = {"Robot's modes", &DebugTools, NULL, &FreeRide, NULL, NULL};
-	Menu_t FreeRide = {"Free Ride", NULL, NULL, NULL, &RobotModes, &SetFreeRideControll};
+Menu_t RobotModes = {"Robot's modes", &DebugTools, NULL, NULL, NULL, NULL};
+	//Menu_t FreeRide = {"Free Ride", NULL, NULL, NULL, &RobotModes, &SetFreeRideControll};
 
-Menu_t DebugTools = {"Debug tools", &Settings, &RobotModes, &DiodeBlink, NULL, NULL};
-	Menu_t DiodeBlink = {"Blink diode", &DiodeTest, NULL, NULL, &DebugTools, &SetTestBlink};
-	Menu_t DiodeTest = {"Diode test", &MotorsTest, &DiodeBlink, NULL, &DebugTools, &Programs_DiodeTestSet};
+Menu_t DebugTools = {"Debug tools", &Settings, &RobotModes, &MotorsTest, NULL, NULL};
+	Menu_t DiodeTest = {"Diode test", &MotorsTest, NULL, NULL, &DebugTools, &Programs_DiodeTestSet};
 	Menu_t MotorsTest = {"Motors test", NULL, &DiodeTest, NULL, &DebugTools, &Programs_MotorsDebugControllSet};
 
 

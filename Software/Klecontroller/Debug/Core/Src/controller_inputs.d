@@ -1,5 +1,6 @@
 Core/Src/controller_inputs.o: ../Core/Src/controller_inputs.c \
- ../Core/Inc/controller_inputs.h ../Core/Inc/main.h \
+ ../Core/Inc/controller_inputs.h ../Core/Inc/joystick.h \
+ ../Core/Inc/debounce.h ../Core/Inc/gpio.h ../Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -33,16 +34,11 @@ Core/Src/controller_inputs.o: ../Core/Src/controller_inputs.c \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
- ../Core/Inc/joystick.h ../Core/Inc/debounce.h ../Core/Inc/gpio.h \
- ../Core/Inc/adc.h ../Core/Inc/dma.h ../Core/Inc/i2c.h ../Core/Inc/tim.h \
- ../Core/Inc/menu.h ../Core/Inc/ssd1106.h \
- ../Core/Inc/Programs/controller_programs.h ../Core/Inc/main.h \
- ../Core/Inc/ssd1106.h ../Core/Inc/klebot_radio.h ../Core/Inc/nRF24.h \
- ../Core/Inc/RingBuffer.h ../Core/Inc/nRF24_Defs.h ../Core/Inc/spi.h \
- ../Core/Inc/klebot_commands.h ../Core/Inc/Programs/DiodeTest_Prog.h \
- ../Core/Inc/Programs/controller_programs.h \
- ../Core/Inc/Programs/MotorsDebugControll_Prog.h
+ ../Core/Inc/adc.h ../Core/Inc/tim.h
 ../Core/Inc/controller_inputs.h:
+../Core/Inc/joystick.h:
+../Core/Inc/debounce.h:
+../Core/Inc/gpio.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
@@ -77,24 +73,5 @@ Core/Src/controller_inputs.o: ../Core/Src/controller_inputs.c \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
-../Core/Inc/joystick.h:
-../Core/Inc/debounce.h:
-../Core/Inc/gpio.h:
 ../Core/Inc/adc.h:
-../Core/Inc/dma.h:
-../Core/Inc/i2c.h:
 ../Core/Inc/tim.h:
-../Core/Inc/menu.h:
-../Core/Inc/ssd1106.h:
-../Core/Inc/Programs/controller_programs.h:
-../Core/Inc/main.h:
-../Core/Inc/ssd1106.h:
-../Core/Inc/klebot_radio.h:
-../Core/Inc/nRF24.h:
-../Core/Inc/RingBuffer.h:
-../Core/Inc/nRF24_Defs.h:
-../Core/Inc/spi.h:
-../Core/Inc/klebot_commands.h:
-../Core/Inc/Programs/DiodeTest_Prog.h:
-../Core/Inc/Programs/controller_programs.h:
-../Core/Inc/Programs/MotorsDebugControll_Prog.h:

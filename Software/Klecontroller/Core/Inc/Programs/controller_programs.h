@@ -8,13 +8,16 @@
 #ifndef INC_CONTROLLER_PROGRAMS_H_
 #define INC_CONTROLLER_PROGRAMS_H_
 
-#include "main.h"
-#include "ssd1106.h"
-#include "controller_inputs.h"
-#include "klebot_radio.h"
+#include "stdint.h"
 
 #define PROGRAM_START_TIMEOUT_MS 1000
 #define PROGRAM_EXIT_TIMEOUT_MS 1000
+
+typedef struct
+{
+	uint8_t (*ProgramPointer)(uint8_t exit_flag);
+	uint8_t ProgramID;
+}Programs_Program_t;
 
 typedef enum
 {
@@ -53,12 +56,5 @@ void Programs_SetCurrentRobotProgramID(uint8_t ID);
 uint8_t Programs_GetCurrentRobotProgramID(void);
 void Programs_ClearCurrentRobotProgramID(void);
 
-
-
-void SetTestBlink(void);
-
-Programs_status_t FreeRideControll(void);
-
-void SetFreeRideControll(void);
 
 #endif /* INC_CONTROLLER_PROGRAMS_H_ */

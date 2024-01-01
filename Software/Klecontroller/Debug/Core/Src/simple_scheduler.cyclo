@@ -1,5 +1,5 @@
-../Core/Src/simple_scheduler.c:19:6:ToggleLed	1
-../Core/Src/simple_scheduler.c:24:13:MenuTaskInit	1
-../Core/Src/simple_scheduler.c:32:13:MenuTask	3
-../Core/Src/simple_scheduler.c:48:6:SimpleScheduler	6
-../Core/Src/simple_scheduler.c:92:6:Radio_NewCommandReceivedCallback	1
+../Core/Src/simple_scheduler.c:22:6:ToggleLed	1
+../Core/Src/simple_scheduler.c:27:13:MenuTaskInit	1
+../Core/Src/simple_scheduler.c:35:13:MenuTask	3
+../Core/Src/simple_scheduler.c:51:6:SimpleScheduler	6
+../Core/Src/simple_scheduler.c:95:6:Radio_NewCommandReceivedCallback	1

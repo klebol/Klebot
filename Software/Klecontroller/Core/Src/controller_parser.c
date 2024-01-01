@@ -5,6 +5,9 @@
  *      Author: miqix
  */
 #include "controller_parser.h"
+#include "klebot_commands.h"
+#include "Programs/DiodeTest_Prog.h"
+#include "Programs/MotorsDebugControll_Prog.h"
 
 
 void Parser_Controller(uint8_t *command, uint8_t length)							//main parser funciton

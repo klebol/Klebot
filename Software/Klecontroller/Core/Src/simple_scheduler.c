@@ -4,10 +4,13 @@
  *  Created on: 7 maj 2023
  *      Author: miqix
  */
+
 #include "simple_scheduler.h"
-
-
-
+#include "menu.h"
+#include "controller_inputs.h"
+#include "Programs/controller_programs.h"
+#include "controller_parser.h"
+#include "klebot_radio.h"
 
 
 //
