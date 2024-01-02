@@ -63,7 +63,7 @@ Programs_status_t Programs_PerformProgram(void)
 Programs_error_t Programs_SendProgramStartedACK(uint8_t ProgramID)
 {
 	uint8_t Buffer[3];
-	Buffer[0] = ProgramID;
+	Buffer[0] = ProgramID;			//TODO: change order to new solution
 	Buffer[1] = START_PROGRAM;
 	Buffer[2] = ACK;
 	return Radio_TxBufferPut(Buffer, 3);

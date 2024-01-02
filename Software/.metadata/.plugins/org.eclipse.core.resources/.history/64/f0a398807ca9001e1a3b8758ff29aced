@@ -1,0 +1,145 @@
+/*
+ * DiodeTest_Prog.c
+ *
+ *  Created on: Dec 9, 2023
+ *      Author: Michal Klebokowski
+ */
+
+#include "Programs/DiodeTest_Prog.h"
+#include "Programs/controller_programs.h"
+
+#include "klebot_radio.h"
+#include "klebot_commands.h"
+#include "ssd1106.h"
+#include "controller_inputs.h"
+
+Programs_Program_t DiodeTestProgram = {&Programs_DiodeTestProgram, DIODE_TEST};
+
+//
+// Specific program variables
+//
+
+uint8_t DiodeState;
+
+//
+// -- Setting LED on/off --
+//
+static void Programs_DiodeTestSendOnCmd(void)
+{
+	uint8_t Buffer[2];
+	Buffer[0] = DIODE_TEST;
+	Buffer[1] = DIODE_SET_ON;
+	Radio_TxBufferPut(Buffer, 2);
+}
+
+static void Programs_DiodeTestSendOffCmd(void)
+{
+	uint8_t Buffer[2];
+	Buffer[0] = DIODE_TEST;
+	Buffer[1] = DIODE_SET_OFF;
+	Radio_TxBufferPut(Buffer, 2);
+}
+
+
+//
+// -- Init & Deinit functions for Diode Test Program --
+//
+Programs_error_t Prog_DiodeTestInit(void)
+{
+	Inputs_ClearButtonsCallbacks();
+	Inputs_ButtonsRegisterCallback(UP_BUTTON, &Programs_DiodeTestSendOnCmd, &Programs_DiodeTestExitProgram);
+	Inputs_ButtonsRegisterCallback(DOWN_BUTTON, &Programs_DiodeTestSendOffCmd, NULL);
+	OLED_ClearBuffer(BLACK);
+	OLED_MoveCursor(0, 0);
+	OLED_SendBuffer();
+}
+
+Programs_error_t Prog_DiodeTestDeinit(void)
+{
+
+}
+
+//
+// -- Main Diode Test Program for Controller --
+//
+
+Programs_error_t Programs_DiodeTestProgram(void)
+{
+	/* Main program "loop" */
+	OLED_ClearBuffer(BLACK);
+	OLED_MoveCursor(0, 0);
+	OLED_WriteString("LED STATE:", WHITE);
+	OLED_MoveCursor(0, 16);
+	OLED_WriteInt(DiodeTestDatabase.DiodeState, WHITE);
+	OLED_SendBuffer();
+
+	return PROGRAM_OK;
+}
+
+//
+// -- Program start/exit --
+//
+
+void Programs_DiodeTestSet(void)
+{
+	/* Send start command to robot */
+	Programs_SendProgramStartCommand(DIODE_TEST);
+	/* Set this program in this device */
+	//Programs_SetProgram(Programs_DiodeTestProgram);
+	/* Setting proper buttons funcionality for this program */
+
+	/* Timestamp for counting timeout for program launch on Klebot */
+	DiodeTestDatabase.TimeoutStamp = HAL_GetTick();
+}
+
+void Programs_DiodeTestExitProgram(void)
+{
+	DiodeTestDatabase.ProgramExitFlag = 1;
+	Programs_SendProgramExitCommand(DIODE_TEST);
+	/* Timestamp for counting timeout for program exit on Klebot */
+	DiodeTestDatabase.TimeoutStamp = HAL_GetTick();
+}
+
+//
+// -- Program Parser --
+//
+
+void Programs_DiodeTestParser(uint8_t *command, uint8_t length)
+{
+	uint8_t *CurrentByte = command;
+	//uint8_t Length = length;
+
+	switch(*CurrentByte)
+	{
+	case START_PROGRAM:
+		CurrentByte++;
+		if(ACK == *CurrentByte)
+		{
+			Programs_SetCurrentRobotProgramID(DIODE_TEST);				//ack that program has started
+		}
+		else
+		{
+			//ERROR
+		}
+
+		break;
+	case DIODE_REAL_STATE:
+		CurrentByte++;
+		DiodeTestDatabase.DiodeState = *CurrentByte;
+		break;
+
+	case EXIT_PROGRAM:
+		CurrentByte++;
+		if(ACK == *CurrentByte)
+		{
+			Programs_ClearCurrentRobotProgramID();
+		}
+
+	default:
+
+		break;
+	}
+}
+
+
+

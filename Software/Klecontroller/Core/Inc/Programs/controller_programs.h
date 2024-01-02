@@ -13,17 +13,14 @@
 #define PROGRAM_START_TIMEOUT_MS 1000
 #define PROGRAM_EXIT_TIMEOUT_MS 1000
 
-typedef struct
-{
-	uint8_t (*ProgramPointer)(uint8_t exit_flag);
-	uint8_t ProgramID;
-}Programs_Program_t;
-
 typedef enum
 {
 	NO_PROGRAM_SET,
-	PROGRAM_COMPLETED,
+	PROGRAM_LAUNCHING,
 	PROGRAM_IN_PROGRESS,
+	PROGRAM_EXITING,
+	PROGRAM_EXITING_ACK_WAIT,
+	PROGRAM_COMPLETED,
 	PROGRAM_LAUNCH_ERROR,
 	PROGRAM_EXIT_ERROR
 }Programs_status_t;
@@ -31,30 +28,41 @@ typedef enum
 typedef enum
 {
 	PROGRAMS_OK,
-	PROGRAMS_ERROR
+	PROGRAMS_ERROR,
+	PROGRAMS_BUSY
 }Programs_error_t;
 
+typedef struct
+{
+	Programs_error_t (*ProgramInitFunction)(void);			//Init function for each program
+	Programs_error_t (*ProgramExitFunction)(void);			//Deinit function, exit funcion
+	Programs_error_t (*ProgramRoutine)(void);				//Program funcion itself
+	uint8_t ProgramID;
+}Programs_Program_t;
+//
+// -- Public functions --
+//
 
-//
-// -- Program to perform --
-//
-Programs_error_t Programs_SetProgram(uint8_t (*Program)(void));
-Programs_status_t (*Programs_GetProgram(void))(void);
+/* Set program to launch */
+Programs_error_t Programs_SetProgram(Programs_Program_t *ProgramToSet);
+
+/* Exit current running program */
+void Programs_ExitProgram(void);
+
+/* Get pointer to curent running program */
+Programs_Program_t* Programs_GetProgram(void);
+
+/* Clear pointer to current running program */
 void Programs_ClearProgram(void);
+
+/* Infinite loop program routine */
 Programs_status_t Programs_PerformProgram(void);
 
-//
-//	-- Sending programs start/exit commands --
-//
-Programs_error_t Programs_SendProgramStartCommand(uint8_t ProgramID);
-Programs_error_t Programs_SendProgramExitCommand(uint8_t ProgramID);
+/* Function for acknowledge this module that specific program has been started on robot */
+void Programs_ProgramLaunchedACK(uint8_t ProgramID);
 
-//
-//	-- Program which is currently running on robot identifier --
-//
-void Programs_SetCurrentRobotProgramID(uint8_t ID);
-uint8_t Programs_GetCurrentRobotProgramID(void);
-void Programs_ClearCurrentRobotProgramID(void);
+/* Function for acknowledge this module that any program has been stopped on robot */
+void Programs_ProgramExitACK(void);
 
 
 #endif /* INC_CONTROLLER_PROGRAMS_H_ */

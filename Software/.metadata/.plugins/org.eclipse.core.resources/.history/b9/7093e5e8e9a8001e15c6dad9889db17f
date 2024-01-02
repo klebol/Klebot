@@ -1,0 +1,107 @@
+/*
+ * controller_programs.c
+ *
+ *  Created on: Nov 16, 2023
+ *      Author: Michal Klebokowski
+ */
+
+#include "Programs/controller_programs.h"
+#include "klebot_radio.h"
+#include "klebot_commands.h"
+
+/* Pointer to program to execute on controller */
+Programs_status_t (*ProgramToPerform)(void);
+
+/* Identifier for program currenlty running on remote Robot */
+static uint8_t CurrentRobotProgramID;
+
+
+//
+// -- General functions to manage programs --
+//
+
+/* Function for setting current pointer to program */
+Programs_error_t Programs_SetProgram(uint8_t (*Program)(void))
+{
+	if(NULL == ProgramToPerform)
+	{
+		ProgramToPerform = Program;
+		return PROGRAMS_OK;
+	}
+	else
+	{
+		return PROGRAMS_ERROR;
+	}
+}
+
+/* Function which returns current pointer to program */
+Programs_status_t (*Programs_GetProgram(void))(void)
+{
+	return ProgramToPerform;
+}
+
+void Programs_ClearProgram(void)
+{
+	ProgramToPerform = NULL;
+}
+
+/* Program performing function, made for being put in while loop */
+Programs_status_t Programs_PerformProgram(void)
+{
+	Programs_status_t status;
+	/* If there is a program to perform... */
+	if(NULL != ProgramToPerform)
+	{
+	/* Perform it and return it's status */
+		status = ProgramToPerform();
+	}
+	else
+	{
+		status = NO_PROGRAM_SET;
+	}
+	return status;
+}
+
+//
+//	-- Sending programs start/exit commands --
+//
+
+Programs_error_t Programs_SendProgramStartCommand(uint8_t ProgramID)
+{
+	uint8_t Buffer[2];
+	Buffer[0] = ProgramID;
+	Buffer[1] = START_PROGRAM;
+	return Radio_TxBufferPut(Buffer, 2);
+}
+
+Programs_error_t Programs_SendProgramExitCommand(uint8_t ProgramID)
+{
+	uint8_t Buffer[2];
+	Buffer[0] = ProgramID;
+	Buffer[1] = EXIT_PROGRAM;
+	return Radio_TxBufferPut(Buffer, 2);
+}
+
+
+//
+//	-- Program which is currently running on robot identifier --
+//
+
+void Programs_SetCurrentRobotProgramID(uint8_t ID)
+{
+	CurrentRobotProgramID = ID;
+}
+
+uint8_t Programs_GetCurrentRobotProgramID(void)
+{
+	return CurrentRobotProgramID;
+}
+
+void Programs_ClearCurrentRobotProgramID(void)
+{
+	CurrentRobotProgramID = NO_PROGRAM_SET;
+}
+
+
+
+

@@ -1,6 +1,7 @@
-../Core/Src/Programs/DiodeTest_Prog.c:21:13:Programs_DiodeTestSendOnCmd	16	static
-../Core/Src/Programs/DiodeTest_Prog.c:29:13:Programs_DiodeTestSendOffCmd	16	static
-../Core/Src/Programs/DiodeTest_Prog.c:41:19:Programs_DiodeTestProgram	8	static
-../Core/Src/Programs/DiodeTest_Prog.c:109:6:Programs_DiodeTestSet	8	static
-../Core/Src/Programs/DiodeTest_Prog.c:123:6:Programs_DiodeTestExitProgram	8	static
-../Core/Src/Programs/DiodeTest_Prog.c:135:6:Programs_DiodeTestParser	24	static
+../Core/Src/Programs/DiodeTest_Prog.c:30:13:Prog_DiodeTestSendOnCmd	16	static
+../Core/Src/Programs/DiodeTest_Prog.c:38:13:Prog_DiodeTestSendOffCmd	16	static
+../Core/Src/Programs/DiodeTest_Prog.c:49:18:Prog_DiodeTestInit	8	static
+../Core/Src/Programs/DiodeTest_Prog.c:60:18:Prog_DiodeTestDeinit	4	static
+../Core/Src/Programs/DiodeTest_Prog.c:70:18:Prog_DiodeTestProgram	8	static
+../Core/Src/Programs/DiodeTest_Prog.c:87:6:Prog_DiodeTestLaunch	8	static
+../Core/Src/Programs/DiodeTest_Prog.c:98:6:Prog_DiodeTestParser	24	static

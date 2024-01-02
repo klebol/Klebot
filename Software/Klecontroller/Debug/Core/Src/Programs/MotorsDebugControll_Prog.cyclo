@@ -1,4 +1,4 @@
 ../Core/Src/Programs/MotorsDebugControll_Prog.c:35:19:Programs_MotorsDebugControllProgram	7
 ../Core/Src/Programs/MotorsDebugControll_Prog.c:104:6:Programs_MotorsDebugControllSet	1
 ../Core/Src/Programs/MotorsDebugControll_Prog.c:118:6:Programs_MotorsDebugControllExitProgram	1
-../Core/Src/Programs/MotorsDebugControll_Prog.c:130:6:Programs_MotorsDebugControllParser	5
+../Core/Src/Programs/MotorsDebugControll_Prog.c:130:6:Programs_MotorsDebugControllParser	1

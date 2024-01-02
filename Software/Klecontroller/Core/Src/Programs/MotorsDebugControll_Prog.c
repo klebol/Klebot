@@ -132,32 +132,7 @@ void Programs_MotorsDebugControllParser(uint8_t *command, uint8_t length)
 	uint8_t *CurrentByte = command;
 	//uint8_t Length = length;
 
-	switch(*CurrentByte)
-	{
-	case START_PROGRAM:
-		CurrentByte++;
-		if(ACK == *CurrentByte)
-		{
-			Programs_SetCurrentRobotProgramID(MOTORS_DEBUG);				//ack that program has started
-		}
-		else
-		{
-			//ERROR
-		}
 
-		break;
-
-	case EXIT_PROGRAM:
-		CurrentByte++;
-		if(ACK == *CurrentByte)
-		{
-			Programs_ClearCurrentRobotProgramID();
-		}
-
-	default:
-
-		break;
-	}
 }
 
 

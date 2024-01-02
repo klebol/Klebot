@@ -1,23 +1,48 @@
-20:38:49 **** Incremental Build of configuration Debug for project Klecontroller ****
+17:14:17 **** Incremental Build of configuration Debug for project Klecontroller ****
 make -j12 all 
-arm-none-eabi-gcc "../Core/Src/Programs/DiodeTest_Prog.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Programs/DiodeTest_Prog.d" -MT"Core/Src/Programs/DiodeTest_Prog.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Programs/DiodeTest_Prog.o"
 arm-none-eabi-gcc "../Core/Src/Programs/MotorsDebugControll_Prog.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Programs/MotorsDebugControll_Prog.d" -MT"Core/Src/Programs/MotorsDebugControll_Prog.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Programs/MotorsDebugControll_Prog.o"
-arm-none-eabi-gcc "../Core/Src/Programs/PROGRAM_TEMPLATE.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Programs/PROGRAM_TEMPLATE.d" -MT"Core/Src/Programs/PROGRAM_TEMPLATE.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Programs/PROGRAM_TEMPLATE.o"
-arm-none-eabi-gcc "../Core/Src/Programs/controller_programs.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Programs/controller_programs.d" -MT"Core/Src/Programs/controller_programs.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Programs/controller_programs.o"
-arm-none-eabi-gcc "../Core/Src/controller_parser.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/controller_parser.d" -MT"Core/Src/controller_parser.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/controller_parser.o"
-arm-none-eabi-gcc "../Core/Src/menu.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/menu.d" -MT"Core/Src/menu.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/menu.o"
-arm-none-eabi-gcc "../Core/Src/simple_scheduler.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/simple_scheduler.d" -MT"Core/Src/simple_scheduler.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/simple_scheduler.o"
+../Core/Src/Programs/MotorsDebugControll_Prog.c: In function 'Programs_MotorsDebugControllProgram':
+../Core/Src/Programs/MotorsDebugControll_Prog.c:54:38: warning: implicit declaration of function 'Programs_GetCurrentRobotProgramID' [-Wimplicit-function-declaration]
+   54 |                 if(NO_PROGRAM_SET == Programs_GetCurrentRobotProgramID() )
+      |                                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/Programs/MotorsDebugControll_Prog.c:65:25: warning: implicit declaration of function 'Programs_ClearCurrentRobotProgramID' [-Wimplicit-function-declaration]
+   65 |                         Programs_ClearCurrentRobotProgramID();
+      |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/Programs/MotorsDebugControll_Prog.c: In function 'Programs_MotorsDebugControllSet':
+../Core/Src/Programs/MotorsDebugControll_Prog.c:107:9: warning: implicit declaration of function 'Programs_SendProgramStartCommand' [-Wimplicit-function-declaration]
+  107 |         Programs_SendProgramStartCommand(MOTORS_DEBUG);
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/Programs/MotorsDebugControll_Prog.c:109:29: warning: passing argument 1 of 'Programs_SetProgram' from incompatible pointer type [-Wincompatible-pointer-types]
+  109 |         Programs_SetProgram(Programs_MotorsDebugControllProgram);
+      |                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                             |
+      |                             Programs_status_t (*)(void)
+In file included from ../Core/Inc/Programs/MotorsDebugControll_Prog.h:11,
+                 from ../Core/Src/Programs/MotorsDebugControll_Prog.c:8:
+../Core/Inc/Programs/controller_programs.h:47:58: note: expected 'Programs_Program_t *' but argument is of type 'Programs_status_t (*)(void)'
+   47 | Programs_error_t Programs_SetProgram(Programs_Program_t *ProgramToSet);
+      |                                      ~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
+../Core/Src/Programs/MotorsDebugControll_Prog.c: In function 'Programs_MotorsDebugControllExitProgram':
+../Core/Src/Programs/MotorsDebugControll_Prog.c:121:9: warning: implicit declaration of function 'Programs_SendProgramExitCommand'; did you mean 'Programs_ProgramExitACK'? [-Wimplicit-function-declaration]
+  121 |         Programs_SendProgramExitCommand(MOTORS_DEBUG);
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |         Programs_ProgramExitACK
+../Core/Src/Programs/MotorsDebugControll_Prog.c: In function 'Programs_MotorsDebugControllParser':
+../Core/Src/Programs/MotorsDebugControll_Prog.c:132:18: warning: unused variable 'CurrentByte' [-Wunused-variable]
+  132 |         uint8_t *CurrentByte = command;
+      |                  ^~~~~~~~~~~
 arm-none-eabi-gcc -o "Klecontroller.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Embedded\KLEBOT\GIT\Software\Klecontroller\STM32F411RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Klecontroller.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: Klecontroller.elf
- 
-arm-none-eabi-size  Klecontroller.elf 
-arm-none-eabi-objdump -h -S Klecontroller.elf  > "Klecontroller.list"
-   text	   data	    bss	    dec	    hex	filename
-  34732	    376	   3952	  39060	   9894	Klecontroller.elf
-Finished building: default.size.stdout
- 
-Finished building: Klecontroller.list
- 
+D:/Program Files (x86)/STM32CubeIDE_1.11.2/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.100.202309141235/tools/bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/Programs/MotorsDebugControll_Prog.o: in function `Programs_MotorsDebugControllProgram':
+D:/Embedded/KLEBOT/GIT/Software/Klecontroller/Debug/../Core/Src/Programs/MotorsDebugControll_Prog.c:54: undefined reference to `Programs_GetCurrentRobotProgramID'
+D:/Program Files (x86)/STM32CubeIDE_1.11.2/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.100.202309141235/tools/bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/bin/ld.exe: D:/Embedded/KLEBOT/GIT/Software/Klecontroller/Debug/../Core/Src/Programs/MotorsDebugControll_Prog.c:65: undefined reference to `Programs_ClearCurrentRobotProgramID'
+D:/Program Files (x86)/STM32CubeIDE_1.11.2/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.100.202309141235/tools/bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/bin/ld.exe: D:/Embedded/KLEBOT/GIT/Software/Klecontroller/Debug/../Core/Src/Programs/MotorsDebugControll_Prog.c:73: undefined reference to `Programs_GetCurrentRobotProgramID'
+D:/Program Files (x86)/STM32CubeIDE_1.11.2/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.100.202309141235/tools/bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/Programs/MotorsDebugControll_Prog.o: in function `Programs_MotorsDebugControllSet':
+D:/Embedded/KLEBOT/GIT/Software/Klecontroller/Debug/../Core/Src/Programs/MotorsDebugControll_Prog.c:107: undefined reference to `Programs_SendProgramStartCommand'
+D:/Program Files (x86)/STM32CubeIDE_1.11.2/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.100.202309141235/tools/bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/Programs/MotorsDebugControll_Prog.o: in function `Programs_MotorsDebugControllExitProgram':
+D:/Embedded/KLEBOT/GIT/Software/Klecontroller/Debug/../Core/Src/Programs/MotorsDebugControll_Prog.c:121: undefined reference to `Programs_SendProgramExitCommand'
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:65: Klecontroller.elf] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
 
-20:38:50 Build Finished. 0 errors, 0 warnings. (took 1s.316ms)
+17:14:18 Build Failed. 6 errors, 6 warnings. (took 1s.114ms)
 

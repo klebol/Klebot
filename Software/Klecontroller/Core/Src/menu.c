@@ -22,7 +22,7 @@ Menu_t RobotModes = {"Robot's modes", &DebugTools, NULL, NULL, NULL, NULL};
 	//Menu_t FreeRide = {"Free Ride", NULL, NULL, NULL, &RobotModes, &SetFreeRideControll};
 
 Menu_t DebugTools = {"Debug tools", &Settings, &RobotModes, &MotorsTest, NULL, NULL};
-	Menu_t DiodeTest = {"Diode test", &MotorsTest, NULL, NULL, &DebugTools, &Programs_DiodeTestSet};
+	Menu_t DiodeTest = {"Diode test", &MotorsTest, NULL, NULL, &DebugTools, &Prog_DiodeTestLaunch};
 	Menu_t MotorsTest = {"Motors test", NULL, &DiodeTest, NULL, &DebugTools, &Programs_MotorsDebugControllSet};
 
 
