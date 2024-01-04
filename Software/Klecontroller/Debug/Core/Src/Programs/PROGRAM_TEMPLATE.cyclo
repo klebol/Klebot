@@ -1,5 +1,0 @@
-../Core/Src/Programs/PROGRAM_TEMPLATE.c:22:13:Programs_TEMPLATE_CommandSend	1
-../Core/Src/Programs/PROGRAM_TEMPLATE.c:35:19:Programs_TEMPLATEProgram	7
-../Core/Src/Programs/PROGRAM_TEMPLATE.c:100:6:Programs_TEMPLATESet	1
-../Core/Src/Programs/PROGRAM_TEMPLATE.c:114:6:Programs_TEMPLATEExitProgram	1
-../Core/Src/Programs/PROGRAM_TEMPLATE.c:126:6:Programs_TEMPLATEParser	5

@@ -59,10 +59,10 @@ void Programs_ClearProgram(void);
 Programs_status_t Programs_PerformProgram(void);
 
 /* Function for acknowledge this module that specific program has been started on robot */
-void Programs_ProgramLaunchedACK(uint8_t ProgramID);
+void Programs_ProgramLaunchedACK(uint8_t ProgramID, uint8_t ACKorNACK);
 
 /* Function for acknowledge this module that any program has been stopped on robot */
-void Programs_ProgramExitACK(void);
+void Programs_ProgramExitACK(uint8_t ACKorNACK);
 
 
 #endif /* INC_CONTROLLER_PROGRAMS_H_ */

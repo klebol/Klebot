@@ -9,12 +9,6 @@
 #define INC_KLEBOT_PARSER_H_
 
 #include "stdio.h"
-#include "klebot_radio.h"
-#include "Programs/klebot_programs.h"
-#include "Programs/DiodeTest_Prog.h"
-#include "Programs/MotorsDebug_Prog.h"
-
-
 
 
 

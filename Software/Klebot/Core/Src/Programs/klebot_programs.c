@@ -2,24 +2,38 @@
  * klebot_programs.c
  *
  *  Created on: Nov 29, 2023
- *      Author: miqix
+ *      Author: Michal Klebokowski
  */
 #include "Programs/klebot_programs.h"
+#include "klebot_radio.h"
+#include "klebot_commands.h"
 
+/* Pointer to current running program struct */
+Programs_Program_t *CurrentlyRunningProg;
+/* Current program state */
+Programs_status_t ProgramState = NO_PROGRAM_SET;
+/* Var for counting communication timout during lauch/exit program */
+uint16_t TimeoutStamp;
 
-
-Programs_status_t (*ProgramToPerform)(void);	//pointer to program to execute
 
 //
 // -- General functions to manage programs --
 //
 
-/* Function for setting current pointer to program */
-Programs_error_t Programs_SetProgram(uint8_t (*Program)(void))
+/* Function starting a launch of specific program by setting current pointer
+ * to program and calling it's init function				*/
+Programs_error_t Programs_SetProgram(Programs_Program_t *ProgramToSet)
 {
-	if(NULL == ProgramToPerform)
+	if(NULL == ProgramToSet)
 	{
-		ProgramToPerform = Program;
+		return PROGRAMS_ERROR;
+	}
+
+	if(NULL == CurrentlyRunningProg)
+	{
+		CurrentlyRunningProg = ProgramToSet;
+		CurrentlyRunningProg->ProgramInitFunction();
+		ProgramState = PROGRAM_IN_PROGRESS;
 		return PROGRAMS_OK;
 	}
 	else
@@ -28,137 +42,79 @@ Programs_error_t Programs_SetProgram(uint8_t (*Program)(void))
 	}
 }
 
-/* Function which returns current pointer to program */
-Programs_status_t (*Programs_GetProgram(void))(void)
+/* Function starting a exit program process */
+void Programs_ExitProgram(void)
 {
-	return ProgramToPerform;
+	/* Call program DeInit function */
+	CurrentlyRunningProg->ProgramExitFunction();
+
+	ProgramState = PROGRAM_COMPLETED;
+
 }
 
+/* Function which returns current pointer to program */
+Programs_Program_t* Programs_GetProgram(void)
+{
+	return CurrentlyRunningProg;
+}
+
+/* Clearing the program pointer and status variable */
 void Programs_ClearProgram(void)
 {
-	ProgramToPerform = NULL;
+	CurrentlyRunningProg = NULL;
+	ProgramState = NO_PROGRAM_SET;
 }
 
 /* Program performing function, made for being put in while loop */
 Programs_status_t Programs_PerformProgram(void)
 {
-	Programs_status_t status;
-	/* If there is a program to perform... */
-	if(NULL != ProgramToPerform)
+	switch(ProgramState)
 	{
-	/* Perform it and return it's status */
-		status = ProgramToPerform();
+	case NO_PROGRAM_SET:
+		/* No program set, no action */
+		break;
+
+	case PROGRAM_IN_PROGRESS:
+		/* Run the program */
+		if(NULL != CurrentlyRunningProg->ProgramRoutine)
+		{
+			CurrentlyRunningProg->ProgramRoutine();
+		}
+		break;
+
+	case PROGRAM_COMPLETED:
+		/* Clear the program after completing*/
+		//Programs_ClearProgram();
+		break;
+
+	default:
+		break;
 	}
-	else
-	{
-		status = NO_PROGRAM_SET;
-	}
-	return status;
+
+	return ProgramState;
 }
 
 //
-// -- Sending acknowledgements for controller about starting/exiting programs --
+// -- Functions for parser to ACK launch/exit --
 //
 
-Programs_error_t Programs_SendProgramStartedACK(uint8_t ProgramID)
+/* This functions are called by parser, when the robot acknowledges the proper program launch */
+
+
+Programs_error_t Programs_SendProgramStartedACK(uint8_t ProgramID, uint8_t ACKorNACK)
 {
 	uint8_t Buffer[3];
-	Buffer[0] = ProgramID;			//TODO: change order to new solution
-	Buffer[1] = START_PROGRAM;
-	Buffer[2] = ACK;
+	Buffer[0] = START_PROGRAM;
+	Buffer[1] = ProgramID;
+	Buffer[2] = ACKorNACK;
 	return Radio_TxBufferPut(Buffer, 3);
 }
 
-Programs_error_t Programs_SendProgramExitACK(uint8_t ProgramID)
+Programs_error_t Programs_SendProgramExitACK(uint8_t ACKorNACK)
 {
-	uint8_t Buffer[3];
-	Buffer[0] = ProgramID;
-	Buffer[1] = EXIT_PROGRAM;
-	Buffer[2] = ACK;
-	return Radio_TxBufferPut(Buffer, 3);
+	uint8_t Buffer[2];
+	Buffer[0] = EXIT_PROGRAM;
+	Buffer[1] = ACKorNACK;
+	return Radio_TxBufferPut(Buffer, 2);
 }
 
-//
-// --------------------- Specific programs ---------------------
-//
-
-//
-//	--- Diode Test Program ---
-//
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-////
-//// --- Free Ride Program ---
-////
-//Programs_status_t FreeRide (void)
-//{
-//	static uint8_t StartupInitFlag = 0;
-//	if(0 == StartupInitFlag)
-//	{
-//		DRV8836_Init(&MotorDriver, &htim3, TIM_CHANNEL_1, TIM_CHANNEL_2, TIM_CHANNEL_3, TIM_CHANNEL_4);
-//		StartupInitFlag = 1;
-//	}
-//	return PROGRAM_IN_PROGRESS;
-//}
-//
-//void FreeRide_Parser(uint8_t *command, uint8_t length)
-//{
-//	uint8_t *CurrentByte = command;
-//	//uint8_t Length = length;
-//
-//	switch(*CurrentByte)
-//	{
-//	case START_PROGRAM:
-//		Programs_SetProgram(FreeRide);
-//		break;
-//	case EXIT_PROGRAM:
-//
-//		break;
-//	case LEFT_MOTOR_SPEED:
-//		CurrentByte++;
-//		//DRV8836_SetSpeed(&MotorDriver, Output_A, *CurrentByte);
-//		break;
-//
-//	case RIGHT_MOTOR_SPEED:
-//		CurrentByte++;
-//		//DRV8836_SetSpeed(&MotorDriver, Output_B, *CurrentByte);
-//		break;
-//
-//	case LEFT_MOTOR_DIRECTION:
-//		CurrentByte++;
-//		//DRV8836_SetDirection(&MotorDriver, Output_A, *CurrentByte);
-//		break;
-//
-//	case RIGHT_MOTOR_DIRECTION:
-//		CurrentByte++;
-//		//DRV8836_SetDirection(&MotorDriver, Output_B, *CurrentByte);
-//		break;
-//
-//	default:
-//		break;
-//	}
-//
-//
-//
-//}

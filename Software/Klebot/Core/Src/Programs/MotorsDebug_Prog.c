@@ -48,7 +48,7 @@ void Programs_MotorsDebugParser(uint8_t *command, uint8_t length)		//FRAME: MOTO
 	case START_PROGRAM:
 		if(PROGRAMS_OK == Programs_SetProgram(Programs_MotorsDebugProgram) )
 		{
-			Programs_SendProgramStartedACK(MOTORS_DEBUG);
+			Programs_SendProgramStartedACK(MOTORS_DEBUG, ACK);
 		}
 		break;
 
@@ -80,7 +80,7 @@ void Programs_MotorsDebugParser(uint8_t *command, uint8_t length)		//FRAME: MOTO
 
 	case EXIT_PROGRAM:
 		ProgramExitFlag = 1;
-		Programs_SendProgramExitACK(MOTORS_DEBUG);
+		Programs_SendProgramExitACK(ACK);
 		break;
 
 	default:

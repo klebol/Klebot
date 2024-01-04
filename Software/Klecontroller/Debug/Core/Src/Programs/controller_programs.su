@@ -6,4 +6,4 @@
 ../Core/Src/Programs/controller_programs.c:84:6:Programs_ClearProgram	4	static
 ../Core/Src/Programs/controller_programs.c:91:19:Programs_PerformProgram	8	static
 ../Core/Src/Programs/controller_programs.c:151:6:Programs_ProgramLaunchedACK	16	static
-../Core/Src/Programs/controller_programs.c:166:6:Programs_ProgramExitACK	4	static
+../Core/Src/Programs/controller_programs.c:175:6:Programs_ProgramExitACK	16	static

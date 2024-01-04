@@ -8,7 +8,7 @@
 #include "string.h"
 #include "ssd1106.h"
 #include "Programs/DiodeTest_Prog.h"
-#include "Programs/MotorsDebugControll_Prog.h"
+#include "Programs/MotorsDebug_Prog.h"
 
 //
 //TODO: 1. Define here your menu members, remember to add extern declarations in menu.h file!
@@ -22,8 +22,8 @@ Menu_t RobotModes = {"Robot's modes", &DebugTools, NULL, NULL, NULL, NULL};
 	//Menu_t FreeRide = {"Free Ride", NULL, NULL, NULL, &RobotModes, &SetFreeRideControll};
 
 Menu_t DebugTools = {"Debug tools", &Settings, &RobotModes, &MotorsTest, NULL, NULL};
-	Menu_t DiodeTest = {"Diode test", &MotorsTest, NULL, NULL, &DebugTools, &Prog_DiodeTestLaunch};
-	Menu_t MotorsTest = {"Motors test", NULL, &DiodeTest, NULL, &DebugTools, &Programs_MotorsDebugControllSet};
+	Menu_t DiodeTest = {"Diode test", &MotorsTest, NULL, NULL, &DebugTools, &Prog_DiodeTest_Launch};
+	Menu_t MotorsTest = {"Motors test", NULL, &DiodeTest, NULL, &DebugTools, &Prog_MotorsDebug_Launch};
 
 
 Menu_t Settings = {"Settings", NULL, &DebugTools, &JoyCalib, NULL, NULL};

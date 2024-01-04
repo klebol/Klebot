@@ -1,4 +1,0 @@
-../Core/Src/Programs/MotorsDebugControll_Prog.c:35:19:Programs_MotorsDebugControllProgram	8	static
-../Core/Src/Programs/MotorsDebugControll_Prog.c:104:6:Programs_MotorsDebugControllSet	8	static
-../Core/Src/Programs/MotorsDebugControll_Prog.c:118:6:Programs_MotorsDebugControllExitProgram	8	static
-../Core/Src/Programs/MotorsDebugControll_Prog.c:130:6:Programs_MotorsDebugControllParser	24	static

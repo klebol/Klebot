@@ -8,60 +8,61 @@
 #ifndef INC_KLEBOT_PROGRAMS_H_
 #define INC_KLEBOT_PROGRAMS_H_
 
-#include "klebot_commands.h"
-#include "klebot_radio.h"
-#include "drv8836.h"
-#include "tim.h"
+#include "stdint.h"
 
-//
-// --- Status typedef ---
-//
+#define PROGRAM_START_TIMEOUT_MS 1000
+#define PROGRAM_EXIT_TIMEOUT_MS 1000
 
 typedef enum
 {
 	NO_PROGRAM_SET,
-	PROGRAM_COMPLETED,
+	//PROGRAM_LAUNCHING,		//NOT USED ON ROBOTS SIDE
 	PROGRAM_IN_PROGRESS,
-	PROGRAM_LAUNCH_ERROR
+	//PROGRAM_EXITING,			//NOT USED ON ROBOTS SIDE
+	PROGRAM_COMPLETED
+	//PROGRAM_LAUNCH_ERROR,		//NOT USED ON ROBOTS SIDE
+	//PROGRAM_EXIT_ERROR		//NOT USED ON ROBOTS SIDE
 }Programs_status_t;
 
 typedef enum
 {
 	PROGRAMS_OK,
-	PROGRAMS_ERROR
+	PROGRAMS_ERROR,
+	PROGRAMS_BUSY
 }Programs_error_t;
 
+typedef struct
+{
+	Programs_error_t (*ProgramInitFunction)(void);			//Init function for each program
+	Programs_error_t (*ProgramExitFunction)(void);			//Deinit function, exit funcion
+	Programs_error_t (*ProgramRoutine)(void);				//Program funcion itself
+	uint8_t ProgramID;
+}Programs_Program_t;
 //
-// --- Functions ---
+// -- Public functions --
 //
 
-Programs_error_t Programs_SetProgram(uint8_t (*Program)(void));
+/* Set program to launch */
+Programs_error_t Programs_SetProgram(Programs_Program_t *ProgramToSet);
 
-Programs_status_t (*Programs_GetProgram(void))(void);
+/* Exit current running program */
+void Programs_ExitProgram(void);
 
+/* Get pointer to curent running program */
+Programs_Program_t* Programs_GetProgram(void);
+
+/* Clear pointer to current running program */
 void Programs_ClearProgram(void);
 
-
+/* Infinite loop program routine */
 Programs_status_t Programs_PerformProgram(void);
 
-Programs_error_t Programs_SendProgramStartedACK(uint8_t ProgramID);
+/* Function for acknowledge this module that specific program has been started on robot */
+void Programs_ProgramLaunchedACK(uint8_t ProgramID, uint8_t ACKorNACK);
 
-Programs_error_t Programs_SendProgramExitACK(uint8_t ProgramID);
+/* Function for acknowledge this module that any program has been stopped on robot */
+void Programs_ProgramExitACK(uint8_t ACKorNACK);
 
-
-
-
-
-
-
-
-
-
-
-
-Programs_status_t FreeRide (void);
-
-void FreeRide_Parser(uint8_t *command, uint8_t length);
 
 
 

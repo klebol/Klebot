@@ -29,13 +29,7 @@ Core/Src/klebot_scheduler.o: ../Core/Src/klebot_scheduler.c \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h \
  ../Core/Inc/klebot_radio.h ../Core/Inc/RingBuffer.h \
  ../Core/Inc/nRF24_Defs.h ../Core/Inc/spi.h ../Core/Inc/klebot_commands.h \
- ../Core/Inc/klebot_parser.h ../Core/Inc/Programs/klebot_programs.h \
- ../Core/Inc/klebot_commands.h ../Core/Inc/klebot_radio.h \
- ../Core/Inc/drv8836.h ../Core/Inc/tim.h ../Core/Inc/tim.h \
- ../Core/Inc/Programs/DiodeTest_Prog.h \
- ../Core/Inc/Programs/klebot_programs.h ../Core/Inc/gpio.h \
- ../Core/Inc/Programs/MotorsDebug_Prog.h ../Core/Inc/Motors/motors.h \
- ../Core/Inc/Motors/motor_encoder.h
+ ../Core/Inc/klebot_parser.h ../Core/Inc/Programs/klebot_programs.h
 ../Core/Inc/klebot_scheduler.h:
 ../Core/Inc/nRF24.h:
 ../Core/Inc/main.h:
@@ -73,14 +67,3 @@ Core/Src/klebot_scheduler.o: ../Core/Src/klebot_scheduler.c \
 ../Core/Inc/klebot_commands.h:
 ../Core/Inc/klebot_parser.h:
 ../Core/Inc/Programs/klebot_programs.h:
-../Core/Inc/klebot_commands.h:
-../Core/Inc/klebot_radio.h:
-../Core/Inc/drv8836.h:
-../Core/Inc/tim.h:
-../Core/Inc/tim.h:
-../Core/Inc/Programs/DiodeTest_Prog.h:
-../Core/Inc/Programs/klebot_programs.h:
-../Core/Inc/gpio.h:
-../Core/Inc/Programs/MotorsDebug_Prog.h:
-../Core/Inc/Motors/motors.h:
-../Core/Inc/Motors/motor_encoder.h:

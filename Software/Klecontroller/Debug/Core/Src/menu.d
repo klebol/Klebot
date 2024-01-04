@@ -35,7 +35,7 @@ Core/Src/menu.o: ../Core/Src/menu.c ../Core/Inc/menu.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Core/Inc/Programs/DiodeTest_Prog.h \
  ../Core/Inc/Programs/controller_programs.h \
- ../Core/Inc/Programs/MotorsDebugControll_Prog.h
+ ../Core/Inc/Programs/MotorsDebug_Prog.h
 ../Core/Inc/menu.h:
 ../Core/Inc/ssd1106.h:
 ../Core/Inc/i2c.h:
@@ -75,4 +75,4 @@ Core/Src/menu.o: ../Core/Src/menu.c ../Core/Inc/menu.h \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
 ../Core/Inc/Programs/DiodeTest_Prog.h:
 ../Core/Inc/Programs/controller_programs.h:
-../Core/Inc/Programs/MotorsDebugControll_Prog.h:
+../Core/Inc/Programs/MotorsDebug_Prog.h:

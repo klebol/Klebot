@@ -9,12 +9,12 @@
 #include "klebot_radio.h"
 #include "klebot_commands.h"
 
-/*Pointer to current running program struct */
+/* Pointer to current running program struct */
 Programs_Program_t *CurrentlyRunningProg;
-
-uint16_t TimeoutStamp;
-
+/* Current program state */
 Programs_status_t ProgramState = NO_PROGRAM_SET;
+/* Var for counting communication timout during lauch/exit program */
+uint16_t TimeoutStamp;
 
 //
 //	-- Sending programs start/exit commands --
@@ -148,25 +148,48 @@ Programs_status_t Programs_PerformProgram(void)
 
 /* This functions are called by parser, when the robot acknowledges the proper program launch */
 
-void Programs_ProgramLaunchedACK(uint8_t ProgramID)
+void Programs_ProgramLaunchedACK(uint8_t ProgramID, uint8_t ACKorNACK)
 {
-	if(PROGRAM_LAUNCHING == ProgramState && ProgramID == CurrentlyRunningProg->ProgramID)
+	switch(ACKorNACK)
 	{
-		/* Call an init function for program which is being launched */
-		CurrentlyRunningProg->ProgramInitFunction();
-		/* Change the program state for program in progess state, which will allow the program itself to run */
-		ProgramState = PROGRAM_IN_PROGRESS;
-	}
-	else
-	{
-		//ERROR
+	case ACK:
+		if(PROGRAM_LAUNCHING == ProgramState && ProgramID == CurrentlyRunningProg->ProgramID)
+			{
+				/* Call an init function for program which is being launched */
+				CurrentlyRunningProg->ProgramInitFunction();
+				/* Change the program state for program in progess state, which will allow the program itself to run */
+				ProgramState = PROGRAM_IN_PROGRESS;
+			}
+		break;
+
+	case NACK:
+		//TODO: ADD NACK MANAGEMENT
+		break;
+
+	default:
+
+		break;
 	}
 }
 
-void Programs_ProgramExitACK(void)
+void Programs_ProgramExitACK(uint8_t ACKorNACK)
 {
-	if(PROGRAM_EXITING == ProgramState)
+	switch(ACKorNACK)
 	{
-		ProgramState = PROGRAM_COMPLETED;
+	case ACK:
+		if(PROGRAM_EXITING == ProgramState)
+		{
+			ProgramState = PROGRAM_COMPLETED;
+		}
+		break;
+
+	case NACK:
+		//TODO: ADD NACK MANAGEMENT
+		break;
+
+	default:
+
+		break;
 	}
+
 }

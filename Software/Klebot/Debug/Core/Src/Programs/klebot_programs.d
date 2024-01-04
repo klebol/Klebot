@@ -1,7 +1,7 @@
 Core/Src/Programs/klebot_programs.o: \
  ../Core/Src/Programs/klebot_programs.c \
- ../Core/Inc/Programs/klebot_programs.h ../Core/Inc/klebot_commands.h \
- ../Core/Inc/klebot_radio.h ../Core/Inc/nRF24.h ../Core/Inc/main.h \
+ ../Core/Inc/Programs/klebot_programs.h ../Core/Inc/klebot_radio.h \
+ ../Core/Inc/nRF24.h ../Core/Inc/main.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h \
  ../Core/Inc/stm32f1xx_hal_conf.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h \
@@ -30,10 +30,8 @@ Core/Src/Programs/klebot_programs.o: \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h \
  ../Core/Inc/RingBuffer.h ../Core/Inc/nRF24_Defs.h ../Core/Inc/spi.h \
- ../Core/Inc/klebot_commands.h ../Core/Inc/drv8836.h ../Core/Inc/tim.h \
- ../Core/Inc/tim.h
+ ../Core/Inc/klebot_commands.h ../Core/Inc/klebot_commands.h
 ../Core/Inc/Programs/klebot_programs.h:
-../Core/Inc/klebot_commands.h:
 ../Core/Inc/klebot_radio.h:
 ../Core/Inc/nRF24.h:
 ../Core/Inc/main.h:
@@ -68,6 +66,4 @@ Core/Src/Programs/klebot_programs.o: \
 ../Core/Inc/nRF24_Defs.h:
 ../Core/Inc/spi.h:
 ../Core/Inc/klebot_commands.h:
-../Core/Inc/drv8836.h:
-../Core/Inc/tim.h:
-../Core/Inc/tim.h:
+../Core/Inc/klebot_commands.h:

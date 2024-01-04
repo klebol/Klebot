@@ -5,5 +5,5 @@
 ../Core/Src/Programs/controller_programs.c:78:21:Programs_GetProgram	1
 ../Core/Src/Programs/controller_programs.c:84:6:Programs_ClearProgram	1
 ../Core/Src/Programs/controller_programs.c:91:19:Programs_PerformProgram	7
-../Core/Src/Programs/controller_programs.c:151:6:Programs_ProgramLaunchedACK	3
-../Core/Src/Programs/controller_programs.c:166:6:Programs_ProgramExitACK	2
+../Core/Src/Programs/controller_programs.c:151:6:Programs_ProgramLaunchedACK	5
+../Core/Src/Programs/controller_programs.c:175:6:Programs_ProgramExitACK	4

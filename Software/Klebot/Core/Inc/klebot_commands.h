@@ -32,6 +32,11 @@
 #define START_PROGRAM 0x10
 #define EXIT_PROGRAM 0x11
 
+
+// --- TEMPLATE ---
+
+#define TEMPLATE_PROG 0xFF
+
 // --- Free Ride ---
 #define FREERIDE_PROG 0xA1
 	#define LEFT_MOTOR_SPEED 0x20

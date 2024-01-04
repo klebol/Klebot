@@ -16,7 +16,7 @@
 //
 // -- Program struct variable --
 //
-Programs_Program_t DiodeTestProgram = {&Prog_DiodeTestInit, &Prog_DiodeTestDeinit, &Prog_DiodeTestProgram, DIODE_TEST};
+Programs_Program_t DiodeTestProgram = {&Prog_DiodeTest_Init, &Prog_DiodeTest_Deinit, &Prog_DiodeTest_Program, DIODE_TEST};
 
 //
 // -- Specific program (data) variables --
@@ -27,7 +27,7 @@ uint8_t DiodeState;
 //
 // -- Setting LED on/off --
 //
-static void Prog_DiodeTestSendOnCmd(void)
+static void Prog_DiodeTest_SendOnCmd(void)
 {
 	uint8_t Buffer[2];
 	Buffer[0] = DIODE_TEST;
@@ -35,7 +35,7 @@ static void Prog_DiodeTestSendOnCmd(void)
 	Radio_TxBufferPut(Buffer, 2);
 }
 
-static void Prog_DiodeTestSendOffCmd(void)
+static void Prog_DiodeTest_SendOffCmd(void)
 {
 	uint8_t Buffer[2];
 	Buffer[0] = DIODE_TEST;
@@ -46,18 +46,18 @@ static void Prog_DiodeTestSendOffCmd(void)
 //
 // -- Init & Deinit functions for Diode Test Program --
 //
-Programs_error_t Prog_DiodeTestInit(void)
+Programs_error_t Prog_DiodeTest_Init(void)
 {
 	Inputs_ClearButtonsCallbacks();
-	Inputs_ButtonsRegisterCallback(UP_BUTTON, &Prog_DiodeTestSendOnCmd, NULL);
-	Inputs_ButtonsRegisterCallback(DOWN_BUTTON, &Prog_DiodeTestSendOffCmd, NULL);
+	Inputs_ButtonsRegisterCallback(UP_BUTTON, &Prog_DiodeTest_SendOnCmd, NULL);
+	Inputs_ButtonsRegisterCallback(DOWN_BUTTON, &Prog_DiodeTest_SendOffCmd, NULL);
 	OLED_ClearBuffer(BLACK);
 	OLED_MoveCursor(0, 0);
 	OLED_SendBuffer();
 	return PROGRAMS_OK;
 }
 
-Programs_error_t Prog_DiodeTestDeinit(void)
+Programs_error_t Prog_DiodeTest_Deinit(void)
 {
 	DiodeState = 0;
 	return PROGRAMS_OK;
@@ -67,7 +67,7 @@ Programs_error_t Prog_DiodeTestDeinit(void)
 // -- Main Diode Test Program for Controller --
 //
 
-Programs_error_t Prog_DiodeTestProgram(void)
+Programs_error_t Prog_DiodeTest_Program(void)
 {
 	/* Main program "loop" */
 	OLED_ClearBuffer(BLACK);
@@ -84,18 +84,16 @@ Programs_error_t Prog_DiodeTestProgram(void)
 // -- Set / Launch function --
 //
 
-void Prog_DiodeTestLaunch(void)
+void Prog_DiodeTest_Launch(void)
 {
 	Programs_SetProgram(&DiodeTestProgram);
 }
-
-
 
 //
 // -- Program Parser --
 //
 
-void Prog_DiodeTestParser(uint8_t *command, uint8_t length)
+void Prog_DiodeTest_Parser(uint8_t *command, uint8_t length)
 {
 	uint8_t *CurrentByte = command;
 

@@ -8,7 +8,7 @@
 #include "klebot_commands.h"
 #include "Programs/controller_programs.h"
 #include "Programs/DiodeTest_Prog.h"
-#include "Programs/MotorsDebugControll_Prog.h"
+#include "Programs/MotorsDebug_Prog.h"
 
 
 void Parser_Controller(uint8_t *command, uint8_t length)							//main parser funciton
@@ -19,25 +19,30 @@ void Parser_Controller(uint8_t *command, uint8_t length)							//main parser fun
 	switch(*CurrentByte)
 	{
 	case START_PROGRAM:
+		/* Frame: [START_PROGRAM, ProgramID, Ack or Nack] */
 		CurrentByte++;
-		Programs_ProgramLaunchedACK(*CurrentByte);
+		Programs_ProgramLaunchedACK(*CurrentByte, *(CurrentByte + 1) );
 		break;
 
 	case EXIT_PROGRAM:
-		Programs_ProgramExitACK();
+		/* Frame: [EXIT_PROGRAM, Ack or Nack] */
+		CurrentByte++;
+		Programs_ProgramExitACK(*CurrentByte);
 		break;
 
 	case DIODE_TEST:
+		/* Frame: [DIODE_TEST, Specific program commands ...] */
 		CurrentByte++;
 		Length--;
-		Prog_DiodeTestParser(CurrentByte, Length);
+		Prog_DiodeTest_Parser(CurrentByte, Length);
 
 		break;
 
 	case MOTORS_DEBUG:
+		/* Frame: [MOTORS_DEBUG, Specific program commands ...] */
 		CurrentByte++;
 		Length--;
-		Programs_MotorsDebugControllParser(CurrentByte, Length);;
+		Prog_MotorsDebug_Parser(CurrentByte, Length);;
 		break;
 
 	default:

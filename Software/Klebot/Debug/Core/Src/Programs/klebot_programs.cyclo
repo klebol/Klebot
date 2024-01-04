@@ -1,6 +1,7 @@
-../Core/Src/Programs/klebot_programs.c:18:18:Programs_SetProgram	2
-../Core/Src/Programs/klebot_programs.c:32:21:Programs_GetProgram	1
-../Core/Src/Programs/klebot_programs.c:37:6:Programs_ClearProgram	1
-../Core/Src/Programs/klebot_programs.c:43:19:Programs_PerformProgram	2
-../Core/Src/Programs/klebot_programs.c:63:18:Programs_SendProgramStartedACK	1
-../Core/Src/Programs/klebot_programs.c:72:18:Programs_SendProgramExitACK	1
+../Core/Src/Programs/klebot_programs.c:25:18:Programs_SetProgram	3
+../Core/Src/Programs/klebot_programs.c:46:6:Programs_ExitProgram	1
+../Core/Src/Programs/klebot_programs.c:56:21:Programs_GetProgram	1
+../Core/Src/Programs/klebot_programs.c:62:6:Programs_ClearProgram	1
+../Core/Src/Programs/klebot_programs.c:69:19:Programs_PerformProgram	6
+../Core/Src/Programs/klebot_programs.c:104:18:Programs_SendProgramStartedACK	1
+../Core/Src/Programs/klebot_programs.c:113:18:Programs_SendProgramExitACK	1

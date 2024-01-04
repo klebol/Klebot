@@ -1,1 +1,6 @@
 1704133556338	Delete resource 'Klecontroller/Core/Inc/Programs/DiodeTest_Prog.h'
+1704371291033	Delete resource 'Klecontroller/Core/Inc/Programs/PROGRAM_TEMPLATE.h'
+1704371292903	Delete resource 'Klecontroller/Core/Inc/Programs/MotorsDebugControll_Prog.h'
+1704371297141	Delete resource 'Klecontroller/Core/Src/Programs/MotorsDebugControll_Prog.c'
+1704371299558	Delete resource 'Klecontroller/Core/Src/Programs/PROGRAM_TEMPLATE.c'
+1704372119849	Delete resource 'Klebot/Core/Inc/klebot_commands.h'

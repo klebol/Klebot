@@ -43,7 +43,7 @@ void Programs_DiodeTestParser(uint8_t *command, uint8_t length)
 	case START_PROGRAM:
 		if(PROGRAMS_OK == Programs_SetProgram(Programs_DiodeTestProgram) )
 		{
-			Programs_SendProgramStartedACK(DIODE_TEST);
+			Programs_SendProgramStartedACK(DIODE_TEST, ACK);
 		}
 		break;
 
@@ -65,7 +65,7 @@ void Programs_DiodeTestParser(uint8_t *command, uint8_t length)
 
 	case EXIT_PROGRAM:
 		ProgramExitFlag = 1;
-		Programs_SendProgramExitACK(DIODE_TEST);
+		Programs_SendProgramExitACK(ACK);
 		break;
 
 	default:
