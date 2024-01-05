@@ -1,0 +1,76 @@
+/*
+ * DiodeTest_Prog.c
+ *
+ *  Created on: Dec 4, 2023
+ *      Author: miqix
+ */
+#include "Programs/klebot_programs.h"
+#include "Programs/DiodeTest_Prog.h"
+#include "klebot_commands.h"
+#include "klebot_radio.h"
+#include "gpio.h"
+
+
+Programs_Program_t DiodeTestProgram = {&Prog_DiodeTest_Init, &Prog_DiodeTest_Deinit, &Prog_DiodeTest_Program, DIODE_TEST};
+
+//
+// -- Init & Deinit functions for Diode Test Program --
+//
+
+Programs_error_t Prog_DiodeTest_Init(void)
+{
+	HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
+	return PROGRAMS_OK;
+
+}
+
+Programs_error_t Prog_DiodeTest_Deinit(void)
+{
+	return PROGRAMS_OK;
+}
+
+//
+// -- Main Diode Test Program for Robot --
+//
+
+Programs_error_t Prog_DiodeTest_Program(void)
+{
+	/* Main program "loop" */
+	return PROGRAMS_OK;
+}
+
+
+
+
+//
+// -- Diode Test Program Parser --
+//
+
+void Prog_DiodeTest_Parser(uint8_t *command, uint8_t length)
+{
+	uint8_t *CurrentByte = command;
+	uint8_t Buffer[3];
+
+	switch(*CurrentByte)
+	{
+	case DIODE_SET_ON:
+		HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
+		Buffer[0] = DIODE_TEST;
+		Buffer[1] = DIODE_REAL_STATE;
+		Buffer[2] = 1;
+		Radio_TxBufferPut(Buffer, 3);
+		break;
+
+	case DIODE_SET_OFF:
+		HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
+		Buffer[0] = DIODE_TEST;
+		Buffer[1] = DIODE_REAL_STATE;
+		Buffer[2] = 0;
+		Radio_TxBufferPut(Buffer, 3);
+		break;
+
+	default:
+		break;
+	}
+
+}

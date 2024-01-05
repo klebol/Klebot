@@ -1,90 +1,93 @@
 /*
  * MotorsDebug_Prog.c
  *
- *  Created on: Dec 30, 2023
- *      Author: miqix
+ *  Created on: Jan 5, 2024
+ *      Author: Michal Klebokowski
  */
 
+#include "Programs/klebot_programs.h"
 #include "Programs/MotorsDebug_Prog.h"
+#include "Motors/motors.h"
+#include "klebot_commands.h"
+#include "klebot_radio.h"
+#include "gpio.h"
 
-static uint8_t ProgramExitFlag;
+//
+// -- Program struct variable --
+//
+
+Programs_Program_t MotorsDebugProgram = {&Prog_MotorsDebug_Init, &Prog_MotorsDebug_Deinit, &Prog_MotorsDebug_Program, &Prog_MotorsDebug_Parser, MOTORS_DEBUG};
+
+//
+// -- Init & Deinit functions for Diode Test Program --
+//
+
+Programs_error_t Prog_MotorsDebug_Init(void)
+{
+	HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
+	Motors_SetMotorsOff();
+	return PROGRAMS_OK;
+
+}
+
+Programs_error_t Prog_MotorsDebug_Deinit(void)
+{
+	Motors_SetMotorsOff();
+	return PROGRAMS_OK;
+}
 
 //
 // -- Main Diode Test Program for Robot --
 //
-Programs_status_t Programs_MotorsDebugProgram(void)
+
+Programs_error_t Prog_MotorsDebug_Program(void)
 {
-	static uint8_t StartupInitFlag = 0;
-	if(0 == StartupInitFlag)
-	{
-		HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
-		StartupInitFlag = 1;
-	}
+	/* Main program "loop" */
+	return PROGRAMS_OK;
+}
 
-	if(1 == ProgramExitFlag)
-	{
-		ProgramExitFlag = 0;
-		StartupInitFlag = 0;
-		return PROGRAM_COMPLETED;
-	}
+//
+// -- Set / Launch function --
+//
 
-
-
-
-	return PROGRAM_IN_PROGRESS;
+Programs_error_t Prog_MotorsDebug_Launch(void)
+{
+	return Programs_SetProgram(&MotorsDebugProgram);
 }
 
 //
 // -- Diode Test Program Parser --
 //
 
-void Programs_MotorsDebugParser(uint8_t *command, uint8_t length)		//FRAME: MOTOR_DEBUG, ACTION, MOTOR, VALUE
+void Prog_MotorsDebug_Parser(uint8_t *command, uint8_t length)
 {
 	uint8_t *CurrentByte = command;
-	//uint8_t Buffer[3];
+
+	DRV8836_Output_t Motor;
+	DRV8836_Direction_t ReceivedDir;
+	uint8_t ReceivedPWM;
 
 	switch(*CurrentByte)
 	{
-	case START_PROGRAM:
-		if(PROGRAMS_OK == Programs_SetProgram(Programs_MotorsDebugProgram) )
-		{
-			Programs_SendProgramStartedACK(MOTORS_DEBUG, ACK);
-		}
-		break;
-
 	case MOTOR_SET_PWM:
-
-		CurrentByte++;
-		Motors_SetMotorSpeed(*CurrentByte, *(CurrentByte+1) );
-
-
-
-
-
-//		Buffer[0] = MOTOR_DEBUG;
-//		Buffer[1] = DIODE_REAL_STATE;
-//		Buffer[2] = 1;
-//		Radio_TxBufferPut(Buffer, 3);
+		/* Frame: [... , MOTORS_SET_PWM, Motor ID, PWM Value] */ 	//TODO: Check pwm wideness thing
+		Motor = *(CurrentByte + 1);									//TODO: The same value writing safety
+		ReceivedPWM = *(CurrentByte + 2);
+		Motors_SetMotorSpeed(Motor, ReceivedPWM);
 		break;
 
 	case MOTOR_SET_DIRECTION:
-		CurrentByte++;
-		Motors_SetMotorDirection(*CurrentByte, *(CurrentByte+1) );
-
-//		HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
-//		Buffer[0] = DIODE_TEST;
-//		Buffer[1] = DIODE_REAL_STATE;
-//		Buffer[2] = 0;
-//		Radio_TxBufferPut(Buffer, 3);
+		/* Frame: [... , MOTORS_SET_DIRECTION, Motor ID, Direction] */
+		Motor = *(CurrentByte + 1);
+		ReceivedDir = *(CurrentByte + 2);
+		Motors_SetMotorDirection(Motor, ReceivedDir);
 		break;
-
-	case EXIT_PROGRAM:
-		ProgramExitFlag = 1;
-		Programs_SendProgramExitACK(ACK);
 		break;
 
 	default:
+		/* Unknown command! */
 		break;
 	}
 
 }
+

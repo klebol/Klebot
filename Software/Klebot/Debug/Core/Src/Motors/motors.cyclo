@@ -2,4 +2,5 @@
 ../Core/Src/Motors/motors.c:22:6:Motors_SetMotor	1
 ../Core/Src/Motors/motors.c:27:16:Motors_SetMotorSpeed	3
 ../Core/Src/Motors/motors.c:45:16:Motors_SetMotorDirection	3
-../Core/Src/Motors/motors.c:64:6:Motors_EncoderSample	1
+../Core/Src/Motors/motors.c:63:16:Motors_SetMotorsOff	1
+../Core/Src/Motors/motors.c:72:6:Motors_EncoderSample	1

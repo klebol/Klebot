@@ -8,7 +8,7 @@
 #ifndef INC_NRF24_NRF24_H_
 #define INC_NRF24_NRF24_H_
 
-#include "main.h"
+#include "spi.h"
 
 //
 //	Configuration

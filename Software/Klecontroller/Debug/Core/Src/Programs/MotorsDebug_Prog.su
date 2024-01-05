@@ -1,5 +1,5 @@
 ../Core/Src/Programs/MotorsDebug_Prog.c:35:18:Prog_MotorsDebug_Init	8	static
-../Core/Src/Programs/MotorsDebug_Prog.c:45:18:Prog_MotorsDebug_Deinit	4	static
-../Core/Src/Programs/MotorsDebug_Prog.c:55:18:Prog_MotorsDebug_Program	8	static
-../Core/Src/Programs/MotorsDebug_Prog.c:70:6:Prog_MotorsDebug_Launch	8	static
-../Core/Src/Programs/MotorsDebug_Prog.c:79:6:Prog_MotorsDebug_Parser	24	static
+../Core/Src/Programs/MotorsDebug_Prog.c:47:18:Prog_MotorsDebug_Deinit	4	static
+../Core/Src/Programs/MotorsDebug_Prog.c:57:18:Prog_MotorsDebug_Program	8	static
+../Core/Src/Programs/MotorsDebug_Prog.c:72:6:Prog_MotorsDebug_Launch	8	static
+../Core/Src/Programs/MotorsDebug_Prog.c:81:6:Prog_MotorsDebug_Parser	24	static

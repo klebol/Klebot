@@ -60,6 +60,14 @@ Motors_Error_t Motors_SetMotorDirection(DRV8836_Output_t motorAB, DRV8836_Direct
 	}
 }
 
+Motors_Error_t Motors_SetMotorsOff(void)
+{
+	Motors_Error_t status = 0;
+	status |= DRV8836_SetMotor(&MotorDriver, Output_A, Coast, 0);
+	status |= DRV8836_SetMotor(&MotorDriver, Output_B, Coast, 0);
+	return status;
+}
+
 
 void Motors_EncoderSample(void)						//call this function with encoder sampling frequency
 {

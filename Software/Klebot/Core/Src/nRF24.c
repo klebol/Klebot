@@ -4,10 +4,6 @@
  *  Created on: Apr 26, 2020
  *      Author: Mateusz Salamon
  */
-
-#include "main.h"
-#include "spi.h"
-
 #include "nRF24.h"
 #include "nRF24_Defs.h"
 

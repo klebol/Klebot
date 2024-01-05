@@ -2,12 +2,9 @@
  * RingBuffer.c
  *
  *  Created on: Feb 9, 2023
- *      Author: miqix
+ *      Author: Michal Klebokowski
  */
-
-#include "main.h"
 #include "RingBuffer.h"
-#include "stm32f1xx_hal.h"
 
 RBuffer_Status_t RBuffer_Write(RBuffer_t *Buffer,uint8_t Data)
 {

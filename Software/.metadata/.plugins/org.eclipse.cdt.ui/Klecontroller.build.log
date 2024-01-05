@@ -1,22 +1,10 @@
-14:08:38 **** Incremental Build of configuration Debug for project Klecontroller ****
+10:32:56 **** Incremental Build of configuration Debug for project Klecontroller ****
 make -j16 all 
-arm-none-eabi-gcc "../Core/Src/Programs/DiodeTest_Prog.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Programs/DiodeTest_Prog.d" -MT"Core/Src/Programs/DiodeTest_Prog.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Programs/DiodeTest_Prog.o"
-arm-none-eabi-gcc "../Core/Src/Programs/MotorsDebug_Prog.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Programs/MotorsDebug_Prog.d" -MT"Core/Src/Programs/MotorsDebug_Prog.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Programs/MotorsDebug_Prog.o"
-arm-none-eabi-gcc "../Core/Src/Programs/controller_programs.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Programs/controller_programs.d" -MT"Core/Src/Programs/controller_programs.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Programs/controller_programs.o"
-arm-none-eabi-gcc "../Core/Src/controller_parser.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/controller_parser.d" -MT"Core/Src/controller_parser.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/controller_parser.o"
-arm-none-eabi-gcc "../Core/Src/menu.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/menu.d" -MT"Core/Src/menu.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/menu.o"
-arm-none-eabi-gcc "../Core/Src/simple_scheduler.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/simple_scheduler.d" -MT"Core/Src/simple_scheduler.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/simple_scheduler.o"
-arm-none-eabi-gcc -o "Klecontroller.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\zalfon\Desktop\Michal\Klebot\Software\Klecontroller\STM32F411RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Klecontroller.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: Klecontroller.elf
- 
 arm-none-eabi-size  Klecontroller.elf 
-arm-none-eabi-objdump -h -S Klecontroller.elf  > "Klecontroller.list"
    text	   data	    bss	    dec	    hex	filename
-  34424	    408	   3928	  38760	   9768	Klecontroller.elf
+  34536	    408	   3928	  38872	   97d8	Klecontroller.elf
 Finished building: default.size.stdout
  
-Finished building: Klecontroller.list
- 
 
-14:08:39 Build Finished. 0 errors, 0 warnings. (took 1s.151ms)
+10:32:56 Build Finished. 0 errors, 0 warnings. (took 340ms)
 

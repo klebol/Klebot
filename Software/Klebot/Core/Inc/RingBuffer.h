@@ -2,8 +2,9 @@
  * RingBuffer.h
  *
  *  Created on: Feb 9, 2023
- *      Author: miqix
+ *      Author: Michal Klebokowski
  */
+#include "stdint.h"
 
 #define RBUFFER_SIZE 32
 

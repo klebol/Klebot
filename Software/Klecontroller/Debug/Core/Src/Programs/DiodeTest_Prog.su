@@ -1,7 +1,7 @@
 ../Core/Src/Programs/DiodeTest_Prog.c:30:13:Prog_DiodeTest_SendOnCmd	16	static
 ../Core/Src/Programs/DiodeTest_Prog.c:38:13:Prog_DiodeTest_SendOffCmd	16	static
 ../Core/Src/Programs/DiodeTest_Prog.c:49:18:Prog_DiodeTest_Init	8	static
-../Core/Src/Programs/DiodeTest_Prog.c:60:18:Prog_DiodeTest_Deinit	4	static
-../Core/Src/Programs/DiodeTest_Prog.c:70:18:Prog_DiodeTest_Program	8	static
-../Core/Src/Programs/DiodeTest_Prog.c:87:6:Prog_DiodeTest_Launch	8	static
-../Core/Src/Programs/DiodeTest_Prog.c:96:6:Prog_DiodeTest_Parser	24	static
+../Core/Src/Programs/DiodeTest_Prog.c:61:18:Prog_DiodeTest_Deinit	4	static
+../Core/Src/Programs/DiodeTest_Prog.c:71:18:Prog_DiodeTest_Program	8	static
+../Core/Src/Programs/DiodeTest_Prog.c:88:6:Prog_DiodeTest_Launch	8	static
+../Core/Src/Programs/DiodeTest_Prog.c:97:6:Prog_DiodeTest_Parser	24	static

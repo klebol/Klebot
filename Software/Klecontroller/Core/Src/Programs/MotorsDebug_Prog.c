@@ -35,6 +35,8 @@ Programs_Program_t MotorsDebugProgram = {&Prog_MotorsDebug_Init, &Prog_MotorsDeb
 Programs_error_t Prog_MotorsDebug_Init(void)
 {
 	Inputs_ClearButtonsCallbacks();
+	Inputs_ButtonsRegisterCallback(ENC_BUTTON, NULL, &Programs_ExitProgram);
+
 
 	OLED_ClearBuffer(BLACK);
 	OLED_MoveCursor(0, 0);

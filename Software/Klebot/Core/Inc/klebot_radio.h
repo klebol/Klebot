@@ -8,11 +8,8 @@
 #ifndef INC_KLEBOT_RADIO_H_
 #define INC_KLEBOT_RADIO_H_
 
-#include "nRF24.h"
-#include "RingBuffer.h"
-#include "nRF24_Defs.h"
+#include "stdint.h"
 #include "spi.h"
-#include "klebot_commands.h"
 
 //
 //TODO: Select device
@@ -27,8 +24,6 @@
 
 #define MAX_COMMAND_LENGTH 32		// [Bytes]
 #define PACKET_SEND_DELAY 50 		// [ms]
-
-
 
 //
 //Typedefs

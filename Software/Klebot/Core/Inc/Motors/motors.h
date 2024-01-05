@@ -23,6 +23,7 @@ void Motors_SetMotor(DRV8836_Output_t motorAB, DRV8836_Direction_t direction, ui
 Motors_Error_t Motors_SetMotorSpeed(DRV8836_Output_t motorAB, uint16_t speed);
 Motors_Error_t Motors_SetMotorDirection(DRV8836_Output_t motorAB, DRV8836_Direction_t direction);
 void Motors_EncoderSample(void);
+Motors_Error_t Motors_SetMotorsOff(void);
 
 
 

@@ -33,9 +33,10 @@ typedef enum
 
 typedef struct
 {
-	Programs_error_t (*ProgramInitFunction)(void);			//Init function for each program
-	Programs_error_t (*ProgramExitFunction)(void);			//Deinit function, exit funcion
-	Programs_error_t (*ProgramRoutine)(void);				//Program funcion itself
+	Programs_error_t (*ProgramInitFunction)(void);				//Init function for each program
+	Programs_error_t (*ProgramExitFunction)(void);				//Deinit function, exit funcion
+	Programs_error_t (*ProgramRoutine)(void);					//Program funcion itself
+	void (*ProgramParser)(uint8_t *command, uint8_t length);	//Program parser
 	uint8_t ProgramID;
 }Programs_Program_t;
 //
@@ -57,11 +58,11 @@ void Programs_ClearProgram(void);
 /* Infinite loop program routine */
 Programs_status_t Programs_PerformProgram(void);
 
-/* Function for acknowledge this module that specific program has been started on robot */
-void Programs_ProgramLaunchedACK(uint8_t ProgramID, uint8_t ACKorNACK);
+/* Function for sending ACK to controller about program launch result */
+Programs_error_t Programs_SendProgramStartedACK(uint8_t ProgramID, uint8_t ACKorNACK);
 
-/* Function for acknowledge this module that any program has been stopped on robot */
-void Programs_ProgramExitACK(uint8_t ACKorNACK);
+/* Function for sending ACK to controller about program exit result */
+Programs_error_t Programs_SendProgramExitACK(uint8_t ACKorNACK);
 
 
 

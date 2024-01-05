@@ -1,118 +1,17 @@
-14:38:17 **** Incremental Build of configuration Debug for project Klebot ****
+10:28:40 **** Incremental Build of configuration Debug for project Klebot ****
 make -j16 all 
-arm-none-eabi-gcc "../Core/Src/Programs/DiodeTest_Prog.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F107xC -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Programs/DiodeTest_Prog.d" -MT"Core/Src/Programs/DiodeTest_Prog.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/Programs/DiodeTest_Prog.o"
-arm-none-eabi-gcc "../Core/Src/Programs/MotorsDebug_Prog.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F107xC -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Programs/MotorsDebug_Prog.d" -MT"Core/Src/Programs/MotorsDebug_Prog.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/Programs/MotorsDebug_Prog.o"
-arm-none-eabi-gcc "../Core/Src/Programs/klebot_programs.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F107xC -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Programs/klebot_programs.d" -MT"Core/Src/Programs/klebot_programs.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/Programs/klebot_programs.o"
 arm-none-eabi-gcc "../Core/Src/klebot_parser.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F107xC -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/klebot_parser.d" -MT"Core/Src/klebot_parser.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/klebot_parser.o"
-arm-none-eabi-gcc "../Core/Src/klebot_scheduler.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F107xC -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/klebot_scheduler.d" -MT"Core/Src/klebot_scheduler.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/klebot_scheduler.o"
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F107xC -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
-In file included from ../Core/Src/klebot_parser.c:8:
-../Core/Inc/klebot_parser.h:20:20: error: unknown type name 'uint8_t'
-   20 | void Parser_Klebot(uint8_t *command, uint8_t length);
-      |                    ^~~~~~~
-../Core/Inc/klebot_parser.h:12:1: note: 'uint8_t' is defined in header '<stdint.h>'; did you forget to '#include <stdint.h>'?
-   11 | #include "stdio.h"
-  +++ |+#include <stdint.h>
-   12 | 
-../Core/Inc/klebot_parser.h:20:38: error: unknown type name 'uint8_t'
-   20 | void Parser_Klebot(uint8_t *command, uint8_t length);
-      |                                      ^~~~~~~
-../Core/Inc/klebot_parser.h:20:38: note: 'uint8_t' is defined in header '<stdint.h>'; did you forget to '#include <stdint.h>'?
-../Core/Src/Programs/DiodeTest_Prog.c: In function 'Programs_DiodeTestParser':
-../Core/Src/Programs/DiodeTest_Prog.c:43:14: error: 'START_PROGRAM' undeclared (first use in this function)
-   43 |         case START_PROGRAM:
-      |              ^~~~~~~~~~~~~
-../Core/Src/Programs/DiodeTest_Prog.c:43:14: note: each undeclared identifier is reported only once for each function it appears in
-../Core/Src/Programs/DiodeTest_Prog.c:44:55: warning: passing argument 1 of 'Programs_SetProgram' from incompatible pointer type [-Wincompatible-pointer-types]
-   44 |                 if(PROGRAMS_OK == Programs_SetProgram(Programs_DiodeTestProgram) )
-      |                                                       ^~~~~~~~~~~~~~~~~~~~~~~~~
-      |                                                       |
-      |                                                       Programs_status_t (*)(void)
-In file included from ../Core/Inc/Programs/DiodeTest_Prog.h:11,
-                 from ../Core/Src/Programs/DiodeTest_Prog.c:7:
-../Core/Inc/Programs/klebot_programs.h:46:58: note: expected 'Programs_Program_t *' but argument is of type 'Programs_status_t (*)(void)'
-   46 | Programs_error_t Programs_SetProgram(Programs_Program_t *ProgramToSet);
-      |                                      ~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
-../Core/Src/Programs/MotorsDebug_Prog.c: In function 'Programs_MotorsDebugParser':
-../Core/Src/Programs/MotorsDebug_Prog.c:48:14: error: 'START_PROGRAM' undeclared (first use in this function)
-   48 |         case START_PROGRAM:
-      |              ^~~~~~~~~~~~~
-../Core/Src/Programs/MotorsDebug_Prog.c:48:14: note: each undeclared identifier is reported only once for each function it appears in
-../Core/Src/Programs/MotorsDebug_Prog.c:49:55: warning: passing argument 1 of 'Programs_SetProgram' from incompatible pointer type [-Wincompatible-pointer-types]
-   49 |                 if(PROGRAMS_OK == Programs_SetProgram(Programs_MotorsDebugProgram) )
-      |                                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~
-      |                                                       |
-      |                                                       Programs_status_t (*)(void)
-In file included from ../Core/Inc/Programs/MotorsDebug_Prog.h:11,
-                 from ../Core/Src/Programs/MotorsDebug_Prog.c:8:
-../Core/Inc/Programs/klebot_programs.h:46:58: note: expected 'Programs_Program_t *' but argument is of type 'Programs_status_t (*)(void)'
-   46 | Programs_error_t Programs_SetProgram(Programs_Program_t *ProgramToSet);
-      |                                      ~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
-make: *** [Core/Src/subdir.mk:70: Core/Src/klebot_parser.o] Error 1
-make: *** Waiting for unfinished jobs....
-../Core/Src/Programs/DiodeTest_Prog.c:46:25: warning: implicit declaration of function 'Programs_SendProgramStartedACK'; did you mean 'Programs_ProgramExitACK'? [-Wimplicit-function-declaration]
-   46 |                         Programs_SendProgramStartedACK(DIODE_TEST, ACK);
-      |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      |                         Programs_ProgramExitACK
-../Core/Src/Programs/MotorsDebug_Prog.c:51:25: warning: implicit declaration of function 'Programs_SendProgramStartedACK'; did you mean 'Programs_ProgramExitACK'? [-Wimplicit-function-declaration]
-   51 |                         Programs_SendProgramStartedACK(MOTORS_DEBUG, ACK);
-      |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      |                         Programs_ProgramExitACK
-../Core/Src/Programs/DiodeTest_Prog.c:46:56: error: 'DIODE_TEST' undeclared (first use in this function)
-   46 |                         Programs_SendProgramStartedACK(DIODE_TEST, ACK);
-      |                                                        ^~~~~~~~~~
-../Core/Src/Programs/DiodeTest_Prog.c:46:68: error: 'ACK' undeclared (first use in this function)
-   46 |                         Programs_SendProgramStartedACK(DIODE_TEST, ACK);
-      |                                                                    ^~~
-../Core/Src/klebot_scheduler.c: In function 'KlebotScheduler':
-../Core/Src/klebot_scheduler.c:60:37: error: 'PROGRAM_LAUNCH_ERROR' undeclared (first use in this function); did you mean 'PROGRAMS_ERROR'?
-   60 |         else if(SubProgramStatus == PROGRAM_LAUNCH_ERROR)
-      |                                     ^~~~~~~~~~~~~~~~~~~~
-      |                                     PROGRAMS_ERROR
-../Core/Src/klebot_scheduler.c:60:37: note: each undeclared identifier is reported only once for each function it appears in
-../Core/Src/Programs/MotorsDebug_Prog.c:51:56: error: 'MOTORS_DEBUG' undeclared (first use in this function)
-   51 |                         Programs_SendProgramStartedACK(MOTORS_DEBUG, ACK);
-      |                                                        ^~~~~~~~~~~~
-../Core/Src/Programs/MotorsDebug_Prog.c:51:70: error: 'ACK' undeclared (first use in this function)
-   51 |                         Programs_SendProgramStartedACK(MOTORS_DEBUG, ACK);
-      |                                                                      ^~~
-../Core/Src/Programs/DiodeTest_Prog.c:50:14: error: 'DIODE_SET_ON' undeclared (first use in this function)
-   50 |         case DIODE_SET_ON:
-      |              ^~~~~~~~~~~~
-make: *** [Core/Src/subdir.mk:70: Core/Src/klebot_scheduler.o] Error 1
-../Core/Src/Programs/MotorsDebug_Prog.c:55:14: error: 'MOTOR_SET_PWM' undeclared (first use in this function)
-   55 |         case MOTOR_SET_PWM:
-      |              ^~~~~~~~~~~~~
-../Core/Src/Programs/DiodeTest_Prog.c:53:29: error: 'DIODE_REAL_STATE' undeclared (first use in this function)
-   53 |                 Buffer[1] = DIODE_REAL_STATE;
-      |                             ^~~~~~~~~~~~~~~~
-../Core/Src/Programs/MotorsDebug_Prog.c:70:14: error: 'MOTOR_SET_DIRECTION' undeclared (first use in this function); did you mean 'IS_SPI_DIRECTION'?
-   70 |         case MOTOR_SET_DIRECTION:
-      |              ^~~~~~~~~~~~~~~~~~~
-      |              IS_SPI_DIRECTION
-../Core/Src/Programs/DiodeTest_Prog.c:55:17: warning: implicit declaration of function 'Radio_TxBufferPut' [-Wimplicit-function-declaration]
-   55 |                 Radio_TxBufferPut(Buffer, 3);
-      |                 ^~~~~~~~~~~~~~~~~
-../Core/Src/Programs/MotorsDebug_Prog.c:81:14: error: 'EXIT_PROGRAM' undeclared (first use in this function)
-   81 |         case EXIT_PROGRAM:
-      |              ^~~~~~~~~~~~
-../Core/Src/Programs/MotorsDebug_Prog.c:83:17: warning: implicit declaration of function 'Programs_SendProgramExitACK'; did you mean 'Programs_ProgramExitACK'? [-Wimplicit-function-declaration]
-   83 |                 Programs_SendProgramExitACK(ACK);
-      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~
-      |                 Programs_ProgramExitACK
-../Core/Src/Programs/DiodeTest_Prog.c:58:14: error: 'DIODE_SET_OFF' undeclared (first use in this function)
-   58 |         case DIODE_SET_OFF:
-      |              ^~~~~~~~~~~~~
-make: *** [Core/Src/Programs/subdir.mk:25: Core/Src/Programs/MotorsDebug_Prog.o] Error 1
-../Core/Src/Programs/DiodeTest_Prog.c:66:14: error: 'EXIT_PROGRAM' undeclared (first use in this function)
-   66 |         case EXIT_PROGRAM:
-      |              ^~~~~~~~~~~~
-../Core/Src/Programs/DiodeTest_Prog.c:68:17: warning: implicit declaration of function 'Programs_SendProgramExitACK'; did you mean 'Programs_ProgramExitACK'? [-Wimplicit-function-declaration]
-   68 |                 Programs_SendProgramExitACK(ACK);
-      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~
-      |                 Programs_ProgramExitACK
-make: *** [Core/Src/Programs/subdir.mk:25: Core/Src/Programs/DiodeTest_Prog.o] Error 1
-"make -j16 all" terminated with exit code 2. Build might be incomplete.
+arm-none-eabi-gcc -o "Klebot.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\Users\zalfon\Desktop\Michal\Klebot\Software\Klebot\STM32F107RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Klebot.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Klebot.elf
+ 
+arm-none-eabi-size  Klebot.elf 
+arm-none-eabi-objdump -h -S Klebot.elf  > "Klebot.list"
+   text	   data	    bss	    dec	    hex	filename
+  38788	    516	   7228	  46532	   b5c4	Klebot.elf
+Finished building: default.size.stdout
+ 
+Finished building: Klebot.list
+ 
 
-14:38:18 Build Failed. 21 errors, 7 warnings. (took 552ms)
+10:28:41 Build Finished. 0 errors, 0 warnings. (took 845ms)
 

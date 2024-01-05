@@ -31,8 +31,11 @@ Programs_error_t Programs_SetProgram(Programs_Program_t *ProgramToSet)
 
 	if(NULL == CurrentlyRunningProg)
 	{
+		/* Set current program pointer */
 		CurrentlyRunningProg = ProgramToSet;
+		/* Call it's init function */
 		CurrentlyRunningProg->ProgramInitFunction();
+		/* Change state to program in progrss, it will allow it to run in perfom fun */
 		ProgramState = PROGRAM_IN_PROGRESS;
 		return PROGRAMS_OK;
 	}
@@ -47,9 +50,8 @@ void Programs_ExitProgram(void)
 {
 	/* Call program DeInit function */
 	CurrentlyRunningProg->ProgramExitFunction();
-
+	/* Change state to program completed */
 	ProgramState = PROGRAM_COMPLETED;
-
 }
 
 /* Function which returns current pointer to program */
@@ -98,8 +100,7 @@ Programs_status_t Programs_PerformProgram(void)
 // -- Functions for parser to ACK launch/exit --
 //
 
-/* This functions are called by parser, when the robot acknowledges the proper program launch */
-
+/* This functions are called after program launch / exit. Sending it is needed for controller to proper functionality and sync with robot */
 
 Programs_error_t Programs_SendProgramStartedACK(uint8_t ProgramID, uint8_t ACKorNACK)
 {

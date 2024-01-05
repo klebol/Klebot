@@ -4,54 +4,69 @@
  *  Created on: Dec 4, 2023
  *      Author: miqix
  */
+#include "Programs/klebot_programs.h"
 #include "Programs/DiodeTest_Prog.h"
+#include "klebot_commands.h"
+#include "klebot_radio.h"
+#include "gpio.h"
 
-static uint8_t ProgramExitFlag;
+//
+// -- Program struct variable --
+//
+
+Programs_Program_t DiodeTestProgram = {&Prog_DiodeTest_Init, &Prog_DiodeTest_Deinit, &Prog_DiodeTest_Program, &Prog_DiodeTest_Parser, DIODE_TEST};
+
+//
+// -- Init & Deinit functions for Diode Test Program --
+//
+
+Programs_error_t Prog_DiodeTest_Init(void)
+{
+	HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
+	return PROGRAMS_OK;
+
+}
+
+Programs_error_t Prog_DiodeTest_Deinit(void)
+{
+	return PROGRAMS_OK;
+}
 
 //
 // -- Main Diode Test Program for Robot --
 //
-Programs_status_t Programs_DiodeTestProgram(void)
-{
-	static uint8_t StartupInitFlag = 0;
-	if(0 == StartupInitFlag)
-	{
-		HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
-		StartupInitFlag = 1;
-	}
 
-	if(1 == ProgramExitFlag)
-	{
-		ProgramExitFlag = 0;
-		StartupInitFlag = 0;
-		return PROGRAM_COMPLETED;
-	}
-	return PROGRAM_IN_PROGRESS;
+Programs_error_t Prog_DiodeTest_Program(void)
+{
+	/* Main program "loop" */
+	return PROGRAMS_OK;
+}
+
+//
+// -- Set / Launch function --
+//
+
+Programs_error_t Prog_DiodeTest_Launch(void)
+{
+	return Programs_SetProgram(&DiodeTestProgram);
 }
 
 //
 // -- Diode Test Program Parser --
 //
 
-void Programs_DiodeTestParser(uint8_t *command, uint8_t length)
+void Prog_DiodeTest_Parser(uint8_t *command, uint8_t length)
 {
 	uint8_t *CurrentByte = command;
 	uint8_t Buffer[3];
 
 	switch(*CurrentByte)
 	{
-	case START_PROGRAM:
-		if(PROGRAMS_OK == Programs_SetProgram(Programs_DiodeTestProgram) )
-		{
-			Programs_SendProgramStartedACK(DIODE_TEST, ACK);
-		}
-		break;
-
 	case DIODE_SET_ON:
 		HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
 		Buffer[0] = DIODE_TEST;
 		Buffer[1] = DIODE_REAL_STATE;
-		Buffer[2] = 1;
+		Buffer[2] = 1;				//TODO: USE READPIN HERE
 		Radio_TxBufferPut(Buffer, 3);
 		break;
 
@@ -61,11 +76,6 @@ void Programs_DiodeTestParser(uint8_t *command, uint8_t length)
 		Buffer[1] = DIODE_REAL_STATE;
 		Buffer[2] = 0;
 		Radio_TxBufferPut(Buffer, 3);
-		break;
-
-	case EXIT_PROGRAM:
-		ProgramExitFlag = 1;
-		Programs_SendProgramExitACK(ACK);
 		break;
 
 	default:

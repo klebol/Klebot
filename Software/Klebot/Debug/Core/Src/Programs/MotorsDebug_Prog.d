@@ -1,7 +1,7 @@
 Core/Src/Programs/MotorsDebug_Prog.o: \
  ../Core/Src/Programs/MotorsDebug_Prog.c \
- ../Core/Inc/Programs/MotorsDebug_Prog.h \
- ../Core/Inc/Programs/klebot_programs.h ../Core/Inc/Motors/motors.h \
+ ../Core/Inc/Programs/klebot_programs.h \
+ ../Core/Inc/Programs/MotorsDebug_Prog.h ../Core/Inc/Motors/motors.h \
  ../Core/Inc/Motors/motor_encoder.h ../Core/Inc/tim.h ../Core/Inc/main.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h \
  ../Core/Inc/stm32f1xx_hal_conf.h \
@@ -30,9 +30,10 @@ Core/Src/Programs/MotorsDebug_Prog.o: \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h \
- ../Core/Inc/drv8836.h ../Core/Inc/tim.h
-../Core/Inc/Programs/MotorsDebug_Prog.h:
+ ../Core/Inc/drv8836.h ../Core/Inc/tim.h ../Core/Inc/klebot_commands.h \
+ ../Core/Inc/klebot_radio.h ../Core/Inc/spi.h ../Core/Inc/gpio.h
 ../Core/Inc/Programs/klebot_programs.h:
+../Core/Inc/Programs/MotorsDebug_Prog.h:
 ../Core/Inc/Motors/motors.h:
 ../Core/Inc/Motors/motor_encoder.h:
 ../Core/Inc/tim.h:
@@ -66,3 +67,7 @@ Core/Src/Programs/MotorsDebug_Prog.o: \
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h:
 ../Core/Inc/drv8836.h:
 ../Core/Inc/tim.h:
+../Core/Inc/klebot_commands.h:
+../Core/Inc/klebot_radio.h:
+../Core/Inc/spi.h:
+../Core/Inc/gpio.h:

@@ -51,6 +51,7 @@ Programs_error_t Prog_DiodeTest_Init(void)
 	Inputs_ClearButtonsCallbacks();
 	Inputs_ButtonsRegisterCallback(UP_BUTTON, &Prog_DiodeTest_SendOnCmd, NULL);
 	Inputs_ButtonsRegisterCallback(DOWN_BUTTON, &Prog_DiodeTest_SendOffCmd, NULL);
+	Inputs_ButtonsRegisterCallback(ENC_BUTTON, NULL, &Programs_ExitProgram);
 	OLED_ClearBuffer(BLACK);
 	OLED_MoveCursor(0, 0);
 	OLED_SendBuffer();
