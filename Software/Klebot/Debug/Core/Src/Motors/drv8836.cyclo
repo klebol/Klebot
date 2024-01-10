@@ -1,0 +1,2 @@
+../Core/Src/Motors/drv8836.c:10:6:DRV8836_Init	13
+../Core/Src/Motors/drv8836.c:27:17:DRV8836_SetMotor	32

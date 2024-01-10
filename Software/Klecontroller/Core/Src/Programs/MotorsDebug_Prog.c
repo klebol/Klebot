@@ -16,7 +16,7 @@
 //
 // -- Program struct variable --
 //
-Programs_Program_t MotorsDebugProgram = {&Prog_MotorsDebug_Init, &Prog_MotorsDebug_Deinit, &Prog_MotorsDebug_Program, MOTORS_DEBUG};
+Programs_Program_t MotorsDebugProgram = {&Prog_MotorsDebug_Init, &Prog_MotorsDebug_Deinit, &Prog_MotorsDebug_Program, &Prog_MotorsDebug_Parser,MOTORS_DEBUG};
 
 //
 // -- Specific program (data) variables --

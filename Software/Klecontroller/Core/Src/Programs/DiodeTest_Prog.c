@@ -16,7 +16,7 @@
 //
 // -- Program struct variable --
 //
-Programs_Program_t DiodeTestProgram = {&Prog_DiodeTest_Init, &Prog_DiodeTest_Deinit, &Prog_DiodeTest_Program, DIODE_TEST};
+Programs_Program_t DiodeTestProgram = {&Prog_DiodeTest_Init, &Prog_DiodeTest_Deinit, &Prog_DiodeTest_Program, &Prog_DiodeTest_Parser,DIODE_TEST};
 
 //
 // -- Specific program (data) variables --

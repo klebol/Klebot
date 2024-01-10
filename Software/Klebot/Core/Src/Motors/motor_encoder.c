@@ -5,6 +5,7 @@
  *      Author: miqix
  */
 #include "Motors/motor_encoder.h"
+#include "FIRFilter.h"
 
 int16_t VelocityFilterBuffer[100];
 int32_t FilterSum;

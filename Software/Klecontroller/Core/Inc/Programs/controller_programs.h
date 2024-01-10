@@ -37,6 +37,7 @@ typedef struct
 	Programs_error_t (*ProgramInitFunction)(void);			//Init function for each program
 	Programs_error_t (*ProgramExitFunction)(void);			//Deinit function, exit funcion
 	Programs_error_t (*ProgramRoutine)(void);				//Program funcion itself
+	void (*ProgramParser)(uint8_t *command, uint8_t length);	//Program parser
 	uint8_t ProgramID;
 }Programs_Program_t;
 //

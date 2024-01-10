@@ -5,14 +5,17 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../Core/Src/Motors/drv8836.c \
 ../Core/Src/Motors/motor_encoder.c \
 ../Core/Src/Motors/motors.c 
 
 OBJS += \
+./Core/Src/Motors/drv8836.o \
 ./Core/Src/Motors/motor_encoder.o \
 ./Core/Src/Motors/motors.o 
 
 C_DEPS += \
+./Core/Src/Motors/drv8836.d \
 ./Core/Src/Motors/motor_encoder.d \
 ./Core/Src/Motors/motors.d 
 
@@ -24,7 +27,7 @@ Core/Src/Motors/%.o Core/Src/Motors/%.su Core/Src/Motors/%.cyclo: ../Core/Src/Mo
 clean: clean-Core-2f-Src-2f-Motors
 
 clean-Core-2f-Src-2f-Motors:
-	-$(RM) ./Core/Src/Motors/motor_encoder.cyclo ./Core/Src/Motors/motor_encoder.d ./Core/Src/Motors/motor_encoder.o ./Core/Src/Motors/motor_encoder.su ./Core/Src/Motors/motors.cyclo ./Core/Src/Motors/motors.d ./Core/Src/Motors/motors.o ./Core/Src/Motors/motors.su
+	-$(RM) ./Core/Src/Motors/drv8836.cyclo ./Core/Src/Motors/drv8836.d ./Core/Src/Motors/drv8836.o ./Core/Src/Motors/drv8836.su ./Core/Src/Motors/motor_encoder.cyclo ./Core/Src/Motors/motor_encoder.d ./Core/Src/Motors/motor_encoder.o ./Core/Src/Motors/motor_encoder.su ./Core/Src/Motors/motors.cyclo ./Core/Src/Motors/motors.d ./Core/Src/Motors/motors.o ./Core/Src/Motors/motors.su
 
 .PHONY: clean-Core-2f-Src-2f-Motors
 

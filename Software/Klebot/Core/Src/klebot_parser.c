@@ -4,7 +4,7 @@
  *  Created on: 29 maj 2023
  *      Author: Michal Klebokowski
  */
-
+#include "stddef.h"
 #include "klebot_parser.h"
 #include "klebot_commands.h"
 #include "Programs/klebot_programs.h"
@@ -49,7 +49,7 @@ void Parser_Klebot(uint8_t *command, uint8_t length)
 	Programs_Program_t* CurrentProgram = Programs_GetProgram();
 
 	/* If the command header is currently running program's ID, then pass the rest fo the command to it's parser */
-	if(*CurrentByte == CurrentProgram->ProgramID)
+	if(NULL != CurrentProgram && *CurrentByte == CurrentProgram->ProgramID)
 	{
 		CurrentByte++;
 		Length--;

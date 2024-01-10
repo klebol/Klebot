@@ -6,6 +6,7 @@
  */
 
 #include "Motors/motors.h"
+#include "Motors/motor_encoder.h"
 
 DRV8836_t MotorDriver;
 MotorEncoder_t MotorEncoderA;
