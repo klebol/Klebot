@@ -19,10 +19,12 @@ typedef enum
 
 void Motors_Init(void);
 void Motors_SetMotor(DRV8836_Output_t motorAB, DRV8836_Direction_t direction, uint16_t speed);
-Motors_Error_t Motors_SetMotorSpeed(DRV8836_Output_t motorAB, uint16_t speed);
+Motors_Error_t Motors_SetMotorPWM(DRV8836_Output_t motorAB, uint16_t speed);
 Motors_Error_t Motors_SetMotorDirection(DRV8836_Output_t motorAB, DRV8836_Direction_t direction);
 void Motors_EncoderSample(void);
 Motors_Error_t Motors_SetMotorsOff(void);
+uint16_t Motors_GetMotorPWM(DRV8836_Output_t motorAB);
+DRV8836_Direction_t Motors_GetMotorDirection(DRV8836_Output_t motorAB);
 
 
 

@@ -14,6 +14,7 @@
 "./Core/Src/joystick.o"
 "./Core/Src/klebot_commands.o"
 "./Core/Src/klebot_radio.o"
+"./Core/Src/klebot_state_data.o"
 "./Core/Src/main.o"
 "./Core/Src/menu.o"
 "./Core/Src/nRF24.o"

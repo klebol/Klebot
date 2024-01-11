@@ -10,6 +10,28 @@
 
 #include "Programs/controller_programs.h"
 
+typedef enum
+{
+	Coast = 0,
+	Reverse = 1,
+	Forward = 2,
+	Brake = 3
+}DRV8836_Direction_t;
+
+typedef enum
+{
+	Output_A = 0,
+	Output_B = 1
+}DRV8836_Output_t;
+
+typedef enum
+{
+	DRV8836_OK,
+	DRV8836_ERROR
+}DRV8836_Error_t;
+
+
+
 void Prog_MotorsDebug_Launch(void);
 
 Programs_error_t Prog_MotorsDebug_Init(void);

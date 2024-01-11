@@ -1,0 +1,40 @@
+/*
+ * motors_steering.h
+ *
+ *  Created on: Jan 11, 2024
+ *      Author: Michal Klebokowski
+ */
+
+#ifndef INC_MOTORS_STEERING_H_
+#define INC_MOTORS_STEERING_H_
+
+#include "stdint.h"
+
+typedef enum
+{
+	Coast = 0,
+	Reverse = 1,
+	Forward = 2,
+	Brake = 3
+}DRV8836_Direction_t;
+
+typedef enum
+{
+	Output_A = 0,
+	Output_B = 1
+}DRV8836_Output_t;
+
+typedef enum
+{
+	DRV8836_OK,
+	DRV8836_ERROR
+}DRV8836_Error_t;
+
+typedef struct
+{
+	DRV8836_Direction_t MotorDirection;
+	uint16_t MotorPWM;
+}MotorsInfo_t;
+
+
+#endif /* INC_MOTORS_STEERING_H_ */

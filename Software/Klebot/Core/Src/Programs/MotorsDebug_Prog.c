@@ -73,7 +73,7 @@ void Prog_MotorsDebug_Parser(uint8_t *command, uint8_t length)
 		/* Frame: [... , MOTORS_SET_PWM, Motor ID, PWM Value] */ 	//TODO: Check pwm wideness thing
 		Motor = *(CurrentByte + 1);									//TODO: The same value writing safety
 		ReceivedPWM = *(CurrentByte + 2);
-		Motors_SetMotorSpeed(Motor, ReceivedPWM);
+		Motors_SetMotorPWM(Motor, ReceivedPWM);
 		break;
 
 	case MOTOR_SET_DIRECTION:

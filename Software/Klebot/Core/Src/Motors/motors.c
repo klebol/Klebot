@@ -12,6 +12,9 @@ DRV8836_t MotorDriver;
 MotorEncoder_t MotorEncoderA;
 MotorEncoder_t MotorEncoderB;
 
+//
+// -- Init --
+//
 
 void Motors_Init(void)
 {
@@ -20,12 +23,16 @@ void Motors_Init(void)
 	MotorEnc_Init(&MotorEncoderB, &htim4);
 }
 
+//
+// -- Setters --
+//
+
 void Motors_SetMotor(DRV8836_Output_t motorAB, DRV8836_Direction_t direction, uint16_t speed)
 {
 	DRV8836_SetMotor(&MotorDriver, motorAB, direction, speed);
 }
 
-Motors_Error_t Motors_SetMotorSpeed(DRV8836_Output_t motorAB, uint16_t speed)
+Motors_Error_t Motors_SetMotorPWM(DRV8836_Output_t motorAB, uint16_t speed)
 {
 	switch(motorAB)
 	{
@@ -69,6 +76,43 @@ Motors_Error_t Motors_SetMotorsOff(void)
 	return status;
 }
 
+//
+// -- Getters --
+//
+
+uint16_t Motors_GetMotorPWM(DRV8836_Output_t motorAB)
+{
+	switch(motorAB)
+		{
+		case Output_A:
+			return MotorDriver.a_speed;
+			break;
+
+		case Output_B:
+			return MotorDriver.b_speed;
+			break;
+		}
+	return 0;
+}
+
+DRV8836_Direction_t Motors_GetMotorDirection(DRV8836_Output_t motorAB)
+{
+	switch(motorAB)
+		{
+		case Output_A:
+			return MotorDriver.a_direction;
+			break;
+
+		case Output_B:
+			return MotorDriver.b_direction;
+			break;
+		}
+	return 0;
+}
+
+//
+// -- Encoder routine --
+//
 
 void Motors_EncoderSample(void)						//call this function with encoder sampling frequency
 {

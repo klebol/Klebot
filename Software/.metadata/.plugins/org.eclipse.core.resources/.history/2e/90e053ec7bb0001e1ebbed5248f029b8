@@ -1,0 +1,11 @@
+/*
+ * motors_steering.c
+ *
+ *  Created on: Jan 11, 2024
+ *      Author: Michal Klebokowski
+ */
+
+#include "motors_steering.h"
+
+MotorsInfo_t LeftMotor;
+MotorsInfo_t RightMotor;

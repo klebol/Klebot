@@ -1,0 +1,10 @@
+/*
+ * klebot_state_data.c
+ *
+ *  Created on: Jan 11, 2024
+ *      Author: Michal Klebokowski
+ */
+#include "klebot_state_data.h"
+
+
+

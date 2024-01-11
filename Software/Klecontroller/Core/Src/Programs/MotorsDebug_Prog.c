@@ -22,6 +22,9 @@ Programs_Program_t MotorsDebugProgram = {&Prog_MotorsDebug_Init, &Prog_MotorsDeb
 // -- Specific program (data) variables --
 //
 
+//TODO: Create motor info separate files, universal for every program which uses motors
+
+
 
 
 //
