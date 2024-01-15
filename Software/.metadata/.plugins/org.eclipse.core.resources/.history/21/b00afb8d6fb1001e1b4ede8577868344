@@ -1,0 +1,9 @@
+../Core/Src/Programs/controller_programs.c:23:25:Programs_SendProgramStartCommand	24	static
+../Core/Src/Programs/controller_programs.c:31:25:Programs_SendProgramExitCommand	16	static
+../Core/Src/Programs/controller_programs.c:43:18:Programs_SetProgram	16	static
+../Core/Src/Programs/controller_programs.c:65:6:Programs_ExitProgram	8	static
+../Core/Src/Programs/controller_programs.c:78:21:Programs_GetProgram	4	static
+../Core/Src/Programs/controller_programs.c:84:6:Programs_ClearProgram	4	static
+../Core/Src/Programs/controller_programs.c:91:19:Programs_PerformProgram	8	static
+../Core/Src/Programs/controller_programs.c:151:6:Programs_ProgramLaunchedACK	16	static
+../Core/Src/Programs/controller_programs.c:175:6:Programs_ProgramExitACK	16	static

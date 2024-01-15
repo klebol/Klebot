@@ -1,5 +1,8 @@
-../Core/Src/Programs/MotorsDebug_Prog.c:38:18:Prog_MotorsDebug_Init	8	static
-../Core/Src/Programs/MotorsDebug_Prog.c:50:18:Prog_MotorsDebug_Deinit	4	static
-../Core/Src/Programs/MotorsDebug_Prog.c:60:18:Prog_MotorsDebug_Program	8	static
-../Core/Src/Programs/MotorsDebug_Prog.c:75:6:Prog_MotorsDebug_Launch	8	static
-../Core/Src/Programs/MotorsDebug_Prog.c:84:6:Prog_MotorsDebug_Parser	24	static
+../Core/Src/Programs/MotorsDebug_Prog.c:40:6:Prog_MotorsDebug_ChangeMotor	4	static
+../Core/Src/Programs/MotorsDebug_Prog.c:56:6:Prog_MotorsDebug_ChangeDirection	16	static
+../Core/Src/Programs/MotorsDebug_Prog.c:75:6:ProgMotorsDebug_ChangeSpeedRoutine	16	static
+../Core/Src/Programs/MotorsDebug_Prog.c:98:18:Prog_MotorsDebug_Init	8	static
+../Core/Src/Programs/MotorsDebug_Prog.c:112:18:Prog_MotorsDebug_Deinit	4	static
+../Core/Src/Programs/MotorsDebug_Prog.c:122:18:Prog_MotorsDebug_Program	8	static
+../Core/Src/Programs/MotorsDebug_Prog.c:148:6:Prog_MotorsDebug_Launch	8	static
+../Core/Src/Programs/MotorsDebug_Prog.c:157:6:Prog_MotorsDebug_Parser	24	static

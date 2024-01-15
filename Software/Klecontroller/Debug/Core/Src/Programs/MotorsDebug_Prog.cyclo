@@ -1,5 +1,8 @@
-../Core/Src/Programs/MotorsDebug_Prog.c:38:18:Prog_MotorsDebug_Init	1
-../Core/Src/Programs/MotorsDebug_Prog.c:50:18:Prog_MotorsDebug_Deinit	1
-../Core/Src/Programs/MotorsDebug_Prog.c:60:18:Prog_MotorsDebug_Program	1
-../Core/Src/Programs/MotorsDebug_Prog.c:75:6:Prog_MotorsDebug_Launch	1
-../Core/Src/Programs/MotorsDebug_Prog.c:84:6:Prog_MotorsDebug_Parser	1
+../Core/Src/Programs/MotorsDebug_Prog.c:40:6:Prog_MotorsDebug_ChangeMotor	3
+../Core/Src/Programs/MotorsDebug_Prog.c:56:6:Prog_MotorsDebug_ChangeDirection	2
+../Core/Src/Programs/MotorsDebug_Prog.c:75:6:ProgMotorsDebug_ChangeSpeedRoutine	2
+../Core/Src/Programs/MotorsDebug_Prog.c:98:18:Prog_MotorsDebug_Init	1
+../Core/Src/Programs/MotorsDebug_Prog.c:112:18:Prog_MotorsDebug_Deinit	1
+../Core/Src/Programs/MotorsDebug_Prog.c:122:18:Prog_MotorsDebug_Program	1
+../Core/Src/Programs/MotorsDebug_Prog.c:148:6:Prog_MotorsDebug_Launch	1
+../Core/Src/Programs/MotorsDebug_Prog.c:157:6:Prog_MotorsDebug_Parser	1

@@ -32,6 +32,16 @@ typedef enum
 
 
 
+typedef struct
+{
+	DRV8836_Direction_t MotorDirection;
+	uint8_t PWM;
+	char Name[10];
+	DRV8836_Output_t ID;
+}MotorsDebug_Motor_t;
+
+
+
 void Prog_MotorsDebug_Launch(void);
 
 Programs_error_t Prog_MotorsDebug_Init(void);
