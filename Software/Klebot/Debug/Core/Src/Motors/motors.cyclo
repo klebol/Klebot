@@ -1,8 +1,8 @@
-../Core/Src/Motors/motors.c:19:6:Motors_Init	1
-../Core/Src/Motors/motors.c:30:6:Motors_SetMotor	1
-../Core/Src/Motors/motors.c:35:16:Motors_SetMotorPWM	3
-../Core/Src/Motors/motors.c:53:16:Motors_SetMotorDirection	3
-../Core/Src/Motors/motors.c:71:16:Motors_SetMotorsOff	1
-../Core/Src/Motors/motors.c:83:10:Motors_GetMotorPWM	3
-../Core/Src/Motors/motors.c:98:21:Motors_GetMotorDirection	3
-../Core/Src/Motors/motors.c:117:6:Motors_EncoderSample	1
+../Core/Src/Motors/motors.c:31:6:Motors_Init	1
+../Core/Src/Motors/motors.c:44:6:Motors_SetMotor	1
+../Core/Src/Motors/motors.c:49:16:Motors_SetMotorPWM	3
+../Core/Src/Motors/motors.c:67:16:Motors_SetMotorDirection	3
+../Core/Src/Motors/motors.c:85:16:Motors_SetMotorsOff	1
+../Core/Src/Motors/motors.c:97:10:Motors_GetMotorPWM	3
+../Core/Src/Motors/motors.c:112:21:Motors_GetMotorDirection	3
+../Core/Src/Motors/motors.c:131:6:Motors_EncoderSample	1

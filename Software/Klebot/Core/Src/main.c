@@ -253,10 +253,10 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 	{
 		Motors_EncoderSample();
 
-//		USB_Buffer_Length = sprintf((char*) USB_Buffer, "$%d %d;",(int16_t) MotorEncoderA.VelocityFiltered, MotorEncoderA.Velocity );
+	//	USB_Buffer_Length = sprintf((char*) USB_Buffer, "$%d %d;",(int16_t) MotorEncoderA.VelocityFiltered, MotorEncoderA.Velocity );
 //		//USB_Buffer_Length = sprintf((char*) USB_Buffer, "$%d;", MotorEncoderA.Velocity );
 //		//USB_Buffer_Length = sprintf((char*) USB_Buffer, "$%d;",(int16_t) MotorEncoderA.Position );
-//		HAL_UART_Transmit(&huart2, USB_Buffer, USB_Buffer_Length, 500);
+		//HAL_UART_Transmit(&huart2, USB_Buffer, USB_Buffer_Length, 500);
 
 	}
 }

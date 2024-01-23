@@ -65,7 +65,7 @@ void MotorEnc_Uptade(MotorEncoder_t *encoder)
 		}
 	}
 
-	encoder->RPM = (encoder->Velocity * (1000 / ENCODER_SAMPLING_TIME_MS) * 60 ) / PULSES_PER_ROTATION; //define constants
+	//encoder->RPM = (encoder->Velocity * (1000 / ENCODER_SAMPLING_TIME_MS) * 60 ) / PULSES_PER_ROTATION; //define constants
 	encoder->LastCounter = NewCounter;
 }
 

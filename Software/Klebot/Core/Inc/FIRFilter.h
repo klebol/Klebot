@@ -10,7 +10,7 @@
 
 #include "stdint.h"
 
-#define FIR_FILTER_LENGTH 33
+#define FIR_FILTER_LENGTH 25
 
 typedef struct
 {

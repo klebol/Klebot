@@ -1,7 +1,14 @@
-19:40:48 **** Incremental Build of configuration Debug for project Klecontroller ****
+19:12:58 **** Incremental Build of configuration Debug for project Klebot ****
 make -j12 all 
-arm-none-eabi-size  Klecontroller.elf 
+arm-none-eabi-gcc "../Core/Src/FIRFilter.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F107xC -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/FIRFilter.d" -MT"Core/Src/FIRFilter.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/FIRFilter.o"
+arm-none-eabi-gcc -o "Klebot.elf" @"objects.list"   -mcpu=cortex-m3 -T"D:\Embedded\KLEBOT\GIT\Software\Klebot\STM32F107RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Klebot.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Klebot.elf
+ 
+arm-none-eabi-size  Klebot.elf 
+arm-none-eabi-objdump -h -S Klebot.elf  > "Klebot.list"
    text	   data	    bss	    dec	    hex	filename
-  35000	    448	   3936	  39384	   99d8	Klecontroller.elf
+  40484	    616	   7360	  48460	   bd4c	Klebot.elf
 Finished building: default.size.stdout
+ 
+Finished building: Klebot.list
  
