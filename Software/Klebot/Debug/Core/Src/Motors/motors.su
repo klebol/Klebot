@@ -1,8 +1,8 @@
-../Core/Src/Motors/motors.c:31:6:Motors_Init	16	static
-../Core/Src/Motors/motors.c:44:6:Motors_SetMotor	16	static
-../Core/Src/Motors/motors.c:49:16:Motors_SetMotorPWM	16	static
-../Core/Src/Motors/motors.c:67:16:Motors_SetMotorDirection	16	static
-../Core/Src/Motors/motors.c:85:16:Motors_SetMotorsOff	16	static
-../Core/Src/Motors/motors.c:97:10:Motors_GetMotorPWM	16	static
-../Core/Src/Motors/motors.c:112:21:Motors_GetMotorDirection	16	static
-../Core/Src/Motors/motors.c:131:6:Motors_EncoderSample	8	static
+../Core/Src/Motors/motors.c:32:6:Motors_Init	16	static
+../Core/Src/Motors/motors.c:46:6:Motors_SetMotor	16	static
+../Core/Src/Motors/motors.c:51:16:Motors_SetMotorPWM	16	static
+../Core/Src/Motors/motors.c:69:16:Motors_SetMotorDirection	16	static
+../Core/Src/Motors/motors.c:87:16:Motors_SetMotorsOff	16	static
+../Core/Src/Motors/motors.c:99:10:Motors_GetMotorPWM	16	static
+../Core/Src/Motors/motors.c:114:21:Motors_GetMotorDirection	16	static
+../Core/Src/Motors/motors.c:133:6:Motors_EncoderSample	8	static

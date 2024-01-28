@@ -1,7 +1,0 @@
-../Core/Src/Programs/DiodeTest_Prog.c:30:13:Prog_DiodeTest_SendOnCmd	1
-../Core/Src/Programs/DiodeTest_Prog.c:38:13:Prog_DiodeTest_SendOffCmd	1
-../Core/Src/Programs/DiodeTest_Prog.c:49:18:Prog_DiodeTest_Init	1
-../Core/Src/Programs/DiodeTest_Prog.c:61:18:Prog_DiodeTest_Deinit	1
-../Core/Src/Programs/DiodeTest_Prog.c:71:18:Prog_DiodeTest_Program	1
-../Core/Src/Programs/DiodeTest_Prog.c:88:6:Prog_DiodeTest_Launch	1
-../Core/Src/Programs/DiodeTest_Prog.c:97:6:Prog_DiodeTest_Parser	2

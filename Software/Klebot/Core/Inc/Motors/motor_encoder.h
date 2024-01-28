@@ -15,7 +15,7 @@
 
 typedef struct{
 	TIM_HandleTypeDef *htimEnc;
-	int16_t Velocity;
+	int8_t Velocity;
 	float VelocityFiltered;
 	int16_t Position;
 	uint32_t LastCounter;
@@ -27,6 +27,7 @@ typedef struct{
 
 void MotorEnc_Init(MotorEncoder_t *encoder, TIM_HandleTypeDef *htim);
 void MotorEnc_Uptade(MotorEncoder_t *encoder);
+void MotorEnc_Update(MotorEncoder_t *encoder);
 void MotorEnc_FilterVelocity(MotorEncoder_t *encoder);
 
 

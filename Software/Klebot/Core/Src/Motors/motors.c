@@ -16,6 +16,7 @@ MotorEncoder_t MotorEncoderA;
 MotorEncoder_t MotorEncoderB;
 
 FIRFilter EncoderFilterA;
+FIRFilter EncoderFilterB;
 
 //
 //
@@ -35,6 +36,7 @@ void Motors_Init(void)
 	MotorEnc_Init(&MotorEncoderB, &htim4);
 
 	FIRFilter_Init(&EncoderFilterA);
+	FIRFilter_Init(&EncoderFilterB);
 }
 
 //
@@ -130,15 +132,16 @@ DRV8836_Direction_t Motors_GetMotorDirection(DRV8836_Output_t motorAB)
 
 void Motors_EncoderSample(void)						//call this function with encoder sampling frequency
 {
-	MotorEnc_Uptade(&MotorEncoderA);
-	MotorEnc_Uptade(&MotorEncoderB);
+	MotorEnc_Update(&MotorEncoderA);
+	MotorEnc_Update(&MotorEncoderB);
 	//MotorEnc_FilterVelocity(&MotorEncoderA);
 	//MotorEnc_FilterVelocity(&MotorEncoderB);
 
 	MotorEncoderA.VelocityFiltered = FIRFilter_Update(&EncoderFilterA, MotorEncoderA.Velocity);
+	MotorEncoderB.VelocityFiltered = FIRFilter_Update(&EncoderFilterB, MotorEncoderB.Velocity);
 
 
-	UartBufferLength = sprintf((char*) UartBuffer, "$%d %d;",(int16_t) MotorEncoderA.VelocityFiltered, MotorEncoderA.Velocity );
+	UartBufferLength = sprintf((char*) UartBuffer, "$%d %d;",(int16_t) MotorEncoderB.VelocityFiltered, MotorEncoderB.Velocity );
 	HAL_UART_Transmit(&huart2, UartBuffer, UartBufferLength, 500);
 
 }

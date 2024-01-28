@@ -18,6 +18,31 @@ void MotorEnc_Init(MotorEncoder_t *encoder, TIM_HandleTypeDef *htim)
 	HAL_TIM_Encoder_Start(htim, TIM_CHANNEL_ALL);
 }
 
+
+void MotorEnc_Update(MotorEncoder_t *encoder)
+{
+	/* Calculate counter difference */
+	int CounterDif = encoder->htimEnc->Instance->CNT - encoder->LastCounter;
+	/* Check if counter has changed */
+	if(CounterDif >= 1 || CounterDif <= -1)
+	{
+		/* Velocity is equal to difference, very important type casting! */
+		/* Casting uint32_t to int8_t solves overflow problem in fast and correct way */
+		encoder->Velocity = (int8_t)(CounterDif);
+		encoder->LastCounter = encoder->htimEnc->Instance->CNT;
+	}
+	else
+	{
+		encoder->Velocity = 0;
+	}
+
+	encoder->Position += encoder->Velocity;
+
+	//TODO: calculate RPM, position and start working on PID
+	// 300RPM, 1:50 ratio,
+
+}
+
 void MotorEnc_Uptade(MotorEncoder_t *encoder)
 {
 	uint32_t NewCounter = encoder->htimEnc->Instance->CNT;
@@ -68,6 +93,8 @@ void MotorEnc_Uptade(MotorEncoder_t *encoder)
 	//encoder->RPM = (encoder->Velocity * (1000 / ENCODER_SAMPLING_TIME_MS) * 60 ) / PULSES_PER_ROTATION; //define constants
 	encoder->LastCounter = NewCounter;
 }
+
+
 
 void MotorEnc_FilterVelocity(MotorEncoder_t *encoder)
 {
