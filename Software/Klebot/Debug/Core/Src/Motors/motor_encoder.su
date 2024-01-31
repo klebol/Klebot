@@ -1,4 +1,4 @@
 ../Core/Src/Motors/motor_encoder.c:15:6:MotorEnc_Init	16	static
 ../Core/Src/Motors/motor_encoder.c:22:6:MotorEnc_Update	24	static
-../Core/Src/Motors/motor_encoder.c:46:6:MotorEnc_Uptade	24	static
-../Core/Src/Motors/motor_encoder.c:99:6:MotorEnc_FilterVelocity	32	static
+../Core/Src/Motors/motor_encoder.c:61:6:MotorEnc_Uptade	24	static
+../Core/Src/Motors/motor_encoder.c:114:6:MotorEnc_FilterVelocity	32	static

@@ -21,8 +21,6 @@ void MotorEnc_Init(MotorEncoder_t *encoder, TIM_HandleTypeDef *htim)
 
 void MotorEnc_Update(MotorEncoder_t *encoder)
 {
-	int16_t TempPosition = encoder->Position;
-
 	/* Calculate counter difference */
 	int CounterDif = encoder->htimEnc->Instance->CNT - encoder->LastCounter;
 	/* Check if counter has changed */
@@ -38,20 +36,7 @@ void MotorEnc_Update(MotorEncoder_t *encoder)
 		encoder->Velocity = 0;
 	}
 
-	TempPosition = encoder->Position + encoder->Velocity;
-
-	if(encoder->Velocity != 0)
-	{
-		if(TempPosition >= 0)
-		{
-			encoder->Position = (encoder->Position + encoder->Velocity) % PULSES_PER_ROTATION;
-		}
-		else
-		{
-			encoder->Position = PULSES_PER_ROTATION + encoder->Velocity;
-		}
-	}
-
+	encoder->Position += encoder->Velocity;
 
 	//TODO: calculate RPM, position and start working on PID
 	// 300RPM, 1:50 ratio,

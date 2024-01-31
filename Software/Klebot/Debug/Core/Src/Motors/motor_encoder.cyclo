@@ -1,4 +1,4 @@
 ../Core/Src/Motors/motor_encoder.c:15:6:MotorEnc_Init	1
-../Core/Src/Motors/motor_encoder.c:22:6:MotorEnc_Update	3
-../Core/Src/Motors/motor_encoder.c:46:6:MotorEnc_Uptade	8
-../Core/Src/Motors/motor_encoder.c:99:6:MotorEnc_FilterVelocity	1
+../Core/Src/Motors/motor_encoder.c:22:6:MotorEnc_Update	5
+../Core/Src/Motors/motor_encoder.c:61:6:MotorEnc_Uptade	8
+../Core/Src/Motors/motor_encoder.c:114:6:MotorEnc_FilterVelocity	1
