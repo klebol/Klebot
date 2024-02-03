@@ -10,6 +10,8 @@
 #include "FIRFilter.h"
 #include "stdio.h"
 #include "usart.h"
+#include "math.h"
+#include "PID.h"
 
 DRV8836_t MotorDriver;
 MotorEncoder_t MotorEncoderA;
@@ -19,8 +21,19 @@ FIRFilter EncoderFilterA;
 FIRFilter EncoderFilterB;
 
 //
+//pid test
 //
+int8_t Target;
+float kp = 1;
+int8_t error;
+float u;
+
+float ki = 1;
+float eintegral;
 //
+
+PID_Controller_t MotorPID_B;
+
 
 uint8_t UartBuffer[16];
 uint8_t UartBufferLength;
@@ -140,8 +153,75 @@ void Motors_EncoderSample(void)						//call this function with encoder sampling 
 	MotorEncoderA.VelocityFiltered = FIRFilter_Update(&EncoderFilterA, MotorEncoderA.Velocity);
 	MotorEncoderB.VelocityFiltered = FIRFilter_Update(&EncoderFilterB, MotorEncoderB.Velocity);
 
+	MotorEncoderB.RPM = (MotorEncoderB.Velocity * 60 * (1000/ENCODER_SAMPLING_TIME_MS)) / PULSES_PER_ROTATION;
 
-	UartBufferLength = sprintf((char*) UartBuffer, "$%d %d;",(int16_t) MotorEncoderB.VelocityFiltered, MotorEncoderB.Velocity );
+	//PID
+
+
+	if(MotorPID_B.kp > 0)
+	{
+		PID_Update(&MotorPID_B, Target - MotorEncoderB.VelocityFiltered , 100);
+
+		if(MotorPID_B.Output > 0)
+		{
+			Motors_SetMotor(Output_B, Reverse, 150 + MotorPID_B.Output);
+		}
+		else
+		{
+			Motors_SetMotor(Output_B, Forward, 150 + (-MotorPID_B.Output) );
+		}
+	}
+
+
+
+
+
+	UartBufferLength = sprintf((char*) UartBuffer, "$%d %d;",(int16_t) MotorEncoderB.VelocityFiltered, MotorPID_B.Output );
 	HAL_UART_Transmit(&huart2, UartBuffer, UartBufferLength, 500);
 
+}
+
+// PID TEST
+
+void Motors_RoutinePID(void)
+{
+
+	DRV8836_Direction_t dir = Forward;
+	float pwm;
+
+	static uint16_t LastTick;
+	uint16_t CurrentTick = HAL_GetTick();
+	float DeltaT = ((float) (CurrentTick - LastTick))/1.0e6;
+	LastTick = CurrentTick;
+	CurrentTick = HAL_GetTick();
+
+
+
+	error = MotorEncoderB.VelocityFiltered - Target;
+
+	eintegral = eintegral + error*DeltaT;
+
+	u = kp * error + ki*eintegral;
+
+
+
+	if(error < 0)
+	{
+		dir = Reverse;
+	}
+
+	pwm = fabs(u);
+
+	if(pwm > 255)
+	{
+		pwm = 255;
+	}
+
+	Motors_SetMotor(Output_B, dir, pwm);
+
+}
+
+void Motors_SetPIDTarget(int8_t target)
+{
+	Target = target;
 }

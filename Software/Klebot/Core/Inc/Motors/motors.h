@@ -26,7 +26,8 @@ Motors_Error_t Motors_SetMotorsOff(void);
 uint16_t Motors_GetMotorPWM(DRV8836_Output_t motorAB);
 DRV8836_Direction_t Motors_GetMotorDirection(DRV8836_Output_t motorAB);
 
+void Motors_RoutinePID(void);
 
-
+void Motors_SetPIDTarget(int8_t target);
 
 #endif /* INC_MOTORS_MOTORS_H_ */

@@ -55,5 +55,6 @@
 #define MOTORS_DEBUG 0xD1
 	#define MOTOR_SET_PWM 0x20
 	#define MOTOR_SET_DIRECTION 0x21
+	#define MOTOR_SET_TARGET	0x22
 
 #endif /* INC_KLEBOT_COMMANDS_H_ */

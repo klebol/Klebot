@@ -1,8 +1,4 @@
-Dir
-Dir1
-Spd
-Spd1
-MotorDriver1
-EncPos
-htim1
 MotorEncoderA
+MotorEncoderB
+Target
+MotorPID_B

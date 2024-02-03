@@ -43,6 +43,7 @@ Programs_error_t Prog_MotorsDebug_Deinit(void)
 Programs_error_t Prog_MotorsDebug_Program(void)
 {
 	/* Main program "loop" */
+	Motors_RoutinePID();
 	return PROGRAMS_OK;
 }
 
@@ -66,6 +67,7 @@ void Prog_MotorsDebug_Parser(uint8_t *command, uint8_t length)
 	DRV8836_Output_t Motor;
 	DRV8836_Direction_t ReceivedDir;
 	uint8_t ReceivedPWM;
+	int8_t ReceivedTarget;
 
 	switch(*CurrentByte)
 	{
@@ -82,8 +84,12 @@ void Prog_MotorsDebug_Parser(uint8_t *command, uint8_t length)
 		ReceivedDir = *(CurrentByte + 2);
 		Motors_SetMotorDirection(Motor, ReceivedDir);
 		break;
-		break;
 
+	case MOTOR_SET_TARGET:
+		/* Frame: [... , MOTORS_SET_DIRECTION, Motor ID, Target] */
+		Motor = *(CurrentByte + 1);
+		ReceivedTarget = *(CurrentByte + 2);
+		Motors_SetPIDTarget(ReceivedTarget);
 	default:
 		/* Unknown command! */
 		break;

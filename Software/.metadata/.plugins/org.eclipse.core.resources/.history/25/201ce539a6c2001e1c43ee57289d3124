@@ -1,0 +1,25 @@
+/*
+ * PID.h
+ *
+ *  Created on: Feb 3, 2024
+ *      Author: Michal Klebokowski
+ */
+
+#ifndef INC_PID_H_
+#define INC_PID_H_
+
+#include "stdint.h"
+
+typedef struct
+{
+	float kp;
+	float ki;
+	float kd;
+	int16_t LastError;
+	int32_t IntegralError;
+	int32_t MaxIntegralError;
+	int16_t Output;
+}PID_Controller_t;
+
+
+#endif /* INC_PID_H_ */

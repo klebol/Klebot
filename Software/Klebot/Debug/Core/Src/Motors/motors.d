@@ -29,7 +29,7 @@ Core/Src/Motors/motors.o: ../Core/Src/Motors/motors.c \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h \
  ../Core/Inc/Motors/motor_encoder.h ../Core/Inc/FIRFilter.h \
- ../Core/Inc/usart.h
+ ../Core/Inc/usart.h ../Core/Inc/PID.h
 ../Core/Inc/Motors/motors.h:
 ../Core/Inc/Motors/drv8836.h:
 ../Core/Inc/tim.h:
@@ -64,3 +64,4 @@ Core/Src/Motors/motors.o: ../Core/Src/Motors/motors.c \
 ../Core/Inc/Motors/motor_encoder.h:
 ../Core/Inc/FIRFilter.h:
 ../Core/Inc/usart.h:
+../Core/Inc/PID.h:

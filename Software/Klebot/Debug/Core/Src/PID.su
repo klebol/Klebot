@@ -1,0 +1,4 @@
+../Core/Src/PID.c:10:6:PID_SetGains	24	static
+../Core/Src/PID.c:17:6:PID_SetMaxValues	24	static
+../Core/Src/PID.c:23:6:PID_ResetGains	16	static
+../Core/Src/PID.c:32:9:PID_Update	24	static
