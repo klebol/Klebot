@@ -11,6 +11,9 @@
 #include "Motors/drv8836.h"
 #include "tim.h"
 
+#define DEAD_PWM_OFFSET 150
+#define MAX_VELOCITY_VALUE 70
+
 typedef enum
 {
 	MOTORS_OK,
@@ -28,6 +31,12 @@ DRV8836_Direction_t Motors_GetMotorDirection(DRV8836_Output_t motorAB);
 
 void Motors_RoutinePID(void);
 
-void Motors_SetPIDTarget(int8_t target);
+Motors_Error_t Motors_SetPIDTarget(DRV8836_Output_t motorAB, int16_t Target);
+Motors_Error_t Motors_SetKP(DRV8836_Output_t motorAB, float p);
+Motors_Error_t Motors_SetKI(DRV8836_Output_t motorAB, float i);
+Motors_Error_t Motors_SetKD(DRV8836_Output_t motorAB, float d);
+Motors_Error_t Motors_ResetPIDGains(DRV8836_Output_t motorAB);
+Motors_Error_t Motors_ResetTemps(DRV8836_Output_t motorAB);
+void Motors_SetSwitch(uint8_t ONOFF);
 
 #endif /* INC_MOTORS_MOTORS_H_ */

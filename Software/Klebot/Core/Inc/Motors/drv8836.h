@@ -26,8 +26,9 @@ typedef enum
 
 typedef enum
 {
-	Output_A = 0,
-	Output_B = 1
+	MOTOR_A = 0,
+	MOTOR_B = 1,
+	MOTOR_ALL = 2
 }DRV8836_Output_t;
 
 typedef enum

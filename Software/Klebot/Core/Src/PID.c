@@ -28,6 +28,13 @@ void PID_ResetGains(PID_Controller_t *instance)
 	instance->IntegralError = 0;
 }
 
+void PID_ResetTemps(PID_Controller_t *instance)
+{
+	instance->Output = 0;
+	instance->LastError = 0;
+	instance->IntegralError = 0;
+}
+
 
 int16_t PID_Update(PID_Controller_t *instance, int16_t input_error, uint16_t sampling_rate_hz)
 {

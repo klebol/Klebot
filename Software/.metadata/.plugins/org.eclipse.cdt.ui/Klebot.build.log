@@ -1,19 +1,10 @@
-13:28:56 **** Incremental Build of configuration Debug for project Klebot ****
+13:42:50 **** Incremental Build of configuration Debug for project Klebot ****
 make -j16 all 
-arm-none-eabi-gcc "../Core/Src/Programs/MotorsDebug_Prog.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F107xC -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Programs/MotorsDebug_Prog.d" -MT"Core/Src/Programs/MotorsDebug_Prog.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/Programs/MotorsDebug_Prog.o"
-arm-none-eabi-gcc "../Core/Src/Motors/motors.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F107xC -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Motors/motors.d" -MT"Core/Src/Motors/motors.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/Motors/motors.o"
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F107xC -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "Klebot.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\Users\zalfon\Desktop\Michal\Klebot\Software\Klebot\STM32F107RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Klebot.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: Klebot.elf
- 
 arm-none-eabi-size  Klebot.elf 
-arm-none-eabi-objdump -h -S Klebot.elf  > "Klebot.list"
    text	   data	    bss	    dec	    hex	filename
-  38796	    516	   7228	  46540	   b5cc	Klebot.elf
+  41700	    616	   7536	  49852	   c2bc	Klebot.elf
 Finished building: default.size.stdout
  
-Finished building: Klebot.list
- 
 
-13:28:57 Build Finished. 0 errors, 0 warnings. (took 1s.47ms)
+13:42:50 Build Finished. 0 errors, 0 warnings. (took 292ms)
 

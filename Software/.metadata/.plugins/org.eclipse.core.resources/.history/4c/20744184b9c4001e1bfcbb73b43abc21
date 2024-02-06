@@ -1,0 +1,86 @@
+/*
+ * CalibPID_Prog.c
+ *
+ *  Created on: Feb 6, 2024
+ *      Author: Michal Klebokowski
+ */
+
+#include "Programs/klebot_programs.h"
+#include "Programs/CalibPID_Prog.h"
+#include "klebot_commands.h"
+#include "klebot_radio.h"
+#include "gpio.h"
+
+//
+// -- Program struct variable --
+//
+
+Programs_Program_t CalibPIDProgram = {&Prog_CalibPID_Init, &Prog_CalibPID_Deinit, &Prog_CalibPID_Program, &Prog_CalibPID_Parser, PID_CALIBRATION};
+
+//
+// -- Init & Deinit functions for Diode Test Program --
+//
+
+Programs_error_t Prog_CalibPID_Init(void)
+{
+
+	return PROGRAMS_OK;
+
+}
+
+Programs_error_t Prog_CalibPID_Deinit(void)
+{
+	return PROGRAMS_OK;
+}
+
+//
+// -- Main Diode Test Program for Robot --
+//
+
+Programs_error_t Prog_CalibPID_Program(void)
+{
+	/* Main program "loop" */
+	return PROGRAMS_OK;
+}
+
+//
+// -- Set / Launch function --
+//
+
+Programs_error_t Prog_CalibPID_Launch(void)
+{
+	return Programs_SetProgram(&DiodeTestProgram);
+}
+
+//
+// -- Diode Test Program Parser --
+//
+
+void Prog_CalibPID_Parser(uint8_t *command, uint8_t length)
+{
+	uint8_t *CurrentByte = command;
+	uint8_t Buffer[3];
+
+	switch(*CurrentByte)
+	{
+	case DIODE_SET_ON:
+		HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
+		Buffer[0] = DIODE_TEST;
+		Buffer[1] = DIODE_REAL_STATE;
+		Buffer[2] = 1;				//TODO: USE READPIN HERE
+		Radio_TxBufferPut(Buffer, 3);
+		break;
+
+	case DIODE_SET_OFF:
+		HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
+		Buffer[0] = DIODE_TEST;
+		Buffer[1] = DIODE_REAL_STATE;
+		Buffer[2] = 0;
+		Radio_TxBufferPut(Buffer, 3);
+		break;
+
+	default:
+		break;
+	}
+
+}

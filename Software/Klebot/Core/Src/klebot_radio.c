@@ -10,6 +10,7 @@
 #include "nRF24_Defs.h"
 #include "RingBuffer.h"
 #include "klebot_commands.h"
+#include "stdio.h"
 
 Klebot_Radio_Status ConnectionStatus;
 Klebot_Radio_Status TxStatus;
@@ -256,6 +257,19 @@ void nRF24_EventMrCallback(void)
 {
 	ConnectionStatus = RADIO_ERROR;		//Max retransmitt - no connection
 }
+
+//
+// -- Handy functions --
+//
+
+void Radio_TxBufferPutFloat(float value)
+{
+	uint8_t Buffer[7];
+	sprintf((char*)Buffer, "%0.4f", value);
+	Radio_TxBufferPut(Buffer, 6);
+}
+
+
 
 
 

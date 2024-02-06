@@ -57,4 +57,13 @@
 	#define MOTOR_SET_DIRECTION 0x21
 	#define MOTOR_SET_TARGET	0x22
 
+#define PID_CALIBRATION 		0xD2
+	#define PID_SET_GAIN		0x20
+		#define KP				0x30
+		#define KI				0x31
+		#define KD				0x32
+	#define PID_SET_TARGET		0x25
+	#define PID_START_IMPULSE	0x26
+	#define PID_STOP_MOTOR		0x27
+	#define PID_RESET_TEMPS		0x28
 #endif /* INC_KLEBOT_COMMANDS_H_ */

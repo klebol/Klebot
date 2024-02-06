@@ -19,6 +19,7 @@
 "./Core/Src/Motors/drv8836.o"
 "./Core/Src/Motors/motor_encoder.o"
 "./Core/Src/Motors/motors.o"
+"./Core/Src/Programs/CalibPID_Prog.o"
 "./Core/Src/Programs/DiodeTest_Prog.o"
 "./Core/Src/Programs/MotorsDebug_Prog.o"
 "./Core/Src/Programs/klebot_programs.o"

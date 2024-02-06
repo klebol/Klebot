@@ -36,14 +36,14 @@ DRV8836_Error_t DRV8836_SetMotor(DRV8836_t *ic, DRV8836_Output_t output, DRV8836
 		return DRV8836_ERROR;
 	}
 
-	if(Output_A == output)
+	if(MOTOR_A == output)
 	{
 		TargetForwardChannel = ic->a_forward_channel;
 		TargetReverseChannel = ic->a_reverse_channel;
 		TargetSpeed = &(ic->a_speed);
 		TargetDirection = &(ic->a_direction);			//TODO: test here
 	}
-	else if(Output_B == output)
+	else if(MOTOR_B == output)
 	{
 		TargetForwardChannel = ic->b_forward_channel;
 		TargetReverseChannel = ic->b_reverse_channel;
