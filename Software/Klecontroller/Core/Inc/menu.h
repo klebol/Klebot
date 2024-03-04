@@ -53,6 +53,7 @@ extern Menu_t DebugTools;
 
 extern Menu_t Settings;
 	extern Menu_t JoyCalib;
+	extern Menu_t PIDCalib;
 		extern Menu_t JoyCalib1;
 		extern Menu_t JoyCalib2;
 		extern Menu_t JoyCalib3;

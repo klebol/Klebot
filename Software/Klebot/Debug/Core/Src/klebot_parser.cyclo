@@ -1,2 +1,2 @@
-../Core/Src/klebot_parser.c:14:6:Parser_ParseProgramLaunchCommand	4
-../Core/Src/klebot_parser.c:45:6:Parser_Klebot	5
+../Core/Src/klebot_parser.c:15:6:Parser_ParseProgramLaunchCommand	6
+../Core/Src/klebot_parser.c:49:6:Parser_Klebot	5

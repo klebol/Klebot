@@ -9,6 +9,7 @@
 #include "ssd1106.h"
 #include "Programs/DiodeTest_Prog.h"
 #include "Programs/MotorsDebug_Prog.h"
+#include "Programs/CalibPID_CProg.h"
 
 //
 //TODO: 1. Define here your menu members, remember to add extern declarations in menu.h file!
@@ -27,7 +28,8 @@ Menu_t DebugTools = {"Debug tools", &Settings, &RobotModes, &DiodeTest, NULL, NU
 
 
 Menu_t Settings = {"Settings", NULL, &DebugTools, &JoyCalib, NULL, NULL};
-	Menu_t JoyCalib = {"Joystick Calib", NULL, NULL, &JoyCalib1, &Settings, NULL};
+	Menu_t JoyCalib = {"Joystick Calib", &PIDCalib, NULL, &JoyCalib1, &Settings, NULL};
+	Menu_t PIDCalib = {"PID Calib", NULL, &JoyCalib, NULL, &Settings, &Prog_CalibPID_Launch};
 		Menu_t JoyCalib1 = {"Left X", &JoyCalib2, NULL, NULL, &JoyCalib, NULL};
 		Menu_t JoyCalib2 = {"Left Y", &JoyCalib3, &JoyCalib1, NULL, &JoyCalib, NULL};
 		Menu_t JoyCalib3 = {"Right X", &JoyCalib4, &JoyCalib2, NULL, &JoyCalib, NULL};

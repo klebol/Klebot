@@ -13,16 +13,18 @@
 #include "math.h"
 #include "PID.h"
 
-uint8_t MotorsSwitch;
 
+/* Motor driver variable */
 DRV8836_t MotorDriver;
+
+/* Encoder variables */
 MotorEncoder_t MotorEncoderA;
 MotorEncoder_t MotorEncoderB;
-
 FIRFilter EncoderFilterA;
 FIRFilter EncoderFilterB;
 
-
+/* PID Variables */
+uint8_t MotorsControllPID;
 int16_t TargetVelocityA;
 int16_t TargetVelocityB;
 PID_Controller_t MotorPID_A;
@@ -152,9 +154,9 @@ void Motors_EncoderSample(void)						//call this function with encoder sampling 
 	/* Calculate RPM */
 	//MotorEncoderB.RPM = (MotorEncoderB.Velocity * 60 * (1000/ENCODER_SAMPLING_TIME_MS)) / PULSES_PER_ROTATION;
 
-	if(MotorsSwitch == 1)
+	if(MotorsControllPID == 1)
 	{
-		/* Uptade motor's A PID if any of its gains its greater than 0 */
+		/* Update motor's A PID if any of its gains its greater than 0 */
 		if(MotorPID_A.kp > 0 || MotorPID_A.ki > 0|| MotorPID_A.kd > 0)
 		{
 			PID_Update(&MotorPID_A, TargetVelocityA - MotorEncoderA.VelocityFiltered , 1000 / ENCODER_SAMPLING_TIME_MS);
@@ -192,6 +194,24 @@ void Motors_EncoderSample(void)						//call this function with encoder sampling 
 
 }
 
+//
+// PID Related functions
+//
+
+/* Enable or disable PID controll */
+Motors_Error_t Motors_SetControllPID(uint8_t ONOFF)
+{
+	if(ONOFF != PID_ON && ONOFF != PID_OFF)
+	{
+		return MOTORS_ERROR;
+	}
+
+	MotorsControllPID = ONOFF;
+	return MOTORS_OK;
+}
+
+
+/* Set target speed for motor */
 Motors_Error_t Motors_SetPIDTarget(DRV8836_Output_t motorAB, int16_t Target)
 {
 	if(Target > MAX_VELOCITY_VALUE || Target < -MAX_VELOCITY_VALUE)
@@ -219,6 +239,28 @@ Motors_Error_t Motors_SetPIDTarget(DRV8836_Output_t motorAB, int16_t Target)
 	}
 }
 
+/* Get motors target speed */
+int16_t Motors_GetPIDTarget(DRV8836_Output_t motorAB)
+{
+	switch(motorAB)
+	{
+	case MOTOR_A:
+		return TargetVelocityA;
+
+	case MOTOR_B:
+		return TargetVelocityB;
+
+	default:
+		return 0;
+	}
+}
+
+
+//
+// Gains set & get
+//
+
+/* KP */
 Motors_Error_t Motors_SetKP(DRV8836_Output_t motorAB, float p)
 {
 	switch(motorAB)
@@ -241,6 +283,22 @@ Motors_Error_t Motors_SetKP(DRV8836_Output_t motorAB, float p)
 	}
 }
 
+float Motors_GetKP(DRV8836_Output_t motorAB)
+{
+	switch(motorAB)
+	{
+	case MOTOR_A:
+		return MotorPID_A.kp;
+
+	case MOTOR_B:
+		return MotorPID_B.kp;
+
+	default:
+		return 0;
+	}
+}
+
+/* KI */
 Motors_Error_t Motors_SetKI(DRV8836_Output_t motorAB, float i)
 {
 	switch(motorAB)
@@ -263,6 +321,22 @@ Motors_Error_t Motors_SetKI(DRV8836_Output_t motorAB, float i)
 	}
 }
 
+float Motors_GetKI(DRV8836_Output_t motorAB)
+{
+	switch(motorAB)
+	{
+	case MOTOR_A:
+		return MotorPID_A.ki;
+
+	case MOTOR_B:
+		return MotorPID_B.ki;
+
+	default:
+		return 0;
+	}
+}
+
+/* KD */
 Motors_Error_t Motors_SetKD(DRV8836_Output_t motorAB, float d)
 {
 	switch(motorAB)
@@ -285,6 +359,22 @@ Motors_Error_t Motors_SetKD(DRV8836_Output_t motorAB, float d)
 	}
 }
 
+float Motors_GetKD(DRV8836_Output_t motorAB)
+{
+	switch(motorAB)
+	{
+	case MOTOR_A:
+		return MotorPID_A.kd;
+
+	case MOTOR_B:
+		return MotorPID_B.kd;
+
+	default:
+		return 0;
+	}
+}
+
+/* Reset all gains */
 Motors_Error_t Motors_ResetPIDGains(DRV8836_Output_t motorAB)
 {
 	switch(motorAB)
@@ -307,6 +397,7 @@ Motors_Error_t Motors_ResetPIDGains(DRV8836_Output_t motorAB)
 	}
 }
 
+/* Reset temporary PID's variables */
 Motors_Error_t Motors_ResetTemps(DRV8836_Output_t motorAB)
 {
 	switch(motorAB)
@@ -329,8 +420,4 @@ Motors_Error_t Motors_ResetTemps(DRV8836_Output_t motorAB)
 	}
 }
 
-void Motors_SetSwitch(uint8_t ONOFF)
-{
-	MotorsSwitch = ONOFF;
-}
 

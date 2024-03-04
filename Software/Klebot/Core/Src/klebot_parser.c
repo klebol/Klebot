@@ -10,6 +10,7 @@
 #include "Programs/klebot_programs.h"
 #include "Programs/DiodeTest_Prog.h"
 #include "Programs/MotorsDebug_Prog.h"
+#include "Programs/CalibPID_Prog.h"
 
 void Parser_ParseProgramLaunchCommand(uint8_t ProgramID)
 {
@@ -25,6 +26,9 @@ void Parser_ParseProgramLaunchCommand(uint8_t ProgramID)
 	case MOTORS_DEBUG:
 		status = Prog_MotorsDebug_Launch();
 		break;
+
+	case PID_CALIBRATION:
+		status = Prog_CalibPID_Launch();
 
 	default:
 		status = PROGRAMS_ERROR;

@@ -1,3 +1,4 @@
+"./Core/Src/Programs/CalibPID_CProg.o"
 "./Core/Src/Programs/DiodeTest_Prog.o"
 "./Core/Src/Programs/MotorsDebug_Prog.o"
 "./Core/Src/Programs/controller_programs.o"

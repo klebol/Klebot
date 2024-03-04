@@ -5,16 +5,19 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../Core/Src/Programs/CalibPID_CProg.c \
 ../Core/Src/Programs/DiodeTest_Prog.c \
 ../Core/Src/Programs/MotorsDebug_Prog.c \
 ../Core/Src/Programs/controller_programs.c 
 
 OBJS += \
+./Core/Src/Programs/CalibPID_CProg.o \
 ./Core/Src/Programs/DiodeTest_Prog.o \
 ./Core/Src/Programs/MotorsDebug_Prog.o \
 ./Core/Src/Programs/controller_programs.o 
 
 C_DEPS += \
+./Core/Src/Programs/CalibPID_CProg.d \
 ./Core/Src/Programs/DiodeTest_Prog.d \
 ./Core/Src/Programs/MotorsDebug_Prog.d \
 ./Core/Src/Programs/controller_programs.d 
@@ -27,7 +30,7 @@ Core/Src/Programs/%.o Core/Src/Programs/%.su Core/Src/Programs/%.cyclo: ../Core/
 clean: clean-Core-2f-Src-2f-Programs
 
 clean-Core-2f-Src-2f-Programs:
-	-$(RM) ./Core/Src/Programs/DiodeTest_Prog.cyclo ./Core/Src/Programs/DiodeTest_Prog.d ./Core/Src/Programs/DiodeTest_Prog.o ./Core/Src/Programs/DiodeTest_Prog.su ./Core/Src/Programs/MotorsDebug_Prog.cyclo ./Core/Src/Programs/MotorsDebug_Prog.d ./Core/Src/Programs/MotorsDebug_Prog.o ./Core/Src/Programs/MotorsDebug_Prog.su ./Core/Src/Programs/controller_programs.cyclo ./Core/Src/Programs/controller_programs.d ./Core/Src/Programs/controller_programs.o ./Core/Src/Programs/controller_programs.su
+	-$(RM) ./Core/Src/Programs/CalibPID_CProg.cyclo ./Core/Src/Programs/CalibPID_CProg.d ./Core/Src/Programs/CalibPID_CProg.o ./Core/Src/Programs/CalibPID_CProg.su ./Core/Src/Programs/DiodeTest_Prog.cyclo ./Core/Src/Programs/DiodeTest_Prog.d ./Core/Src/Programs/DiodeTest_Prog.o ./Core/Src/Programs/DiodeTest_Prog.su ./Core/Src/Programs/MotorsDebug_Prog.cyclo ./Core/Src/Programs/MotorsDebug_Prog.d ./Core/Src/Programs/MotorsDebug_Prog.o ./Core/Src/Programs/MotorsDebug_Prog.su ./Core/Src/Programs/controller_programs.cyclo ./Core/Src/Programs/controller_programs.d ./Core/Src/Programs/controller_programs.o ./Core/Src/Programs/controller_programs.su
 
 .PHONY: clean-Core-2f-Src-2f-Programs
 

@@ -44,6 +44,10 @@ Programs_error_t Prog_CalibPID_Deinit(void)
 Programs_error_t Prog_CalibPID_Program(void)
 {
 	/* Main program "loop" */
+
+
+
+
 	return PROGRAMS_OK;
 }
 
@@ -157,9 +161,30 @@ void Prog_CalibPID_Parser(uint8_t *command, uint8_t length)
 		break;
 
 	case PID_START_IMPULSE:
-		/* Frame: [ ] */
+		/* Frame: [..., PID_START_IMPULSE ] */
+		/* Turn on PID */
+		Motors_SetControllPID(1);
+		/* Send response */
+		Buffer[0] = PID_CALIBRATION;
+		Buffer[1] = PID_START_IMPULSE;
+		Buffer[2] = _OK;
+		Radio_TxBufferPut(Buffer, 3);
 		break;
 
+	case PID_STOP_MOTOR:
+		/* Frame: [..., PID_STOP_MOTOR ] */
+		/* Turn off PID */
+		Motors_SetControllPID(0);
+		/* Stop motors */
+		Motors_SetMotor(MOTOR_A, Coast, 0);
+		Motors_SetMotor(MOTOR_B, Coast, 0);
+		/* Reset PID temps */
+		Motors_ResetTemps(MOTOR_ALL);
+		/* Send response */
+		Buffer[0] = PID_CALIBRATION;
+		Buffer[1] = PID_STOP_MOTOR;
+		Buffer[2] = _OK;
+		Radio_TxBufferPut(Buffer, 3);
 	default:
 		break;
 	}

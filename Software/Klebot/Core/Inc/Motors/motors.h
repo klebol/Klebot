@@ -13,6 +13,8 @@
 
 #define DEAD_PWM_OFFSET 150
 #define MAX_VELOCITY_VALUE 70
+#define PID_ON 1
+#define PID_OFF 0
 
 typedef enum
 {
@@ -33,10 +35,13 @@ void Motors_RoutinePID(void);
 
 Motors_Error_t Motors_SetPIDTarget(DRV8836_Output_t motorAB, int16_t Target);
 Motors_Error_t Motors_SetKP(DRV8836_Output_t motorAB, float p);
+float Motors_GetKP(DRV8836_Output_t motorAB);
 Motors_Error_t Motors_SetKI(DRV8836_Output_t motorAB, float i);
+float Motors_GetKI(DRV8836_Output_t motorAB);
 Motors_Error_t Motors_SetKD(DRV8836_Output_t motorAB, float d);
+float Motors_GetKD(DRV8836_Output_t motorAB);
 Motors_Error_t Motors_ResetPIDGains(DRV8836_Output_t motorAB);
 Motors_Error_t Motors_ResetTemps(DRV8836_Output_t motorAB);
-void Motors_SetSwitch(uint8_t ONOFF);
+Motors_Error_t Motors_SetControllPID(uint8_t ONOFF);
 
 #endif /* INC_MOTORS_MOTORS_H_ */

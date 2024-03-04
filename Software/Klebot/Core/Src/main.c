@@ -26,6 +26,19 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+
+/* FREE RTOS */
+#include "FreeRTOS.h"
+#include "task.h"
+#include "timers.h"
+#include "queue.h"
+#include "semphr.h"
+#include "event_groups.h"
+/* Tasks */
+#include "onboard_diode_task.h"
+#include "radio_task.h"
+
+
 #include "klebot_scheduler.h"
 #include "klebot_radio.h"
 #include "Motors/motors.h"
@@ -52,28 +65,12 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-//DRV8836_t MotorDriver1;
-//MotorEncoder_t MotorEncoderA;
-////
-//DRV8836_Direction_t Dir;
-//uint16_t Spd;
-//////
-//DRV8836_Direction_t Dir1;
-//uint16_t Spd1;
-//
-//
-//int16_t EncPos;
-//
-//uint32_t LastTick;
-//uint8_t IncOrDec;
-//
-//
-//uint8_t USB_Buffer[10];
-//uint8_t USB_Buffer_Length;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
+void MX_FREERTOS_Init(void);
 /* USER CODE BEGIN PFP */
 int8_t GetEncoderCount(void);
 /* USER CODE END PFP */
@@ -119,56 +116,30 @@ int main(void)
   MX_TIM7_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-  //DRV8836_Init(&MotorDriver1, &htim3, TIM_CHANNEL_1, TIM_CHANNEL_2, TIM_CHANNEL_3, TIM_CHANNEL_4);
   HAL_GPIO_WritePin(DRV_NSLEEP_GPIO_Port, DRV_NSLEEP_Pin, GPIO_PIN_SET);
   HAL_GPIO_WritePin(DRV_MODE_GPIO_Port, DRV_MODE_Pin, GPIO_PIN_RESET);
 
-  //MotorEnc_Init(&MotorEncoderA, &htim4);
+
   Motors_Init();
   HAL_TIM_Base_Start_IT(&htim7);
 
 
 
   Radio_Init(&hspi3);
+
+  xTaskCreate(vTaskOnboardDiode, "PCB Diode Task", 128, NULL, 1, NULL);
+  xTaskCreate(vTaskRadio, "NRF24 Task", 512, NULL, 1, NULL);
+
+  vTaskStartScheduler();
   /* USER CODE END 2 */
 
+  /* We should never get here as control is now taken by the scheduler */
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
 	  KlebotScheduler();
 
-//	  Motors_SetMotorSpeed(Output_A, Spd);
-//	  Motors_SetMotorSpeed(Output_B, Spd1);
-//
-//	  Motors_SetMotorDirection(Output_A, Dir);
-//	  Motors_SetMotorDirection(Output_B, Dir1);
-//
-//	  if(HAL_GetTick() - LastTick > 100)
-//	  {
-//		  if(IncOrDec == 0)
-//		  {
-//			  Spd1++;
-//			  if(Spd1 > 254) IncOrDec = 1;
-//		  }
-//		  else
-//		  {
-//			  Spd1--;
-//			  if(Spd1 < 160) IncOrDec = 0;
-//		  }
-//		  LastTick = HAL_GetTick();
-//
-//
-//	  }
-//
-
-
-	 // EncPos += GetEncoderCount();
-//	  DRV8836_SetDirection(&MotorDriver1, Output_B, Dir);
-//	  DRV8836_SetSpeed(&MotorDriver1, Output_B, Spd);
-//
-//	  DRV8836_SetDirection(&MotorDriver1, Output_A, Dir1);
-//	  DRV8836_SetSpeed(&MotorDriver1, Output_A, Spd1);
 
 
     /* USER CODE END WHILE */
@@ -232,37 +203,6 @@ int __io_putchar(int ch)
 	return ch;
 }
 
-int8_t GetEncoderCount(void)
-{
-	static uint16_t LastTimerCounter = 0;
-	int CounterDif = htim1.Instance->CNT - LastTimerCounter;
-	if(CounterDif >= 4 || CounterDif <= -4)
-	{
-		LastTimerCounter = htim1.Instance->CNT;
-		return (int8_t)(-CounterDif / 4);
-	}
-	else
-	{
-		return 0;
-	}
-}
-
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
-{
-	if(htim->Instance == TIM7)
-	{
-		Motors_EncoderSample();
-
-	//	USB_Buffer_Length = sprintf((char*) USB_Buffer, "$%d %d;",(int16_t) MotorEncoderA.VelocityFiltered, MotorEncoderA.Velocity );
-//		//USB_Buffer_Length = sprintf((char*) USB_Buffer, "$%d;", MotorEncoderA.Velocity );
-//		//USB_Buffer_Length = sprintf((char*) USB_Buffer, "$%d;",(int16_t) MotorEncoderA.Position );
-		//HAL_UART_Transmit(&huart2, USB_Buffer, USB_Buffer_Length, 500);
-
-	}
-}
-
-
-
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
 	if(GPIO_Pin == NRF24_IRQ_Pin)
@@ -272,6 +212,31 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 	}
 }
 /* USER CODE END 4 */
+
+/**
+  * @brief  Period elapsed callback in non blocking mode
+  * @note   This function is called  when TIM6 interrupt took place, inside
+  * HAL_TIM_IRQHandler(). It makes a direct call to HAL_IncTick() to increment
+  * a global variable "uwTick" used as application time base.
+  * @param  htim : TIM handle
+  * @retval None
+  */
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+  /* USER CODE BEGIN Callback 0 */
+
+  /* USER CODE END Callback 0 */
+  if (htim->Instance == TIM6) {
+    HAL_IncTick();
+  }
+  /* USER CODE BEGIN Callback 1 */
+  else if(htim->Instance == TIM7)
+  {
+	  /* Encoder sampling */
+	  Motors_EncoderSample();
+  }
+  /* USER CODE END Callback 1 */
+}
 
 /**
   * @brief  This function is executed in case of error occurrence.

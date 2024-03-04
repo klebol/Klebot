@@ -1,0 +1,5 @@
+../Core/Src/Programs/CalibPID_CProg.c:35:18:Prog_CalibPID_Init	8	static
+../Core/Src/Programs/CalibPID_CProg.c:49:18:Prog_CalibPID_Deinit	4	static
+../Core/Src/Programs/CalibPID_CProg.c:59:18:Prog_CalibPID_Program	4	static
+../Core/Src/Programs/CalibPID_CProg.c:72:6:Prog_CalibPID_Launch	8	static
+../Core/Src/Programs/CalibPID_CProg.c:81:6:Prog_CalibPID_Parser	24	static
