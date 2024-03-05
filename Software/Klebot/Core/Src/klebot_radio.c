@@ -137,7 +137,7 @@ Klebot_Radio_Status Radio_SendConnectionCheck(void)
 
 
 
-void Radio_SetResponseACK(uint8_t *ResponseCommand, uint8_t Length)		//are ack payloads stored in nRF's TX fifo?
+void Radio_SetResponseACK(uint8_t *ResponseCommand, uint8_t Length)		//are ack payloads stored in nRF's TX fifo? NO! there is a special register which can store only 3 ack payloads
 {
 	uint8_t i;
 	uint8_t Buffer[MAX_COMMAND_LENGTH];
@@ -214,10 +214,10 @@ Klebot_Radio_Status Radio_GetConnectionStatus(void)
 //
 //Klebot radio callbacks to use
 //
-void Radio_HandlerIRQ(void)
-{
-	nRF24_IRQ_Handler();
-}
+//void Radio_HandlerIRQ(void)
+//{
+//	nRF24_IRQ_Handler();
+//}
 
 __weak void Radio_NoConnectionCallback(void)
 {

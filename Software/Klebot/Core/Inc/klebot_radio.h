@@ -49,7 +49,7 @@ Klebot_Radio_Status Radio_TxBufferPut(uint8_t *Command, uint8_t Length);	//Put d
 
 void Radio_NoConnectionCallback(void);										//Callback for no connection
 
-void Radio_HandlerIRQ(void);
+//void Radio_HandlerIRQ(void);
 
 void Radio_NewCommandReceivedCallback(uint8_t *command, uint8_t length);
 

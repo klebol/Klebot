@@ -7,7 +7,6 @@
 ../Core/Src/klebot_radio.c:140:6:Radio_SetResponseACK	2
 ../Core/Src/klebot_radio.c:154:6:Radio_Process	4
 ../Core/Src/klebot_radio.c:209:21:Radio_GetConnectionStatus	1
-../Core/Src/klebot_radio.c:217:6:Radio_HandlerIRQ	1
 ../Core/Src/klebot_radio.c:222:13:Radio_NoConnectionCallback	1
 ../Core/Src/klebot_radio.c:227:13:Radio_NewCommandReceivedCallback	1
 ../Core/Src/klebot_radio.c:234:6:nRF24_EventTxCallback	1

@@ -1,1 +1,3 @@
-../Core/Src/radio_task.c:27:6:vTaskRadio	16	static
+../Core/Src/radio_task.c:29:6:Radio_TaskInit	16	static
+../Core/Src/radio_task.c:34:6:vTaskRadio	16	static
+../Core/Src/radio_task.c:62:6:Radio_HandlerIRQ	16	static,ignoring_inline_asm
