@@ -1,58 +1,15 @@
-05:03:59 **** Incremental Build of configuration Debug for project Klebot ****
+19:06:18 **** Incremental Build of configuration Debug for project Klebot ****
 make -j12 all 
 arm-none-eabi-gcc "../Core/Src/klebot_radio.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F107xC -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3 -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/klebot_radio.d" -MT"Core/Src/klebot_radio.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/klebot_radio.o"
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F107xC -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3 -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
 arm-none-eabi-gcc "../Core/Src/radio_task.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F107xC -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3 -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/radio_task.d" -MT"Core/Src/radio_task.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/radio_task.o"
-../Core/Src/radio_task.c: In function 'nRF24_EventRxCallback':
-../Core/Src/radio_task.c:99:9: error: 'ConnectionTimeoutCounter' undeclared (first use in this function)
-   99 |         ConnectionTimeoutCounter = HAL_GetTick();                       //Connection timeout counter is a tool for robot to check if there is still a connection with controller, on controller side we have MrCallback to check this
-      |         ^~~~~~~~~~~~~~~~~~~~~~~~
-../Core/Src/radio_task.c:99:9: note: each undeclared identifier is reported only once for each function it appears in
-../Core/Src/radio_task.c:100:12: error: 'CONNECTION_HOLD' undeclared (first use in this function)
-  100 |         if(CONNECTION_HOLD == ReceivedCommand[0]) return;       //just ignore if this is a connection hold
-      |            ^~~~~~~~~~~~~~~
-make: *** [Core/Src/subdir.mk:79: Core/Src/radio_task.o] Error 1
-make: *** Waiting for unfinished jobs....
-In file included from ../Core/Src/main.c:43:
-../Core/Inc/klebot_radio.h:34:9: error: redeclaration of enumerator 'RADIO_OK'
-   34 |         RADIO_OK,               // 0
-      |         ^~~~~~~~
-In file included from ../Core/Src/main.c:39:
-../Core/Inc/radio_task.h:17:9: note: previous definition of 'RADIO_OK' with type 'enum <anonymous>'
-   17 |         RADIO_OK,               // 0
-      |         ^~~~~~~~
-In file included from ../Core/Src/main.c:43:
-../Core/Inc/klebot_radio.h:35:9: error: redeclaration of enumerator 'RADIO_ERROR'
-   35 |         RADIO_ERROR,    // 1
-      |         ^~~~~~~~~~~
-In file included from ../Core/Src/main.c:39:
-../Core/Inc/radio_task.h:18:9: note: previous definition of 'RADIO_ERROR' with type 'enum <anonymous>'
-   18 |         RADIO_ERROR,    // 1
-      |         ^~~~~~~~~~~
-In file included from ../Core/Src/main.c:43:
-../Core/Inc/klebot_radio.h:36:9: error: redeclaration of enumerator 'RADIO_BUSY'
-   36 |         RADIO_BUSY,             // 2
-      |         ^~~~~~~~~~
-In file included from ../Core/Src/main.c:39:
-../Core/Inc/radio_task.h:19:9: note: previous definition of 'RADIO_BUSY' with type 'enum <anonymous>'
-   19 |         RADIO_BUSY,             // 2
-      |         ^~~~~~~~~~
-In file included from ../Core/Src/main.c:43:
-../Core/Inc/klebot_radio.h:37:9: error: redeclaration of enumerator 'RADIO_NEW_RX'
-   37 |         RADIO_NEW_RX
-      |         ^~~~~~~~~~~~
-In file included from ../Core/Src/main.c:39:
-../Core/Inc/radio_task.h:20:9: note: previous definition of 'RADIO_NEW_RX' with type 'enum <anonymous>'
-   20 |         RADIO_NEW_RX
-      |         ^~~~~~~~~~~~
-In file included from ../Core/Src/main.c:43:
-../Core/Inc/klebot_radio.h:38:3: error: conflicting types for 'Klebot_Radio_Status'; have 'enum <anonymous>'
-   38 | } Klebot_Radio_Status;
-      |   ^~~~~~~~~~~~~~~~~~~
-In file included from ../Core/Src/main.c:39:
-../Core/Inc/radio_task.h:21:3: note: previous declaration of 'Klebot_Radio_Status' with type 'Klebot_Radio_Status'
-   21 | } Klebot_Radio_Status;
-      |   ^~~~~~~~~~~~~~~~~~~
+In file included from ../Core/Src/radio_task.c:7:
+../Core/Inc/radio_task.h:16:9: error: unknown type name 'uint8_t'
+   16 |         uint8_t data[MAX_COMMAND_LENGTH];
+      |         ^~~~~~~
+../Core/Inc/radio_task.h:17:9: error: unknown type name 'uint8_t'
+   17 |         uint8_t length;
+      |         ^~~~~~~
 ../Core/Src/klebot_radio.c: In function 'Radio_TxBufferSend':
 ../Core/Src/klebot_radio.c:112:17: error: 'TxStatus' undeclared (first use in this function); did you mean 'Status'?
   112 |                 TxStatus = RADIO_BUSY;
@@ -69,6 +26,53 @@ In file included from ../Core/Src/main.c:39:
   179 |         if(TxStatus == RADIO_OK)        //If Tx is free, send response
       |            ^~~~~~~~
       |            ITStatus
+../Core/Src/radio_task.c: In function 'vTaskRadio':
+../Core/Src/radio_task.c:69:63: error: 'Length' undeclared (first use in this function)
+   69 |                         nRF24_WriteAckPayload(0, FrameToSend, Length);
+      |                                                               ^~~~~~
+../Core/Src/radio_task.c:69:63: note: each undeclared identifier is reported only once for each function it appears in
+In file included from ../Core/Src/main.c:43:
+../Core/Inc/klebot_radio.h:34:9: error: redeclaration of enumerator 'RADIO_OK'
+   34 |         RADIO_OK,               // 0
+      |         ^~~~~~~~
+In file included from ../Core/Src/main.c:39:
+../Core/Inc/radio_task.h:22:9: note: previous definition of 'RADIO_OK' with type 'enum <anonymous>'
+   22 |         RADIO_OK,               // 0
+      |         ^~~~~~~~
+In file included from ../Core/Src/main.c:43:
+../Core/Inc/klebot_radio.h:35:9: error: redeclaration of enumerator 'RADIO_ERROR'
+   35 |         RADIO_ERROR,    // 1
+      |         ^~~~~~~~~~~
+In file included from ../Core/Src/main.c:39:
+../Core/Inc/radio_task.h:23:9: note: previous definition of 'RADIO_ERROR' with type 'enum <anonymous>'
+   23 |         RADIO_ERROR,    // 1
+      |         ^~~~~~~~~~~
+In file included from ../Core/Src/main.c:43:
+../Core/Inc/klebot_radio.h:36:9: error: redeclaration of enumerator 'RADIO_BUSY'
+   36 |         RADIO_BUSY,             // 2
+      |         ^~~~~~~~~~
+In file included from ../Core/Src/main.c:39:
+../Core/Inc/radio_task.h:24:9: note: previous definition of 'RADIO_BUSY' with type 'enum <anonymous>'
+   24 |         RADIO_BUSY,             // 2
+      |         ^~~~~~~~~~
+In file included from ../Core/Src/main.c:43:
+../Core/Inc/klebot_radio.h:37:9: error: redeclaration of enumerator 'RADIO_NEW_RX'
+   37 |         RADIO_NEW_RX
+      |         ^~~~~~~~~~~~
+In file included from ../Core/Src/main.c:39:
+../Core/Inc/radio_task.h:25:9: note: previous definition of 'RADIO_NEW_RX' with type 'enum <anonymous>'
+   25 |         RADIO_NEW_RX
+      |         ^~~~~~~~~~~~
+In file included from ../Core/Src/main.c:43:
+../Core/Inc/klebot_radio.h:38:3: error: conflicting types for 'Klebot_Radio_Status'; have 'enum <anonymous>'
+   38 | } Klebot_Radio_Status;
+      |   ^~~~~~~~~~~~~~~~~~~
+In file included from ../Core/Src/main.c:39:
+../Core/Inc/radio_task.h:26:3: note: previous declaration of 'Klebot_Radio_Status' with type 'Klebot_Radio_Status'
+   26 | } Klebot_Radio_Status;
+      |   ^~~~~~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:79: Core/Src/radio_task.o] Error 1
+make: *** Waiting for unfinished jobs....
 ../Core/Src/klebot_radio.c:186:17: error: 'ConnectionStatus' undeclared (first use in this function)
   186 |                 ConnectionStatus = RADIO_ERROR;
       |                 ^~~~~~~~~~~~~~~~
@@ -83,10 +87,10 @@ In file included from ../Core/Src/main.c:39:
 ../Core/Src/klebot_radio.c:210:1: warning: control reaches end of non-void function [-Wreturn-type]
   210 | }
       | ^
+make: *** [Core/Src/subdir.mk:79: Core/Src/klebot_radio.o] Error 1
 ../Core/Src/main.c: In function 'HAL_GPIO_EXTI_Callback':
 ../Core/Src/main.c:210:17: warning: implicit declaration of function 'Radio_HandlerIRQ' [-Wimplicit-function-declaration]
   210 |                 Radio_HandlerIRQ();
       |                 ^~~~~~~~~~~~~~~~
-make: *** [Core/Src/subdir.mk:79: Core/Src/klebot_radio.o] Error 1
 make: *** [Core/Src/subdir.mk:79: Core/Src/main.o] Error 1
 "make -j12 all" terminated with exit code 2. Build might be incomplete.

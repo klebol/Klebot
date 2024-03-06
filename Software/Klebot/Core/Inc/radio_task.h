@@ -12,6 +12,11 @@
 #define PACKET_SEND_DELAY 50 		// [ms]
 
 
+typedef struct{
+	uint8_t data[MAX_COMMAND_LENGTH];
+	uint8_t length;
+}FrameNRF_t;
+
 typedef enum
 {
 	RADIO_OK,		// 0
