@@ -12,9 +12,7 @@
 #include "klebot_commands.h"
 #include "stdio.h"
 
-Klebot_Radio_Status ConnectionStatus;
-Klebot_Radio_Status TxStatus;
-Klebot_Radio_Status RxStatus;
+
 
 RBuffer_t TxBuffer;
 RBuffer_t RxBuffer;
@@ -228,35 +226,7 @@ __weak void Radio_NewCommandReceivedCallback(uint8_t *command, uint8_t length)
 {
 
 }
-//
-// -- NRF24 Callbacks --
-//
-void nRF24_EventTxCallback(void)
-{
-	TxStatus = RADIO_OK;
-	ConnectionStatus = RADIO_OK;
-}
 
-void nRF24_EventRxCallback(void)					// Received Packet or received ACK Payload
-{
-	uint8_t ReceivedCommand[MAX_COMMAND_LENGTH];
-	uint8_t ReceivedLength;
-	nRF24_ReadRXPaylaod((uint8_t*)ReceivedCommand,&ReceivedLength);
-
-#ifdef ROBOT
-	ConnectionStatus = RADIO_OK;
-	ConnectionTimeoutCounter = HAL_GetTick();			//Connection timeout counter is a tool for robot to check if there is still a connection with controller, on controller side we have MrCallback to check this
-	if(CONNECTION_HOLD == ReceivedCommand[0]) return;	//just ignore if this is a connection hold
-#endif
-
-	Radio_RxBufferPut(ReceivedCommand, ReceivedLength);
-	RxStatus = RADIO_NEW_RX;
-}
-
-void nRF24_EventMrCallback(void)
-{
-	ConnectionStatus = RADIO_ERROR;		//Max retransmitt - no connection
-}
 
 //
 // -- Handy functions --

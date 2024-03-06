@@ -16,6 +16,14 @@
 #include "nRF24_Defs.h"
 #include "RingBuffer.h"
 
+/* Status variables */
+Klebot_Radio_Status ConnectionStatus;
+Klebot_Radio_Status TxStatus;
+Klebot_Radio_Status RxStatus;
+
+
+
+
 /* Radio task handler for task notification */
 TaskHandle_t xTaskRadioHandle;
 
@@ -69,3 +77,34 @@ void Radio_HandlerIRQ(void)
 	/* yield if unblocked task (radio) has higher priority than current task */
 	portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
 }
+
+
+
+//
+// -- NRF24 Event Callbacks --
+//
+void nRF24_EventTxCallback(void)
+{
+	TxStatus = RADIO_OK;
+	ConnectionStatus = RADIO_OK;
+}
+
+void nRF24_EventRxCallback(void)					// Received Packet or received ACK Payload
+{
+	uint8_t ReceivedCommand[MAX_COMMAND_LENGTH];
+	uint8_t ReceivedLength;
+	nRF24_ReadRXPaylaod((uint8_t*)ReceivedCommand,&ReceivedLength);
+
+	ConnectionStatus = RADIO_OK;
+	ConnectionTimeoutCounter = HAL_GetTick();			//Connection timeout counter is a tool for robot to check if there is still a connection with controller, on controller side we have MrCallback to check this
+	if(CONNECTION_HOLD == ReceivedCommand[0]) return;	//just ignore if this is a connection hold
+
+	//Radio_RxBufferPut(ReceivedCommand, ReceivedLength); 	//TODO: QUEUE TO PARSER
+	RxStatus = RADIO_NEW_RX;
+}
+
+void nRF24_EventMrCallback(void)
+{
+	ConnectionStatus = RADIO_ERROR;		//Max retransmitt - no connection
+}
+

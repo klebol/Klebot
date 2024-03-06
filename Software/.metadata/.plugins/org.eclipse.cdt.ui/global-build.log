@@ -1,7 +1,18 @@
-18:59:20 **** Incremental Build of configuration Debug for project Klebot ****
+05:03:59 **** Incremental Build of configuration Debug for project Klebot ****
 make -j12 all 
+arm-none-eabi-gcc "../Core/Src/klebot_radio.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F107xC -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3 -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/klebot_radio.d" -MT"Core/Src/klebot_radio.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/klebot_radio.o"
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F107xC -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3 -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
 arm-none-eabi-gcc "../Core/Src/radio_task.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F107xC -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3 -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/radio_task.d" -MT"Core/Src/radio_task.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/radio_task.o"
+../Core/Src/radio_task.c: In function 'nRF24_EventRxCallback':
+../Core/Src/radio_task.c:99:9: error: 'ConnectionTimeoutCounter' undeclared (first use in this function)
+   99 |         ConnectionTimeoutCounter = HAL_GetTick();                       //Connection timeout counter is a tool for robot to check if there is still a connection with controller, on controller side we have MrCallback to check this
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/radio_task.c:99:9: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/radio_task.c:100:12: error: 'CONNECTION_HOLD' undeclared (first use in this function)
+  100 |         if(CONNECTION_HOLD == ReceivedCommand[0]) return;       //just ignore if this is a connection hold
+      |            ^~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:79: Core/Src/radio_task.o] Error 1
+make: *** Waiting for unfinished jobs....
 In file included from ../Core/Src/main.c:43:
 ../Core/Inc/klebot_radio.h:34:9: error: redeclaration of enumerator 'RADIO_OK'
    34 |         RADIO_OK,               // 0
@@ -42,10 +53,40 @@ In file included from ../Core/Src/main.c:39:
 ../Core/Inc/radio_task.h:21:3: note: previous declaration of 'Klebot_Radio_Status' with type 'Klebot_Radio_Status'
    21 | } Klebot_Radio_Status;
       |   ^~~~~~~~~~~~~~~~~~~
+../Core/Src/klebot_radio.c: In function 'Radio_TxBufferSend':
+../Core/Src/klebot_radio.c:112:17: error: 'TxStatus' undeclared (first use in this function); did you mean 'Status'?
+  112 |                 TxStatus = RADIO_BUSY;
+      |                 ^~~~~~~~
+      |                 Status
+../Core/Src/klebot_radio.c:112:17: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/klebot_radio.c: In function 'Radio_SendConnectionCheck':
+../Core/Src/klebot_radio.c:130:9: error: 'TxStatus' undeclared (first use in this function); did you mean 'ITStatus'?
+  130 |         TxStatus = RADIO_BUSY;
+      |         ^~~~~~~~
+      |         ITStatus
+../Core/Src/klebot_radio.c: In function 'Radio_Process':
+../Core/Src/klebot_radio.c:179:12: error: 'TxStatus' undeclared (first use in this function); did you mean 'ITStatus'?
+  179 |         if(TxStatus == RADIO_OK)        //If Tx is free, send response
+      |            ^~~~~~~~
+      |            ITStatus
+../Core/Src/klebot_radio.c:186:17: error: 'ConnectionStatus' undeclared (first use in this function)
+  186 |                 ConnectionStatus = RADIO_ERROR;
+      |                 ^~~~~~~~~~~~~~~~
+../Core/Src/klebot_radio.c:191:12: error: 'RxStatus' undeclared (first use in this function); did you mean 'ITStatus'?
+  191 |         if(RxStatus == RADIO_NEW_RX)                            //If there is new message, get it and pass it to parser
+      |            ^~~~~~~~
+      |            ITStatus
+../Core/Src/klebot_radio.c: In function 'Radio_GetConnectionStatus':
+../Core/Src/klebot_radio.c:209:16: error: 'ConnectionStatus' undeclared (first use in this function)
+  209 |         return ConnectionStatus;
+      |                ^~~~~~~~~~~~~~~~
+../Core/Src/klebot_radio.c:210:1: warning: control reaches end of non-void function [-Wreturn-type]
+  210 | }
+      | ^
 ../Core/Src/main.c: In function 'HAL_GPIO_EXTI_Callback':
 ../Core/Src/main.c:210:17: warning: implicit declaration of function 'Radio_HandlerIRQ' [-Wimplicit-function-declaration]
   210 |                 Radio_HandlerIRQ();
       |                 ^~~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:79: Core/Src/klebot_radio.o] Error 1
 make: *** [Core/Src/subdir.mk:79: Core/Src/main.o] Error 1
-make: *** Waiting for unfinished jobs....
 "make -j12 all" terminated with exit code 2. Build might be incomplete.
