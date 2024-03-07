@@ -40,7 +40,6 @@
 
 
 #include "klebot_scheduler.h"
-#include "klebot_radio.h"
 #include "Motors/motors.h"
 
 #include "stdio.h"
@@ -123,12 +122,10 @@ int main(void)
   Motors_Init();
   HAL_TIM_Base_Start_IT(&htim7);
 
+  Radio_TaskInit();
 
-
-  Radio_Init(&hspi3);
 
   xTaskCreate(vTaskOnboardDiode, "PCB Diode Task", 128, NULL, 1, NULL);
-  xTaskCreate(vTaskRadio, "NRF24 Task", 512, NULL, 1, NULL);
 
   vTaskStartScheduler();
   /* USER CODE END 2 */

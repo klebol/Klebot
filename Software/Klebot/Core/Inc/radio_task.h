@@ -14,12 +14,13 @@
 #define PACKET_SEND_DELAY 50 		// [ms]
 
 
-
+/* Type for communication frames */
 typedef struct{
 	uint8_t data[MAX_COMMAND_LENGTH];
 	uint8_t length;
 }RadioFrame_t;
 
+/* Error type */
 typedef enum
 {
 	RADIO_OK,		// 0
@@ -30,6 +31,13 @@ typedef enum
 
 
 
-void vTaskRadio(void *pvParameters);
+/* Init */
+void Radio_TaskInit(void);
+/* Interrupt routine */
+void Radio_HandlerIRQ(void);
+/* Put frame for sending to controller */
+Klebot_Radio_Status Radio_TxPutFrame(RadioFrame_t* FrameToPut);
+/* Get connection status */
+Klebot_Radio_Status Radio_GetConnectionStatus(void);
 
 #endif /* INC_RADIO_TASK_H_ */

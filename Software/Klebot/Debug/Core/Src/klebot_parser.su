@@ -1,2 +1,0 @@
-../Core/Src/klebot_parser.c:15:6:Parser_ParseProgramLaunchCommand	24	static
-../Core/Src/klebot_parser.c:49:6:Parser_Klebot	32	static
