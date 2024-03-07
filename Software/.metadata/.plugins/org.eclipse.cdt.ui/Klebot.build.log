@@ -1,10 +1,47 @@
-13:42:50 **** Incremental Build of configuration Debug for project Klebot ****
+10:02:25 **** Incremental Build of configuration Debug for project Klebot ****
 make -j16 all 
-arm-none-eabi-size  Klebot.elf 
-   text	   data	    bss	    dec	    hex	filename
-  41700	    616	   7536	  49852	   c2bc	Klebot.elf
-Finished building: default.size.stdout
- 
+arm-none-eabi-gcc "../Core/Src/Programs/CalibPID_Prog.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F107xC -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3 -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Programs/CalibPID_Prog.d" -MT"Core/Src/Programs/CalibPID_Prog.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/Programs/CalibPID_Prog.o"
+arm-none-eabi-gcc "../Core/Src/Programs/DiodeTest_Prog.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F107xC -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3 -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Programs/DiodeTest_Prog.d" -MT"Core/Src/Programs/DiodeTest_Prog.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/Programs/DiodeTest_Prog.o"
+arm-none-eabi-gcc "../Core/Src/Programs/MotorsDebug_Prog.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F107xC -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3 -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Programs/MotorsDebug_Prog.d" -MT"Core/Src/Programs/MotorsDebug_Prog.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/Programs/MotorsDebug_Prog.o"
+arm-none-eabi-gcc "../Core/Src/Programs/klebot_programs.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F107xC -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3 -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Programs/klebot_programs.d" -MT"Core/Src/Programs/klebot_programs.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/Programs/klebot_programs.o"
+arm-none-eabi-gcc "../Core/Src/klebot_scheduler.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F107xC -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3 -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/klebot_scheduler.d" -MT"Core/Src/klebot_scheduler.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/klebot_scheduler.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F107xC -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3 -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/nRF24.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F107xC -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3 -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/nRF24.d" -MT"Core/Src/nRF24.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/nRF24.o"
+arm-none-eabi-gcc "../Core/Src/onboard_diode_task.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F107xC -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3 -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/onboard_diode_task.d" -MT"Core/Src/onboard_diode_task.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/onboard_diode_task.o"
+arm-none-eabi-gcc "../Core/Src/radio_task.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F107xC -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3 -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/radio_task.d" -MT"Core/Src/radio_task.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/radio_task.o"
+../Core/Src/Programs/CalibPID_Prog.c:10:10: fatal error: klebot_radio.h: No such file or directory
+arm-none-eabi-gcc "../Core/Src/spi.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F107xC -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3 -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/spi.d" -MT"Core/Src/spi.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/spi.o"
+   10 | #include "klebot_radio.h"
+      |          ^~~~~~~~~~~~~~~~
+compilation terminated.
+../Core/Src/Programs/DiodeTest_Prog.c:10:10: fatal error: klebot_radio.h: No such file or directory
+   10 | #include "klebot_radio.h"
+      |          ^~~~~~~~~~~~~~~~
+compilation terminated.
+make: *** [Core/Src/Programs/subdir.mk:28: Core/Src/Programs/CalibPID_Prog.o] Error 1
+make: *** Waiting for unfinished jobs....
+make: *** [Core/Src/Programs/subdir.mk:28: Core/Src/Programs/DiodeTest_Prog.o] Error 1
+../Core/Src/Programs/klebot_programs.c:8:10: fatal error: klebot_radio.h: No such file or directory
+    8 | #include "klebot_radio.h"
+      |          ^~~~~~~~~~~~~~~~
+compilation terminated.
+make: *** [Core/Src/Programs/subdir.mk:28: Core/Src/Programs/klebot_programs.o] Error 1
+../Core/Src/klebot_scheduler.c:10:10: fatal error: klebot_radio.h: No such file or directory
+   10 | #include "klebot_radio.h"
+      |          ^~~~~~~~~~~~~~~~
+compilation terminated.
+make: *** [Core/Src/subdir.mk:76: Core/Src/klebot_scheduler.o] Error 1
+../Core/Src/Programs/MotorsDebug_Prog.c:12:10: fatal error: klebot_radio.h: No such file or directory
+   12 | #include "klebot_radio.h"
+      |          ^~~~~~~~~~~~~~~~
+compilation terminated.
+make: *** [Core/Src/Programs/subdir.mk:28: Core/Src/Programs/MotorsDebug_Prog.o] Error 1
+../Core/Src/main.c:43:10: fatal error: klebot_radio.h: No such file or directory
+   43 | #include "klebot_radio.h"
+      |          ^~~~~~~~~~~~~~~~
+compilation terminated.
+make: *** [Core/Src/subdir.mk:76: Core/Src/main.o] Error 1
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
 
-13:42:50 Build Finished. 0 errors, 0 warnings. (took 292ms)
+10:02:25 Build Failed. 13 errors, 0 warnings. (took 647ms)
 

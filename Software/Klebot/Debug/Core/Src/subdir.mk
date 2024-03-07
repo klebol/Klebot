@@ -11,7 +11,6 @@ C_SRCS += \
 ../Core/Src/gpio.c \
 ../Core/Src/i2c.c \
 ../Core/Src/klebot_parser.c \
-../Core/Src/klebot_radio.c \
 ../Core/Src/klebot_scheduler.c \
 ../Core/Src/main.c \
 ../Core/Src/nRF24.c \
@@ -34,7 +33,6 @@ OBJS += \
 ./Core/Src/gpio.o \
 ./Core/Src/i2c.o \
 ./Core/Src/klebot_parser.o \
-./Core/Src/klebot_radio.o \
 ./Core/Src/klebot_scheduler.o \
 ./Core/Src/main.o \
 ./Core/Src/nRF24.o \
@@ -57,7 +55,6 @@ C_DEPS += \
 ./Core/Src/gpio.d \
 ./Core/Src/i2c.d \
 ./Core/Src/klebot_parser.d \
-./Core/Src/klebot_radio.d \
 ./Core/Src/klebot_scheduler.d \
 ./Core/Src/main.d \
 ./Core/Src/nRF24.d \
@@ -81,7 +78,7 @@ Core/Src/%.o Core/Src/%.su Core/Src/%.cyclo: ../Core/Src/%.c Core/Src/subdir.mk
 clean: clean-Core-2f-Src
 
 clean-Core-2f-Src:
-	-$(RM) ./Core/Src/FIRFilter.cyclo ./Core/Src/FIRFilter.d ./Core/Src/FIRFilter.o ./Core/Src/FIRFilter.su ./Core/Src/PID.cyclo ./Core/Src/PID.d ./Core/Src/PID.o ./Core/Src/PID.su ./Core/Src/RingBuffer.cyclo ./Core/Src/RingBuffer.d ./Core/Src/RingBuffer.o ./Core/Src/RingBuffer.su ./Core/Src/gpio.cyclo ./Core/Src/gpio.d ./Core/Src/gpio.o ./Core/Src/gpio.su ./Core/Src/i2c.cyclo ./Core/Src/i2c.d ./Core/Src/i2c.o ./Core/Src/i2c.su ./Core/Src/klebot_parser.cyclo ./Core/Src/klebot_parser.d ./Core/Src/klebot_parser.o ./Core/Src/klebot_parser.su ./Core/Src/klebot_radio.cyclo ./Core/Src/klebot_radio.d ./Core/Src/klebot_radio.o ./Core/Src/klebot_radio.su ./Core/Src/klebot_scheduler.cyclo ./Core/Src/klebot_scheduler.d ./Core/Src/klebot_scheduler.o ./Core/Src/klebot_scheduler.su ./Core/Src/main.cyclo ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/nRF24.cyclo ./Core/Src/nRF24.d ./Core/Src/nRF24.o ./Core/Src/nRF24.su ./Core/Src/onboard_diode_task.cyclo ./Core/Src/onboard_diode_task.d ./Core/Src/onboard_diode_task.o ./Core/Src/onboard_diode_task.su ./Core/Src/radio_task.cyclo ./Core/Src/radio_task.d ./Core/Src/radio_task.o ./Core/Src/radio_task.su ./Core/Src/spi.cyclo ./Core/Src/spi.d ./Core/Src/spi.o ./Core/Src/spi.su ./Core/Src/stm32f1xx_hal_msp.cyclo ./Core/Src/stm32f1xx_hal_msp.d ./Core/Src/stm32f1xx_hal_msp.o ./Core/Src/stm32f1xx_hal_msp.su ./Core/Src/stm32f1xx_hal_timebase_tim.cyclo ./Core/Src/stm32f1xx_hal_timebase_tim.d ./Core/Src/stm32f1xx_hal_timebase_tim.o ./Core/Src/stm32f1xx_hal_timebase_tim.su ./Core/Src/stm32f1xx_it.cyclo ./Core/Src/stm32f1xx_it.d ./Core/Src/stm32f1xx_it.o ./Core/Src/stm32f1xx_it.su ./Core/Src/syscalls.cyclo ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.cyclo ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/system_stm32f1xx.cyclo ./Core/Src/system_stm32f1xx.d ./Core/Src/system_stm32f1xx.o ./Core/Src/system_stm32f1xx.su ./Core/Src/tim.cyclo ./Core/Src/tim.d ./Core/Src/tim.o ./Core/Src/tim.su ./Core/Src/usart.cyclo ./Core/Src/usart.d ./Core/Src/usart.o ./Core/Src/usart.su
+	-$(RM) ./Core/Src/FIRFilter.cyclo ./Core/Src/FIRFilter.d ./Core/Src/FIRFilter.o ./Core/Src/FIRFilter.su ./Core/Src/PID.cyclo ./Core/Src/PID.d ./Core/Src/PID.o ./Core/Src/PID.su ./Core/Src/RingBuffer.cyclo ./Core/Src/RingBuffer.d ./Core/Src/RingBuffer.o ./Core/Src/RingBuffer.su ./Core/Src/gpio.cyclo ./Core/Src/gpio.d ./Core/Src/gpio.o ./Core/Src/gpio.su ./Core/Src/i2c.cyclo ./Core/Src/i2c.d ./Core/Src/i2c.o ./Core/Src/i2c.su ./Core/Src/klebot_parser.cyclo ./Core/Src/klebot_parser.d ./Core/Src/klebot_parser.o ./Core/Src/klebot_parser.su ./Core/Src/klebot_scheduler.cyclo ./Core/Src/klebot_scheduler.d ./Core/Src/klebot_scheduler.o ./Core/Src/klebot_scheduler.su ./Core/Src/main.cyclo ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/nRF24.cyclo ./Core/Src/nRF24.d ./Core/Src/nRF24.o ./Core/Src/nRF24.su ./Core/Src/onboard_diode_task.cyclo ./Core/Src/onboard_diode_task.d ./Core/Src/onboard_diode_task.o ./Core/Src/onboard_diode_task.su ./Core/Src/radio_task.cyclo ./Core/Src/radio_task.d ./Core/Src/radio_task.o ./Core/Src/radio_task.su ./Core/Src/spi.cyclo ./Core/Src/spi.d ./Core/Src/spi.o ./Core/Src/spi.su ./Core/Src/stm32f1xx_hal_msp.cyclo ./Core/Src/stm32f1xx_hal_msp.d ./Core/Src/stm32f1xx_hal_msp.o ./Core/Src/stm32f1xx_hal_msp.su ./Core/Src/stm32f1xx_hal_timebase_tim.cyclo ./Core/Src/stm32f1xx_hal_timebase_tim.d ./Core/Src/stm32f1xx_hal_timebase_tim.o ./Core/Src/stm32f1xx_hal_timebase_tim.su ./Core/Src/stm32f1xx_it.cyclo ./Core/Src/stm32f1xx_it.d ./Core/Src/stm32f1xx_it.o ./Core/Src/stm32f1xx_it.su ./Core/Src/syscalls.cyclo ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.cyclo ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/system_stm32f1xx.cyclo ./Core/Src/system_stm32f1xx.d ./Core/Src/system_stm32f1xx.o ./Core/Src/system_stm32f1xx.su ./Core/Src/tim.cyclo ./Core/Src/tim.d ./Core/Src/tim.o ./Core/Src/tim.su ./Core/Src/usart.cyclo ./Core/Src/usart.d ./Core/Src/usart.o ./Core/Src/usart.su
 
 .PHONY: clean-Core-2f-Src
 

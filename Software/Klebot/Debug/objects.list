@@ -4,7 +4,6 @@
 "./Core/Src/gpio.o"
 "./Core/Src/i2c.o"
 "./Core/Src/klebot_parser.o"
-"./Core/Src/klebot_radio.o"
 "./Core/Src/klebot_scheduler.o"
 "./Core/Src/main.o"
 "./Core/Src/nRF24.o"

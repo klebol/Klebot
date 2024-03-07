@@ -623,7 +623,7 @@ void nRF24_Init(SPI_HandleTypeDef *hspi)
 //
 //
 
-nRF24_TX_Status nRF24_WriteAckPayload(uint8_t pipe, uint8_t * data, uint8_t size)
+nRF24_TX_Status nRF24_WriteAckPayload(uint8_t pipe, uint8_t *data, uint8_t size)
 {
 	if(size > 32)
 		return NRF24_NO_TRANSMITTED_PACKET;

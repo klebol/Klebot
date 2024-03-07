@@ -1,5 +1,0 @@
-../Core/Src/Programs/DiodeTest_Prog.c:23:18:Prog_DiodeTest_Init	1
-../Core/Src/Programs/DiodeTest_Prog.c:30:18:Prog_DiodeTest_Deinit	1
-../Core/Src/Programs/DiodeTest_Prog.c:39:18:Prog_DiodeTest_Program	1
-../Core/Src/Programs/DiodeTest_Prog.c:49:18:Prog_DiodeTest_Launch	1
-../Core/Src/Programs/DiodeTest_Prog.c:58:6:Prog_DiodeTest_Parser	3
