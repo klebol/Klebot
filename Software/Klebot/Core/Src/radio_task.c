@@ -45,27 +45,38 @@ void vTaskRadio(void *pvParameters)
 
 	for(;;)
 	{
-		/* Wait for notification from NRF IRQ */
-		ulTaskNotifyTake(pdTRUE, portMAX_DELAY);	//TODO: Blocked task cant count the timeout !!!! FIX !
 
-		/* Check if connection isn't dead by checking if timeout have passed */
-		if((xTaskGetTickCount() - ConnectionTimeoutCounter) > (3 * PACKET_SEND_DELAY) )
+		if(xTaskNotifyWait(0, 0, NULL, 2000) == pdTRUE)
+		{
+			/* Check kind of IRQ and take related actions (callbacks) */
+			nRF24_Event();
+			/* Take massage from TX Queue and send it via next ACK Payload */
+			if(TxStatus == RADIO_OK && ConnectionStatus == RADIO_OK)
+			{
+				if( xQueueReceive(QueueRadioTX, &FrameToSend, 0 ) == pdPASS )
+				{
+					nRF24_WriteAckPayload(0, FrameToSend.data, FrameToSend.length);
+					/* Radio busy to prevent overwriting ack payload with next frame untill TX Callback arrives */
+					TxStatus = RADIO_BUSY;
+				}
+			}
+		}
+		else
 		{
 			ConnectionStatus = RADIO_ERROR;
 		}
 
-		/* Check kind of IRQ and take related actions (callbacks) */
-		nRF24_Event();
-		/* Take massage from TX Queue and send it via next ACK Payload */
-		if(TxStatus == RADIO_OK && ConnectionStatus == RADIO_OK)
-		{
-			if( xQueueReceive(QueueRadioTX, &FrameToSend, 0 ) == pdPASS )
-			{
-				nRF24_WriteAckPayload(0, FrameToSend.data, FrameToSend.length);
-				/* Radio busy to prevent overwriting ack payload with next frame untill TX Callback arrives */
-				TxStatus = RADIO_BUSY;
-			}
-		}
+//
+//		/* Wait for notification from NRF IRQ */
+//		ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
+//
+//		/* Check if connection isn't dead by checking if timeout have passed */
+//		if((xTaskGetTickCount() - ConnectionTimeoutCounter) > (3 * PACKET_SEND_DELAY) )
+//		{
+//			ConnectionStatus = RADIO_ERROR;
+//		}
+
+
 	}
 }
 
@@ -95,6 +106,14 @@ void Radio_HandlerIRQ(void)	//TODO: Check priorities later
 	BaseType_t xHigherPriorityTaskWoken = pdFALSE;
 	/* Set Interrupt Flag to 1 */
 	nRF24_IRQ_Handler();
+
+	RadioFrame_t TestFrame;
+	TestFrame.data[0] = 0xFF;
+	TestFrame.length = 1;
+
+	xQueueSendToBackFromISR( QueueRadioTX, &TestFrame, NULL );
+
+
 	/* Notify the radio Task */
 	vTaskNotifyGiveFromISR(xTaskRadioHandle, &xHigherPriorityTaskWoken);
 	/* yield if unblocked task (radio) has higher priority than current task */
@@ -175,7 +194,7 @@ void nRF24_EventRxCallback(void)					// Received Packet or received ACK Payload
 /* This callback means connection lost */
 void nRF24_EventMrCallback(void)
 {
-	//ConnectionStatus = RADIO_ERROR;
+	ConnectionStatus = RADIO_ERROR;
 	//TODO: Check if this has any sense on robot
 }
 
