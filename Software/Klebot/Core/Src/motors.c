@@ -5,8 +5,8 @@
  *      Author: miqix
  */
 
-#include "Motors/motors.h"
-#include "Motors/motor_encoder.h"
+#include "motors.h"
+#include "motor_encoder.h"
 #include "FIRFilter.h"
 #include "stdio.h"
 #include "usart.h"

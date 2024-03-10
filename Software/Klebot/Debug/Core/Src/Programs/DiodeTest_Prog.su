@@ -1,0 +1,5 @@
+../Core/Src/Programs/DiodeTest_Prog.c:22:18:Prog_DiodeTest_Init	8	static
+../Core/Src/Programs/DiodeTest_Prog.c:29:18:Prog_DiodeTest_Deinit	4	static
+../Core/Src/Programs/DiodeTest_Prog.c:38:18:Prog_DiodeTest_Program	4	static
+../Core/Src/Programs/DiodeTest_Prog.c:48:18:Prog_DiodeTest_Launch	8	static
+../Core/Src/Programs/DiodeTest_Prog.c:57:6:Prog_DiodeTest_Parser	24	static

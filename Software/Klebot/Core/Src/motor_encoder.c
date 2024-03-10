@@ -4,7 +4,7 @@
  *  Created on: Dec 14, 2023
  *      Author: miqix
  */
-#include "Motors/motor_encoder.h"
+#include "motor_encoder.h"
 #include "FIRFilter.h"
 
 int16_t VelocityFilterBuffer[100];

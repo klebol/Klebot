@@ -1,0 +1,5 @@
+../Core/Src/Programs/MotorsDebug_Prog.c:24:18:Prog_MotorsDebug_Init	1
+../Core/Src/Programs/MotorsDebug_Prog.c:32:18:Prog_MotorsDebug_Deinit	1
+../Core/Src/Programs/MotorsDebug_Prog.c:42:18:Prog_MotorsDebug_Program	1
+../Core/Src/Programs/MotorsDebug_Prog.c:53:18:Prog_MotorsDebug_Launch	1
+../Core/Src/Programs/MotorsDebug_Prog.c:62:6:Prog_MotorsDebug_Parser	3

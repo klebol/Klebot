@@ -40,7 +40,7 @@
 
 
 #include "klebot_scheduler.h"
-#include "Motors/motors.h"
+#include "motors.h"
 
 #include "stdio.h"
 #include "string.h"
@@ -135,7 +135,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  KlebotScheduler();
+	  //KlebotScheduler();
 
 
 

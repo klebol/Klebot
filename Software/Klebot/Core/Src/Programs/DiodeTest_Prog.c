@@ -7,7 +7,6 @@
 #include "Programs/klebot_programs.h"
 #include "Programs/DiodeTest_Prog.h"
 #include "klebot_commands.h"
-#include "klebot_radio.h"
 #include "gpio.h"
 
 //
@@ -67,7 +66,7 @@ void Prog_DiodeTest_Parser(uint8_t *command, uint8_t length)
 		Buffer[0] = DIODE_TEST;
 		Buffer[1] = DIODE_REAL_STATE;
 		Buffer[2] = 1;				//TODO: USE READPIN HERE
-		Radio_TxBufferPut(Buffer, 3);
+		//Radio_TxBufferPut(Buffer, 3);
 		break;
 
 	case DIODE_SET_OFF:
@@ -75,7 +74,7 @@ void Prog_DiodeTest_Parser(uint8_t *command, uint8_t length)
 		Buffer[0] = DIODE_TEST;
 		Buffer[1] = DIODE_REAL_STATE;
 		Buffer[2] = 0;
-		Radio_TxBufferPut(Buffer, 3);
+		//Radio_TxBufferPut(Buffer, 3);
 		break;
 
 	default:

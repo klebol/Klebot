@@ -4,7 +4,7 @@
  *  Created on: Nov 3, 2023
  *      Author: Michal Klebokowski
  */
-#include "Motors/drv8836.h"
+#include "drv8836.h"
 #include "tim.h"
 
 void DRV8836_Init(DRV8836_t *ic, TIM_HandleTypeDef *htim, uint16_t a_forward_channel, uint16_t a_reverse_channel, uint16_t b_forward_channel, uint16_t b_reverse_channel)

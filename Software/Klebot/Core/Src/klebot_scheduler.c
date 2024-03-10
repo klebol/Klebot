@@ -7,8 +7,9 @@
 
 #include "klebot_scheduler.h"
 #include "Programs/klebot_programs.h"
-#include "klebot_radio.h"
 #include "klebot_parser.h"
+#include "stm32f1xx_hal.h"
+#include "gpio.h"
 
 
 uint8_t CommandSource = RADIO_DATA_SOURCE;
@@ -18,12 +19,12 @@ static void ConnectionBlinkLED(void)
 {
 	static uint32_t LastTick = 0;
 	/* Get the connection status */
-	if(RADIO_ERROR == Radio_GetConnectionStatus())
-	{
-		/* If there is no connection, set the LED off and return */
-		HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
-		return;
-	}
+//	if(RADIO_ERROR == Radio_GetConnectionStatus())
+//	{
+//		/* If there is no connection, set the LED off and return */
+//		HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
+//		return;
+//	}
 	/* Blink the diode if there is connection with controller */
 	if(HAL_GetTick() - LastTick > 500)
 	{
@@ -39,7 +40,7 @@ void KlebotScheduler(void)
 	Programs_status_t SubProgramStatus;
 
 	/* Radio process - always active in the background */
-	Radio_Process();
+	//Radio_Process();
 
 	/* Startup sequence */
 	if(0 == StartupInitFlag)

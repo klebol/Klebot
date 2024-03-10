@@ -8,7 +8,7 @@
 #ifndef INC_MOTORS_MOTORS_H_
 #define INC_MOTORS_MOTORS_H_
 
-#include "Motors/drv8836.h"
+#include "drv8836.h"
 #include "tim.h"
 
 #define DEAD_PWM_OFFSET 150

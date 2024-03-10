@@ -1,0 +1,7 @@
+../Core/Src/Programs/klebot_programs.c:26:18:Programs_SetProgram	3
+../Core/Src/Programs/klebot_programs.c:50:6:Programs_ExitProgram	1
+../Core/Src/Programs/klebot_programs.c:59:21:Programs_GetProgram	1
+../Core/Src/Programs/klebot_programs.c:65:6:Programs_ClearProgram	1
+../Core/Src/Programs/klebot_programs.c:72:19:Programs_PerformProgram	6
+../Core/Src/Programs/klebot_programs.c:106:18:Programs_SendProgramStartedACK	1
+../Core/Src/Programs/klebot_programs.c:115:18:Programs_SendProgramExitACK	1

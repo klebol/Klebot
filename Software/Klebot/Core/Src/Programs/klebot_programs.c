@@ -5,8 +5,9 @@
  *      Author: Michal Klebokowski
  */
 #include "Programs/klebot_programs.h"
-#include "klebot_radio.h"
 #include "klebot_commands.h"
+#include "radio_task.h"
+#include "stdlib.h"
 
 /* Pointer to current running program struct */
 Programs_Program_t *CurrentlyRunningProg;
@@ -108,7 +109,7 @@ Programs_error_t Programs_SendProgramStartedACK(uint8_t ProgramID, uint8_t ACKor
 	Buffer[0] = START_PROGRAM;
 	Buffer[1] = ProgramID;
 	Buffer[2] = ACKorNACK;
-	return Radio_TxBufferPut(Buffer, 3);
+	//return Radio_TxBufferPut(Buffer, 3);
 }
 
 Programs_error_t Programs_SendProgramExitACK(uint8_t ACKorNACK)
@@ -116,6 +117,6 @@ Programs_error_t Programs_SendProgramExitACK(uint8_t ACKorNACK)
 	uint8_t Buffer[2];
 	Buffer[0] = EXIT_PROGRAM;
 	Buffer[1] = ACKorNACK;
-	return Radio_TxBufferPut(Buffer, 2);
+	//return Radio_TxBufferPut(Buffer, 2);
 }
 

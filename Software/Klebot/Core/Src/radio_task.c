@@ -46,7 +46,7 @@ void vTaskRadio(void *pvParameters)
 	for(;;)
 	{
 		/* Wait for notification from NRF IRQ */
-		ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
+		ulTaskNotifyTake(pdTRUE, portMAX_DELAY);	//TODO: Blocked task cant count the timeout !!!! FIX !
 
 		/* Check if connection isn't dead by checking if timeout have passed */
 		if((xTaskGetTickCount() - ConnectionTimeoutCounter) > (3 * PACKET_SEND_DELAY) )

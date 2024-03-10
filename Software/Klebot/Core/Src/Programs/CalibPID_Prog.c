@@ -7,8 +7,7 @@
 #include "Programs/klebot_programs.h"
 #include "Programs/CalibPID_Prog.h"
 #include "klebot_commands.h"
-#include "klebot_radio.h"
-#include "Motors/motors.h"
+#include "motors.h"
 /* HAL Components */
 #include "gpio.h"
 /* Standard libraries */
@@ -119,7 +118,7 @@ void Prog_CalibPID_Parser(uint8_t *command, uint8_t length)
 		Buffer[0] = PID_CALIBRATION;
 		Buffer[1] = PID_SET_GAIN;
 		Buffer[2] = ExeResult;
-		Radio_TxBufferPut(Buffer, 3);
+		//Radio_TxBufferPut(Buffer, 3);
 		break;
 
 	case PID_SET_TARGET:
@@ -147,7 +146,7 @@ void Prog_CalibPID_Parser(uint8_t *command, uint8_t length)
 		Buffer[0] = PID_CALIBRATION;
 		Buffer[1] = PID_SET_TARGET;
 		Buffer[2] = ExeResult;
-		Radio_TxBufferPut(Buffer, 3);
+		//Radio_TxBufferPut(Buffer, 3);
 		break;
 
 	case PID_RESET_TEMPS:
@@ -157,7 +156,7 @@ void Prog_CalibPID_Parser(uint8_t *command, uint8_t length)
 		Buffer[0] = PID_CALIBRATION;
 		Buffer[1] = PID_RESET_TEMPS;
 		Buffer[2] = _OK;
-		Radio_TxBufferPut(Buffer, 3);
+		//Radio_TxBufferPut(Buffer, 3);
 		break;
 
 	case PID_START_IMPULSE:
@@ -168,7 +167,7 @@ void Prog_CalibPID_Parser(uint8_t *command, uint8_t length)
 		Buffer[0] = PID_CALIBRATION;
 		Buffer[1] = PID_START_IMPULSE;
 		Buffer[2] = _OK;
-		Radio_TxBufferPut(Buffer, 3);
+		//Radio_TxBufferPut(Buffer, 3);
 		break;
 
 	case PID_STOP_MOTOR:
@@ -184,7 +183,7 @@ void Prog_CalibPID_Parser(uint8_t *command, uint8_t length)
 		Buffer[0] = PID_CALIBRATION;
 		Buffer[1] = PID_STOP_MOTOR;
 		Buffer[2] = _OK;
-		Radio_TxBufferPut(Buffer, 3);
+		//Radio_TxBufferPut(Buffer, 3);
 	default:
 		break;
 	}

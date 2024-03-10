@@ -1,4 +1,3 @@
-MotorEncoderA
-MotorEncoderB
-Target
-MotorPID_B
+ConnectionStatus
+TxStatus
+RxStatus

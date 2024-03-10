@@ -7,9 +7,8 @@
 
 #include "Programs/klebot_programs.h"
 #include "Programs/MotorsDebug_Prog.h"
-#include "Motors/motors.h"
+#include "motors.h"
 #include "klebot_commands.h"
-#include "klebot_radio.h"
 #include "gpio.h"
 
 //
