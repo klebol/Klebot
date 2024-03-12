@@ -8,6 +8,7 @@
 #ifndef INC_KLEBOT_COMMANDS_H_
 #define INC_KLEBOT_COMMANDS_H_
 
+#define MAX_COMMAND_LENGTH 32		// [Bytes]
 //
 //--- Connection related commands ---
 //
@@ -32,6 +33,12 @@
 #define START_PROGRAM 0x10
 #define EXIT_PROGRAM 0x11
 
+//
+// --- Type Of Commands ---
+//
+
+#define PROGRAM_CMD 0x12
+#define HARDWARE_CMD 0x13
 
 // --- TEMPLATE ---
 

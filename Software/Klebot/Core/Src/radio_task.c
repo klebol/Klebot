@@ -18,9 +18,9 @@
 #include "klebot_commands.h"
 
 /* Status variables */
-Klebot_Radio_Status ConnectionStatus;
-Klebot_Radio_Status TxStatus;
-Klebot_Radio_Status RxStatus;
+Radio_Status_t ConnectionStatus;
+Radio_Status_t TxStatus;
+Radio_Status_t RxStatus;
 
 /* Counter for stating connection loss */
 uint32_t ConnectionTimeoutCounter;
@@ -32,7 +32,7 @@ TaskHandle_t xTaskRadioHandle;
 QueueHandle_t QueueRadioTX;
 
 /* Buffer for sending via NRF */
-RadioFrame_t FrameToSend;
+Radio_Frame_t FrameToSend;
 
 //
 // -- The task --
@@ -41,12 +41,12 @@ RadioFrame_t FrameToSend;
 void vTaskRadio(void *pvParameters)
 {
 	/* Create queue for transmission (TX) */
-	QueueRadioTX = xQueueCreate(3, sizeof(RadioFrame_t));
+	QueueRadioTX = xQueueCreate(3, sizeof(Radio_Frame_t));
 
 	for(;;)
 	{
-
-		if(xTaskNotifyWait(0, 0, NULL, 2000) == pdTRUE)
+		/* Block the task untill notification from NRF IRQ arrives */
+		if(xTaskNotifyWait(0, 0, NULL, RADIO_TIMEOUT_TICKS) == pdTRUE)
 		{
 			/* Check kind of IRQ and take related actions (callbacks) */
 			nRF24_Event();
@@ -62,20 +62,10 @@ void vTaskRadio(void *pvParameters)
 			}
 		}
 		else
+		/* If any interrupt haven't came during RADIO_TIMEOUT_TICKS period, communication is lost */
 		{
 			ConnectionStatus = RADIO_ERROR;
 		}
-
-//
-//		/* Wait for notification from NRF IRQ */
-//		ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
-//
-//		/* Check if connection isn't dead by checking if timeout have passed */
-//		if((xTaskGetTickCount() - ConnectionTimeoutCounter) > (3 * PACKET_SEND_DELAY) )
-//		{
-//			ConnectionStatus = RADIO_ERROR;
-//		}
-
 
 	}
 }
@@ -107,7 +97,7 @@ void Radio_HandlerIRQ(void)	//TODO: Check priorities later
 	/* Set Interrupt Flag to 1 */
 	nRF24_IRQ_Handler();
 
-	RadioFrame_t TestFrame;
+	Radio_Frame_t TestFrame;
 	TestFrame.data[0] = 0xFF;
 	TestFrame.length = 1;
 
@@ -125,7 +115,7 @@ void Radio_HandlerIRQ(void)	//TODO: Check priorities later
 //
 
 /* Function to put the frame into the queue, frame will be sent in ACK Payload after receiving next message from controller */
-Klebot_Radio_Status Radio_TxPutFrame(RadioFrame_t* FrameToPut)
+Radio_Status_t Radio_TxPutFrame(Radio_Frame_t* FrameToPut)
 {
 	/* Return error if there is no connection */
 	if(ConnectionStatus == RADIO_ERROR)
@@ -133,7 +123,7 @@ Klebot_Radio_Status Radio_TxPutFrame(RadioFrame_t* FrameToPut)
 		return RADIO_ERROR;
 	}
 
-	Klebot_Radio_Status Status = RADIO_OK;
+	Radio_Status_t Status = RADIO_OK;
 
 	/* Add end of command identifier to frame */
 	FrameToPut->data[FrameToPut->length] = COMM_END;
@@ -150,7 +140,7 @@ Klebot_Radio_Status Radio_TxPutFrame(RadioFrame_t* FrameToPut)
 }
 
 /* Connection status getter */
-Klebot_Radio_Status Radio_GetConnectionStatus(void)
+Radio_Status_t Radio_GetConnectionStatus(void)
 {
 	return ConnectionStatus;
 }

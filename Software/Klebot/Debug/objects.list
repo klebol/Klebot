@@ -12,6 +12,7 @@
 "./Core/Src/motors_task.o"
 "./Core/Src/nRF24.o"
 "./Core/Src/onboard_diode_task.o"
+"./Core/Src/parser_task.o"
 "./Core/Src/radio_task.o"
 "./Core/Src/spi.o"
 "./Core/Src/stm32f1xx_hal_msp.o"

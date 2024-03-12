@@ -1,0 +1,41 @@
+/*
+ * parser_task.c
+ *
+ *  Created on: Mar 12, 2024
+ *      Author: Michal Klebokowski
+ */
+#include "parser_task.h"
+/* FreeRTOS includes */
+#include "FreeRTOS.h"
+#include "task.h"
+#include "queue.h"
+/* HAL */
+
+/* Other */
+#include "klebot_commands.h"
+
+
+QueueHandle_t QueueParser;
+
+
+void vTaskParser(void *pvParameters)
+{
+	for(;;)
+	{
+
+	}
+}
+
+
+Parser_Error_t Parser_WriteCommand(Parser_Command_t* cmd)
+{
+
+
+	if(xQueueSendToBack( QueueParser, cmd, (TickType_t)10 ) != pdTRUE )
+	{
+		/* If put to queue failed */
+		return PARSER_ERROR;
+	}
+
+	return PARSER_OK;
+}

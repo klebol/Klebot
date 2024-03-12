@@ -1,0 +1,23 @@
+/*
+ * parser_task.c
+ *
+ *  Created on: Mar 12, 2024
+ *      Author: Michal Klebokowski
+ */
+#include "parser_task.h"
+/* FreeRTOS includes */
+#include "FreeRTOS.h"
+#include "task.h"
+#include "queue.h"
+/* HAL */
+
+/* Other */
+#include "klebot_commands.h"
+
+void vTaskParser(void *pvParameters)
+{
+	for(;;)
+	{
+
+	}
+}

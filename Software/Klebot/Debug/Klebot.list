@@ -37,15 +37,15 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  16 .debug_rnglists 00001640  00000000  00000000  00046400  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_macro  000247e2  00000000  00000000  00047a40  2**0
+ 17 .debug_macro  000247df  00000000  00000000  00047a40  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_line   0002381a  00000000  00000000  0006c222  2**0
+ 18 .debug_line   0002396f  00000000  00000000  0006c21f  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_str    000cbb15  00000000  00000000  0008fa3c  2**0
+ 19 .debug_str    000cbb4d  00000000  00000000  0008fb8e  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .debug_frame  000089f0  00000000  00000000  0015b554  2**2
+ 20 .debug_frame  000089f0  00000000  00000000  0015b6dc  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 00000064  00000000  00000000  00163f44  2**0
+ 21 .debug_line_str 00000064  00000000  00000000  001640cc  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -1698,29 +1698,48 @@ Disassembly of section .text:
  800145a:	bf00      	nop
 
 0800145c <FIRFilter_Init>:
+
+
+
+
+void FIRFilter_Init(FIRFilter *fir)
+{
  800145c:	b480      	push	{r7}
  800145e:	b085      	sub	sp, #20
  8001460:	af00      	add	r7, sp, #0
  8001462:	6078      	str	r0, [r7, #4]
+	/* Clear filter buffer */
+	for (uint8_t n = 0; n < FIR_FILTER_LENGTH; n++)
  8001464:	2300      	movs	r3, #0
  8001466:	73fb      	strb	r3, [r7, #15]
  8001468:	e008      	b.n	800147c <FIRFilter_Init+0x20>
+	{
+		fir->buf[n] = 0.0f;
  800146a:	7bfa      	ldrb	r2, [r7, #15]
  800146c:	687b      	ldr	r3, [r7, #4]
  800146e:	f04f 0100 	mov.w	r1, #0
  8001472:	f843 1022 	str.w	r1, [r3, r2, lsl #2]
+	for (uint8_t n = 0; n < FIR_FILTER_LENGTH; n++)
  8001476:	7bfb      	ldrb	r3, [r7, #15]
  8001478:	3301      	adds	r3, #1
  800147a:	73fb      	strb	r3, [r7, #15]
  800147c:	7bfb      	ldrb	r3, [r7, #15]
  800147e:	2b18      	cmp	r3, #24
  8001480:	d9f3      	bls.n	800146a <FIRFilter_Init+0xe>
+	}
+
+	/* Reset buffer index */
+	fir->bufIndex = 0;
  8001482:	687b      	ldr	r3, [r7, #4]
  8001484:	2200      	movs	r2, #0
  8001486:	f883 2064 	strb.w	r2, [r3, #100]	; 0x64
+
+	/* Clear filter output */
+	fir->out = 0.0f;
  800148a:	687b      	ldr	r3, [r7, #4]
  800148c:	f04f 0200 	mov.w	r2, #0
  8001490:	669a      	str	r2, [r3, #104]	; 0x68
+}
  8001492:	bf00      	nop
  8001494:	3714      	adds	r7, #20
  8001496:	46bd      	mov	sp, r7
@@ -1728,48 +1747,81 @@ Disassembly of section .text:
  800149a:	4770      	bx	lr
 
 0800149c <FIRFilter_Update>:
+
+float FIRFilter_Update(FIRFilter *fir, float inp)
+{
  800149c:	b590      	push	{r4, r7, lr}
  800149e:	b085      	sub	sp, #20
  80014a0:	af00      	add	r7, sp, #0
  80014a2:	6078      	str	r0, [r7, #4]
  80014a4:	6039      	str	r1, [r7, #0]
+	/* Store latest sample in buffer */
+	fir->buf[fir->bufIndex] = inp;
  80014a6:	687b      	ldr	r3, [r7, #4]
  80014a8:	f893 3064 	ldrb.w	r3, [r3, #100]	; 0x64
  80014ac:	4619      	mov	r1, r3
  80014ae:	687b      	ldr	r3, [r7, #4]
  80014b0:	683a      	ldr	r2, [r7, #0]
  80014b2:	f843 2021 	str.w	r2, [r3, r1, lsl #2]
+
+	/* Increment buffer index and wrap around if necessary */
+	fir->bufIndex++;
  80014b6:	687b      	ldr	r3, [r7, #4]
  80014b8:	f893 3064 	ldrb.w	r3, [r3, #100]	; 0x64
  80014bc:	3301      	adds	r3, #1
  80014be:	b2da      	uxtb	r2, r3
  80014c0:	687b      	ldr	r3, [r7, #4]
  80014c2:	f883 2064 	strb.w	r2, [r3, #100]	; 0x64
+
+	if(fir->bufIndex == FIR_FILTER_LENGTH)
  80014c6:	687b      	ldr	r3, [r7, #4]
  80014c8:	f893 3064 	ldrb.w	r3, [r3, #100]	; 0x64
  80014cc:	2b19      	cmp	r3, #25
  80014ce:	d103      	bne.n	80014d8 <FIRFilter_Update+0x3c>
+	{
+		fir->bufIndex = 0;
  80014d0:	687b      	ldr	r3, [r7, #4]
  80014d2:	2200      	movs	r2, #0
  80014d4:	f883 2064 	strb.w	r2, [r3, #100]	; 0x64
+	}
+
+	/* Compute new output sample (via convulation) */
+	fir->out = 0.0f;
  80014d8:	687b      	ldr	r3, [r7, #4]
  80014da:	f04f 0200 	mov.w	r2, #0
  80014de:	669a      	str	r2, [r3, #104]	; 0x68
+
+	uint8_t sumIndex = fir->bufIndex;
  80014e0:	687b      	ldr	r3, [r7, #4]
  80014e2:	f893 3064 	ldrb.w	r3, [r3, #100]	; 0x64
  80014e6:	73fb      	strb	r3, [r7, #15]
+
+	for(uint8_t n = 0; n < FIR_FILTER_LENGTH; n++)
  80014e8:	2300      	movs	r3, #0
  80014ea:	73bb      	strb	r3, [r7, #14]
  80014ec:	e021      	b.n	8001532 <FIRFilter_Update+0x96>
+	{
+		/* Decrement index and wrap if necessary */
+		if (sumIndex > 0)
  80014ee:	7bfb      	ldrb	r3, [r7, #15]
  80014f0:	2b00      	cmp	r3, #0
  80014f2:	d003      	beq.n	80014fc <FIRFilter_Update+0x60>
+		{
+			sumIndex--;
  80014f4:	7bfb      	ldrb	r3, [r7, #15]
  80014f6:	3b01      	subs	r3, #1
  80014f8:	73fb      	strb	r3, [r7, #15]
  80014fa:	e001      	b.n	8001500 <FIRFilter_Update+0x64>
+		}
+		else
+		{
+			sumIndex = FIR_FILTER_LENGTH - 1;
  80014fc:	2318      	movs	r3, #24
  80014fe:	73fb      	strb	r3, [r7, #15]
+		}
+
+		/* Multiply impulse response with shifted input sample and add to output */
+		fir->out += FIR_IMPULSE_RESPONSE[n] * fir->buf[sumIndex];
  8001500:	687b      	ldr	r3, [r7, #4]
  8001502:	6e9c      	ldr	r4, [r3, #104]	; 0x68
  8001504:	7bbb      	ldrb	r3, [r7, #14]
@@ -1788,14 +1840,20 @@ Disassembly of section .text:
  8001526:	461a      	mov	r2, r3
  8001528:	687b      	ldr	r3, [r7, #4]
  800152a:	669a      	str	r2, [r3, #104]	; 0x68
+	for(uint8_t n = 0; n < FIR_FILTER_LENGTH; n++)
  800152c:	7bbb      	ldrb	r3, [r7, #14]
  800152e:	3301      	adds	r3, #1
  8001530:	73bb      	strb	r3, [r7, #14]
  8001532:	7bbb      	ldrb	r3, [r7, #14]
  8001534:	2b18      	cmp	r3, #24
  8001536:	d9da      	bls.n	80014ee <FIRFilter_Update+0x52>
+	}
+
+	/* Return filtered output */
+	return fir->out;
  8001538:	687b      	ldr	r3, [r7, #4]
  800153a:	6e9b      	ldr	r3, [r3, #104]	; 0x68
+}
  800153c:	4618      	mov	r0, r3
  800153e:	3714      	adds	r7, #20
  8001540:	46bd      	mov	sp, r7
@@ -1803,6 +1861,12 @@ Disassembly of section .text:
  8001544:	20000000 	.word	0x20000000
 
 08001548 <PID_Update>:
+	instance->IntegralError = 0;
+}
+
+
+int16_t PID_Update(PID_Controller_t *instance, int16_t input_error, uint16_t sampling_rate_hz)
+{
  8001548:	b5b0      	push	{r4, r5, r7, lr}
  800154a:	b082      	sub	sp, #8
  800154c:	af00      	add	r7, sp, #0
@@ -1811,6 +1875,8 @@ Disassembly of section .text:
  8001552:	807b      	strh	r3, [r7, #2]
  8001554:	4613      	mov	r3, r2
  8001556:	803b      	strh	r3, [r7, #0]
+	/* Update integral error */
+	if(instance->ki > 0)
  8001558:	687b      	ldr	r3, [r7, #4]
  800155a:	685b      	ldr	r3, [r3, #4]
  800155c:	f04f 0100 	mov.w	r1, #0
@@ -1819,23 +1885,32 @@ Disassembly of section .text:
  8001566:	4603      	mov	r3, r0
  8001568:	2b00      	cmp	r3, #0
  800156a:	d006      	beq.n	800157a <PID_Update+0x32>
+	{
+		instance->IntegralError += input_error;
  800156c:	687b      	ldr	r3, [r7, #4]
  800156e:	691a      	ldr	r2, [r3, #16]
  8001570:	f9b7 3002 	ldrsh.w	r3, [r7, #2]
  8001574:	441a      	add	r2, r3
  8001576:	687b      	ldr	r3, [r7, #4]
  8001578:	611a      	str	r2, [r3, #16]
+	}
+	/* Secure integral error */
+	if(instance->IntegralError > instance->MaxIntegralError)
  800157a:	687b      	ldr	r3, [r7, #4]
  800157c:	691a      	ldr	r2, [r3, #16]
  800157e:	687b      	ldr	r3, [r7, #4]
  8001580:	699b      	ldr	r3, [r3, #24]
  8001582:	429a      	cmp	r2, r3
  8001584:	dd04      	ble.n	8001590 <PID_Update+0x48>
+	{
+		instance->IntegralError = instance->MaxIntegralError;
  8001586:	687b      	ldr	r3, [r7, #4]
  8001588:	699a      	ldr	r2, [r3, #24]
  800158a:	687b      	ldr	r3, [r7, #4]
  800158c:	611a      	str	r2, [r3, #16]
  800158e:	e00b      	b.n	80015a8 <PID_Update+0x60>
+	}
+	else if(instance->IntegralError < -instance->MaxIntegralError)
  8001590:	687b      	ldr	r3, [r7, #4]
  8001592:	691a      	ldr	r2, [r3, #16]
  8001594:	687b      	ldr	r3, [r7, #4]
@@ -1843,11 +1918,17 @@ Disassembly of section .text:
  8001598:	425b      	negs	r3, r3
  800159a:	429a      	cmp	r2, r3
  800159c:	da04      	bge.n	80015a8 <PID_Update+0x60>
+	{
+		instance->IntegralError = -instance->MaxIntegralError;
  800159e:	687b      	ldr	r3, [r7, #4]
  80015a0:	699b      	ldr	r3, [r3, #24]
  80015a2:	425a      	negs	r2, r3
  80015a4:	687b      	ldr	r3, [r7, #4]
  80015a6:	611a      	str	r2, [r3, #16]
+	}
+
+	/*Calculate the PID output */
+	instance->Output = (instance->kp * input_error) +
  80015a8:	687b      	ldr	r3, [r7, #4]
  80015aa:	681c      	ldr	r4, [r3, #0]
  80015ac:	f9b7 3002 	ldrsh.w	r3, [r7, #2]
@@ -1859,6 +1940,7 @@ Disassembly of section .text:
  80015bc:	f7ff fbe2 	bl	8000d84 <__aeabi_fmul>
  80015c0:	4603      	mov	r3, r0
  80015c2:	461d      	mov	r5, r3
+			(instance->ki * (instance->IntegralError) / sampling_rate_hz) +
  80015c4:	687b      	ldr	r3, [r7, #4]
  80015c6:	685c      	ldr	r4, [r3, #4]
  80015c8:	687b      	ldr	r3, [r7, #4]
@@ -1879,11 +1961,13 @@ Disassembly of section .text:
  80015ec:	4620      	mov	r0, r4
  80015ee:	f7ff fc7d 	bl	8000eec <__aeabi_fdiv>
  80015f2:	4603      	mov	r3, r0
+	instance->Output = (instance->kp * input_error) +
  80015f4:	4619      	mov	r1, r3
  80015f6:	4628      	mov	r0, r5
  80015f8:	f7ff fabc 	bl	8000b74 <__addsf3>
  80015fc:	4603      	mov	r3, r0
  80015fe:	461d      	mov	r5, r3
+			(instance->kd * sampling_rate_hz * (input_error - instance->LastError) );
  8001600:	687b      	ldr	r3, [r7, #4]
  8001602:	689c      	ldr	r4, [r3, #8]
  8001604:	883b      	ldrh	r3, [r7, #0]
@@ -1906,27 +1990,37 @@ Disassembly of section .text:
  8001630:	4620      	mov	r0, r4
  8001632:	f7ff fba7 	bl	8000d84 <__aeabi_fmul>
  8001636:	4603      	mov	r3, r0
+			(instance->ki * (instance->IntegralError) / sampling_rate_hz) +
  8001638:	4619      	mov	r1, r3
  800163a:	4628      	mov	r0, r5
  800163c:	f7ff fa9a 	bl	8000b74 <__addsf3>
  8001640:	4603      	mov	r3, r0
+	instance->Output = (instance->kp * input_error) +
  8001642:	4618      	mov	r0, r3
  8001644:	f7ff fd64 	bl	8001110 <__aeabi_f2iz>
  8001648:	4603      	mov	r3, r0
  800164a:	b21a      	sxth	r2, r3
  800164c:	687b      	ldr	r3, [r7, #4]
  800164e:	829a      	strh	r2, [r3, #20]
+
+
+	/* Secure output */
+	if(instance->Output >= instance->MaxOutput)
  8001650:	687b      	ldr	r3, [r7, #4]
  8001652:	f9b3 2014 	ldrsh.w	r2, [r3, #20]
  8001656:	687b      	ldr	r3, [r7, #4]
  8001658:	f9b3 301c 	ldrsh.w	r3, [r3, #28]
  800165c:	429a      	cmp	r2, r3
  800165e:	db05      	blt.n	800166c <PID_Update+0x124>
+	{
+		instance->Output = instance->MaxOutput;
  8001660:	687b      	ldr	r3, [r7, #4]
  8001662:	f9b3 201c 	ldrsh.w	r2, [r3, #28]
  8001666:	687b      	ldr	r3, [r7, #4]
  8001668:	829a      	strh	r2, [r3, #20]
  800166a:	e012      	b.n	8001692 <PID_Update+0x14a>
+	}
+	else if(instance->Output <= -instance->MaxOutput)
  800166c:	687b      	ldr	r3, [r7, #4]
  800166e:	f9b3 3014 	ldrsh.w	r3, [r3, #20]
  8001672:	461a      	mov	r2, r3
@@ -1935,6 +2029,8 @@ Disassembly of section .text:
  800167a:	425b      	negs	r3, r3
  800167c:	429a      	cmp	r2, r3
  800167e:	dc08      	bgt.n	8001692 <PID_Update+0x14a>
+	{
+		instance->Output = -instance->MaxOutput;
  8001680:	687b      	ldr	r3, [r7, #4]
  8001682:	f9b3 301c 	ldrsh.w	r3, [r3, #28]
  8001686:	b29b      	uxth	r3, r3
@@ -1943,11 +2039,18 @@ Disassembly of section .text:
  800168c:	b21a      	sxth	r2, r3
  800168e:	687b      	ldr	r3, [r7, #4]
  8001690:	829a      	strh	r2, [r3, #20]
+	}
+
+	/* Save error */
+	instance->LastError = input_error;
  8001692:	687b      	ldr	r3, [r7, #4]
  8001694:	887a      	ldrh	r2, [r7, #2]
  8001696:	819a      	strh	r2, [r3, #12]
+
+	return instance->Output;
  8001698:	687b      	ldr	r3, [r7, #4]
  800169a:	f9b3 3014 	ldrsh.w	r3, [r3, #20]
+}
  800169e:	4618      	mov	r0, r3
  80016a0:	3708      	adds	r7, #8
  80016a2:	46bd      	mov	sp, r7
@@ -5451,7 +5554,7 @@ void vTaskRadio(void *pvParameters)
  8002c38:	af00      	add	r7, sp, #0
  8002c3a:	6078      	str	r0, [r7, #4]
 	/* Create queue for transmission (TX) */
-	QueueRadioTX = xQueueCreate(3, sizeof(RadioFrame_t));
+	QueueRadioTX = xQueueCreate(3, sizeof(Radio_Frame_t));
  8002c3c:	2200      	movs	r2, #0
  8002c3e:	2121      	movs	r1, #33	; 0x21
  8002c40:	2003      	movs	r0, #3
@@ -5462,8 +5565,8 @@ void vTaskRadio(void *pvParameters)
 
 	for(;;)
 	{
-
-		if(xTaskNotifyWait(0, 0, NULL, 2000) == pdTRUE)
+		/* Block the task untill notification from NRF IRQ arrives */
+		if(xTaskNotifyWait(0, 0, NULL, RADIO_TIMEOUT_TICKS) == pdTRUE)
  8002c4c:	f44f 63fa 	mov.w	r3, #2000	; 0x7d0
  8002c50:	2200      	movs	r2, #0
  8002c52:	2100      	movs	r1, #0
@@ -5511,16 +5614,16 @@ void vTaskRadio(void *pvParameters)
  8002c9a:	2202      	movs	r2, #2
  8002c9c:	701a      	strb	r2, [r3, #0]
  8002c9e:	e7d5      	b.n	8002c4c <vTaskRadio+0x18>
-				}
 			}
 		}
 		else
+		/* If any interrupt haven't came during RADIO_TIMEOUT_TICKS period, communication is lost */
 		{
 			ConnectionStatus = RADIO_ERROR;
  8002ca0:	4b03      	ldr	r3, [pc, #12]	; (8002cb0 <vTaskRadio+0x7c>)
  8002ca2:	2201      	movs	r2, #1
  8002ca4:	701a      	strb	r2, [r3, #0]
-		if(xTaskNotifyWait(0, 0, NULL, 2000) == pdTRUE)
+		if(xTaskNotifyWait(0, 0, NULL, RADIO_TIMEOUT_TICKS) == pdTRUE)
  8002ca6:	e7d1      	b.n	8002c4c <vTaskRadio+0x18>
  8002ca8:	20000440 	.word	0x20000440
  8002cac:	20000434 	.word	0x20000434
@@ -5591,7 +5694,7 @@ void Radio_HandlerIRQ(void)	//TODO: Check priorities later
 	nRF24_IRQ_Handler();
  8002d16:	f7ff fe7b 	bl	8002a10 <nRF24_IRQ_Handler>
 
-	RadioFrame_t TestFrame;
+	Radio_Frame_t TestFrame;
 	TestFrame.data[0] = 0xFF;
  8002d1a:	23ff      	movs	r3, #255	; 0xff
  8002d1c:	703b      	strb	r3, [r7, #0]

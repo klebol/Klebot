@@ -1,8 +1,8 @@
 ../Core/Src/radio_task.c:41:6:vTaskRadio	16	static
-../Core/Src/radio_task.c:89:6:Radio_TaskInit	16	static
-../Core/Src/radio_task.c:104:6:Radio_HandlerIRQ	48	static,ignoring_inline_asm
-../Core/Src/radio_task.c:128:21:Radio_TxPutFrame	24	static
-../Core/Src/radio_task.c:153:21:Radio_GetConnectionStatus	4	static
-../Core/Src/radio_task.c:163:6:nRF24_EventTxCallback	4	static
-../Core/Src/radio_task.c:172:6:nRF24_EventRxCallback	48	static
-../Core/Src/radio_task.c:195:6:nRF24_EventMrCallback	4	static
+../Core/Src/radio_task.c:79:6:Radio_TaskInit	16	static
+../Core/Src/radio_task.c:94:6:Radio_HandlerIRQ	48	static,ignoring_inline_asm
+../Core/Src/radio_task.c:118:16:Radio_TxPutFrame	24	static
+../Core/Src/radio_task.c:143:16:Radio_GetConnectionStatus	4	static
+../Core/Src/radio_task.c:153:6:nRF24_EventTxCallback	4	static
+../Core/Src/radio_task.c:162:6:nRF24_EventRxCallback	48	static
+../Core/Src/radio_task.c:185:6:nRF24_EventMrCallback	4	static

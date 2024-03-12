@@ -1,0 +1,5 @@
+../Core/Src/parser_task.c:20:16:Parser_ProgramParser	1
+../Core/Src/parser_task.c:33:16:Parser_HardwareParser	1
+../Core/Src/parser_task.c:38:6:vTaskParser	3
+../Core/Src/parser_task.c:68:16:Parser_AddElementToCmd	2
+../Core/Src/parser_task.c:81:16:Parser_WriteCommand	2
