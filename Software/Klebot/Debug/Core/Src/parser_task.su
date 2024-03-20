@@ -1,5 +1,5 @@
-../Core/Src/parser_task.c:20:16:Parser_ProgramParser	24	static
-../Core/Src/parser_task.c:33:16:Parser_HardwareParser	16	static
-../Core/Src/parser_task.c:38:6:vTaskParser	56	static
-../Core/Src/parser_task.c:68:16:Parser_AddElementToCmd	16	static
-../Core/Src/parser_task.c:81:16:Parser_WriteCommand	16	static
+../Core/Src/parser_task.c:28:16:Parser_ProgramParser	24	static
+../Core/Src/parser_task.c:41:16:Parser_HardwareParser	16	static
+../Core/Src/parser_task.c:46:6:vTaskParser	56	static
+../Core/Src/parser_task.c:76:16:Parser_AddElementToCmd	16	static
+../Core/Src/parser_task.c:89:16:Parser_WriteCommand	16	static

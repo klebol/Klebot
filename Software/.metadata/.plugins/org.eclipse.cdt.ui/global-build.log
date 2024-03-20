@@ -1,13 +1,13 @@
-17:39:29 **** Incremental Build of configuration Debug for project Klebot ****
+18:23:57 **** Build of configuration Debug for project Klebot ****
 make -j12 all 
 arm-none-eabi-gcc "../Core/Src/parser_task.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F107xC -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3 -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/parser_task.d" -MT"Core/Src/parser_task.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/parser_task.o"
 ../Core/Src/parser_task.c: In function 'Parser_ProgramParser':
-../Core/Src/parser_task.c:31:1: warning: control reaches end of non-void function [-Wreturn-type]
-   31 | }
+../Core/Src/parser_task.c:39:1: warning: control reaches end of non-void function [-Wreturn-type]
+   39 | }
       | ^
 ../Core/Src/parser_task.c: In function 'Parser_HardwareParser':
-../Core/Src/parser_task.c:36:1: warning: control reaches end of non-void function [-Wreturn-type]
-   36 | }
+../Core/Src/parser_task.c:44:1: warning: control reaches end of non-void function [-Wreturn-type]
+   44 | }
       | ^
 arm-none-eabi-gcc -o "Klebot.elf" @"objects.list"   -mcpu=cortex-m3 -T"D:\Embedded\KLEBOT\GIT\Software\Klebot\STM32F107RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Klebot.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: Klebot.elf
