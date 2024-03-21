@@ -1,0 +1,15 @@
+/*
+ * progs_manager.c
+ *
+ *  Created on: Mar 21, 2024
+ *      Author: Michal Klebokowski
+ */
+#include "progs_manager.h"
+/* FreeRTOS includes */
+
+/* HAL */
+
+/* Other */
+
+
+

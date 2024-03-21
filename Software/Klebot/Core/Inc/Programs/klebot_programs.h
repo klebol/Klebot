@@ -43,6 +43,8 @@ typedef struct
 // -- Public functions --
 //
 
+/* Task init */
+void Programs_TaskInit(void);
 /* Set program to launch */
 Programs_error_t Programs_SetProgram(Programs_Program_t *ProgramToSet);
 

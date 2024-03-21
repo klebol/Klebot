@@ -16,6 +16,7 @@
 #include "nRF24_Defs.h"
 #include "RingBuffer.h"
 #include "klebot_commands.h"
+#include "parser_task.h"
 
 /* Status variables */
 Radio_Status_t ConnectionStatus;
@@ -25,7 +26,7 @@ Radio_Status_t RxStatus;
 /* Counter for stating connection loss */
 uint32_t ConnectionTimeoutCounter;
 
-/* Radio task handler for task notification */
+/* Radio task handler */
 TaskHandle_t xTaskRadioHandle;
 
 /* Queue for transmiting radio data */
@@ -161,10 +162,10 @@ void nRF24_EventTxCallback(void)
 
 void nRF24_EventRxCallback(void)					// Received Packet or received ACK Payload
 {
-	uint8_t ReceivedCommand[MAX_COMMAND_LENGTH];
-	uint8_t ReceivedLength;
-	nRF24_ReadRXPaylaod((uint8_t*)ReceivedCommand,&ReceivedLength);
-
+	/* Parser command type for receiving data */
+	Parser_Command_t ReceivedCmd;
+	/* Read data */
+	nRF24_ReadRXPaylaod(ReceivedCmd.data, &ReceivedCmd.length);
 	/* If new RX is available, that means the connection is OK */
 	ConnectionStatus = RADIO_OK;
 	/* Save tick for connection lost timeot */
@@ -174,10 +175,14 @@ void nRF24_EventRxCallback(void)					// Received Packet or received ACK Payload
 	 *  sending the same frame in ACK payload again and again when no new frame was written to send */
 
 	/* Ingore if it is connection hold (it's only important for controller side */
-	if(CONNECTION_HOLD == ReceivedCommand[0]) return;
+	if(CONNECTION_HOLD == ReceivedCmd.data[0]) return;
 
 	/* Write received frame to parser queue */
-	//Radio_RxBufferPut(ReceivedCommand, ReceivedLength); 	//TODO: QUEUE TO PARSER
+	if( Parser_WriteCommand(&ReceivedCmd, RADIO_SOURCE) == PARSER_ERROR )
+	{
+		//TODO: FAILED TO PUT COMMAND INTO PARSER QUEUE
+	}
+
 	RxStatus = RADIO_NEW_RX;
 }
 

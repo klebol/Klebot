@@ -39,7 +39,8 @@ Core/Src/radio_task.o: ../Core/Src/radio_task.c ../Core/Inc/radio_task.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h \
  ../Core/Inc/nRF24.h ../Core/Inc/spi.h ../Core/Inc/nRF24_Defs.h \
- ../Core/Inc/RingBuffer.h ../Core/Inc/klebot_commands.h
+ ../Core/Inc/RingBuffer.h ../Core/Inc/klebot_commands.h \
+ ../Core/Inc/parser_task.h
 ../Core/Inc/radio_task.h:
 ../Core/Inc/klebot_commands.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
@@ -86,3 +87,4 @@ Core/Src/radio_task.o: ../Core/Src/radio_task.c ../Core/Inc/radio_task.h \
 ../Core/Inc/nRF24_Defs.h:
 ../Core/Inc/RingBuffer.h:
 ../Core/Inc/klebot_commands.h:
+../Core/Inc/parser_task.h:

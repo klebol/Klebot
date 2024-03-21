@@ -1,0 +1,20 @@
+/*
+ * progs_manager.c
+ *
+ *  Created on: Mar 21, 2024
+ *      Author: Michal Klebokowski
+ */
+#include "progs_manager.h"
+/* FreeRTOS includes */
+
+/* HAL */
+
+/* Other */
+
+uint8_t CurrentlyWorkingProg;
+
+ProgManager_Error_t ProgManager_StartProg(uint8_t progID)
+{
+
+}
+

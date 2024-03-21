@@ -37,9 +37,11 @@
 /* Tasks */
 #include "onboard_diode_task.h"
 #include "radio_task.h"
+#include "parser_task.h"
+#include "Programs/klebot_programs.h"
 
 
-#include "klebot_scheduler.h"
+
 #include "motors.h"
 
 #include "stdio.h"
@@ -122,8 +124,13 @@ int main(void)
   Motors_Init();
   HAL_TIM_Base_Start_IT(&htim7);
 
-  Radio_TaskInit();
 
+  Parser_TaskInit();
+  Radio_TaskInit();
+  Programs_TaskInit();
+
+
+  //TODO: UNIFY FRAME FORMAT, TAKE CARE OF PROGRAMS MODULE - START AND STOP PROGRAMS.
 
   xTaskCreate(vTaskOnboardDiode, "PCB Diode Task", 128, NULL, 1, NULL);
 

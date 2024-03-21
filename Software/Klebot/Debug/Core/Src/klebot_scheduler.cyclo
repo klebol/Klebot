@@ -1,3 +1,0 @@
-../Core/Src/klebot_scheduler.c:18:13:ConnectionBlinkLED	2
-../Core/Src/klebot_scheduler.c:37:6:KlebotScheduler	4
-../Core/Src/klebot_scheduler.c:67:6:Radio_NewCommandReceivedCallback	2

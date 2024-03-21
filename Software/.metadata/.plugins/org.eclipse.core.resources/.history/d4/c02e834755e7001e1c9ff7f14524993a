@@ -1,0 +1,18 @@
+/*
+ * progs_manager.h
+ *
+ *  Created on: Mar 21, 2024
+ *      Author: Michal Klebokowski
+ */
+
+#ifndef INC_PROGS_MANAGER_H_
+#define INC_PROGS_MANAGER_H_
+
+typedef enum
+{
+	PROG_MANAGER_OK,
+	PROG_MANAGER_ERROR
+}Prog_Manager_Error_t;
+
+
+#endif /* INC_PROGS_MANAGER_H_ */

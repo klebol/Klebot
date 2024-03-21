@@ -38,7 +38,12 @@
 //
 
 #define PROGRAM_CMD 0x12
+
+
+
 #define HARDWARE_CMD 0x13
+#define HW_READ 0x14
+#define HW_SET 0x15
 
 // --- TEMPLATE ---
 

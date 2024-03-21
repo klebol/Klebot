@@ -13,11 +13,18 @@
 
 /* Other */
 #include "klebot_commands.h"
+#include "Programs/klebot_programs.h"
+
+/* Programs */
+#include "Programs/klebot_programs.h"
+#include "Programs/DiodeTest_Prog.h"
+#include "Programs/MotorsDebug_Prog.h"
+#include "Programs/CalibPID_Prog.h"
 
 
 
 //TODO: PROGRAMS MODULE WHICH WILL START AND STOP NEW MASTER TASKS, ITS OWN PARSER WILL BE INTEGRATED INSIDE, AND CALLED HERE
-//TODO: THE SAME FOR HARDWARE BUT HARDWARE TASK WILL BE ALWAYS ON.
+//TODO: THE SAME FOR HARDWARE BUT HARDWARE TASKS! WILL BE ALWAYS ON.
 //TODO: DATA TO CONTROLLER WILL BE SEND ONLY AFTER QUERY. QUERING HARDWARE WILL BE ALWAYS POSSIBLE, BUT SETTING THE VALUES CAN BE DONE ONLY IF NO PROGRAM HAVE CONTROLL OVER HW
 //TODO: COMMAND -> HARDWARE -> SET -> CHECK IF ITS FREE
 //TODO: COMMAND -> HARDWARE -> GET -> ALWAYS POSSIBLE
@@ -25,23 +32,101 @@
 
 QueueHandle_t QueueParser;
 
-Parser_Error_t Parser_ProgramParser(uint8_t* cmd, uint8_t length)
+//
+// Programs side Parsers
+//
+
+void Parser_ParseProgramLaunchCommand(uint8_t ProgramID)
 {
-	uint8_t *Command = cmd;
-
-	switch(*Command)
+	uint8_t status;
+	/* Launch proper program */
+	/* When another program is currently running, launch function will return error */
+	switch(ProgramID)
 	{
-	case PID_CALIBRATION:
-
+	case DIODE_TEST:
+		status = Prog_DiodeTest_Launch();
 		break;
 
+	case MOTORS_DEBUG:
+		status = Prog_MotorsDebug_Launch();
+		break;
+
+	case PID_CALIBRATION:
+		status = Prog_CalibPID_Launch();
+
+	default:
+		status = PROGRAMS_ERROR;
+		break;
+	}
+
+	/* Send ACK to controller */
+	if(status == PROGRAMS_OK)
+	{
+		Programs_SendProgramStartedACK(ProgramID, ACK);		//TODO: Maybe ACK should be sent after each program Init function ?
+	}
+	else
+	{
+		Programs_SendProgramStartedACK(ProgramID, NACK);
 	}
 }
 
+Parser_Error_t Parser_ProgramParser(uint8_t* cmd, uint8_t length)
+{
+	uint8_t *CurrentByte = cmd;
+	uint8_t Length = length;
+	Programs_Program_t* CurrentProgram = Programs_GetProgram();
+
+	/* If the command header is currently running program's ID, then pass the rest fo the command to it's parser */
+	if(NULL != CurrentProgram && *CurrentByte == CurrentProgram->ProgramID)
+	{
+		CurrentByte++;
+		Length--;
+		/* Frame: [ProgramID, Specific program commands...] */
+		CurrentProgram->ProgramParser(CurrentByte, Length);
+	}
+	else
+	/* If command header is different, check if it is launch/exit commands */
+	{
+		switch(*CurrentByte)
+		{
+		case START_PROGRAM:
+			/* Frame: [START_PROGRAM, PROGRAM_ID] */
+			uint8_t ProgramToLaunch = *(CurrentByte + 1);
+			Parser_ParseProgramLaunchCommand(ProgramToLaunch);
+			break;
+
+		case EXIT_PROGRAM:
+			/* Frame: [PROGRAM_EXIT] */
+			Programs_ExitProgram();
+			Programs_SendProgramExitACK(ACK);
+			break;
+
+		default:
+			/* Incorrect command! */
+
+			break;
+		}
+	}
+	return PARSER_OK;
+}
+
+//
+// Hardware side parsers
+//
+
 Parser_Error_t Parser_HardwareParser(uint8_t* cmd, uint8_t length)
 {
+	//uint8_t *Command = cmd;
+	return PARSER_OK;
+
+
 
 }
+
+
+//
+// The Task
+//
 
 void vTaskParser(void *pvParameters)
 {
@@ -68,9 +153,15 @@ void vTaskParser(void *pvParameters)
 	}
 }
 
+void Parser_TaskInit(void)
+{
+	xTaskCreate(vTaskParser, "Parser Task", 512, NULL, 1, NULL);
+}
 
 
-
+//
+// API for other modules
+//
 
 /* Put data on next free slot in cmd */
 Parser_Error_t Parser_AddElementToCmd(Parser_Command_t* cmd, uint8_t element)
@@ -88,6 +179,7 @@ Parser_Error_t Parser_AddElementToCmd(Parser_Command_t* cmd, uint8_t element)
 /* Put command into queue for parser to execute */
 Parser_Error_t Parser_WriteCommand(Parser_Command_t* cmd, Parser_Origin_t source)
 {
+	cmd->origin = source;
 
 	if(xQueueSendToBack( QueueParser, cmd, (TickType_t)10 ) != pdTRUE )
 	{

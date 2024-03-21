@@ -34,5 +34,11 @@ typedef struct
 }Parser_Command_t;
 
 
+/* Init parser task */
+void Parser_TaskInit(void);
+/* Put command into parses queue */
+Parser_Error_t Parser_WriteCommand(Parser_Command_t* cmd, Parser_Origin_t source);
+
+
 
 #endif /* INC_PARSER_TASK_H_ */
