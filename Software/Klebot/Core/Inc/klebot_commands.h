@@ -30,20 +30,21 @@
 // --- Program Identifiers for commands ---
 //
 
-#define START_PROGRAM 0x10
-#define EXIT_PROGRAM 0x11
+
 
 //
 // --- Type Of Commands ---
 //
 
-#define PROGRAM_CMD 0x12
+#define PROGRAM_FRAME 0x10
+	#define START_PROGRAM 0x11
+	#define EXIT_PROGRAM 0x12
+	#define PROGRAM_COMMAND 0x13
 
 
-
-#define HARDWARE_CMD 0x13
-#define HW_READ 0x14
-#define HW_SET 0x15
+#define HARDWARE_FRAME 0x20
+	#define HW_READ 0x21
+	#define HW_SET 0x22
 
 // --- TEMPLATE ---
 

@@ -35,7 +35,6 @@ QueueHandle_t QueueParser;
 //
 // Programs side Parsers
 //
-
 void Parser_ParseProgramLaunchCommand(uint8_t ProgramID)
 {
 	uint8_t status;
@@ -76,37 +75,58 @@ Parser_Error_t Parser_ProgramParser(uint8_t* cmd, uint8_t length)
 	uint8_t Length = length;
 	Programs_Program_t* CurrentProgram = Programs_GetProgram();
 
-	/* If the command header is currently running program's ID, then pass the rest fo the command to it's parser */
-	if(NULL != CurrentProgram && *CurrentByte == CurrentProgram->ProgramID)
+	switch(*CurrentByte)
 	{
+	case PROGRAM_COMMAND:
+		/* Frame: [PROGRAM_CMD, PROGRAM_COMMAND, PROGRAM_ID, Specific program commands...] */
 		CurrentByte++;
 		Length--;
-		/* Frame: [ProgramID, Specific program commands...] */
-		CurrentProgram->ProgramParser(CurrentByte, Length);
-	}
-	else
-	/* If command header is different, check if it is launch/exit commands */
-	{
-		switch(*CurrentByte)
+
+		/* Check if there is any program running */
+		if(NULL == CurrentProgram)
 		{
-		case START_PROGRAM:
-			/* Frame: [START_PROGRAM, PROGRAM_ID] */
-			uint8_t ProgramToLaunch = *(CurrentByte + 1);
-			Parser_ParseProgramLaunchCommand(ProgramToLaunch);
-			break;
-
-		case EXIT_PROGRAM:
-			/* Frame: [PROGRAM_EXIT] */
-			Programs_ExitProgram();
-			Programs_SendProgramExitACK(ACK);
-			break;
-
-		default:
-			/* Incorrect command! */
-
+			/* No program running, send NACK */
 			break;
 		}
+		/* Check if the command matches currently running program ID */
+		if(*CurrentByte == CurrentProgram->ProgramID)
+		{
+			CurrentByte++;
+			Length--;
+			/* Pass the command to program's parser */
+			CurrentProgram->ProgramParser(CurrentByte, Length);
+		}
+		else
+		{
+			/* Another program running, send NACK */
+			Programs_SendInvalidProgramNACK(*CurrentByte);
+		}
+		break;
+
+	case START_PROGRAM:
+		/* Frame: [PROGRAM_CMD, START_PROGRAM, PROGRAM_ID] */
+		uint8_t ProgramToLaunch = *(CurrentByte + 1);
+		/* This takes care if some program is already running or not */
+		Parser_ParseProgramLaunchCommand(ProgramToLaunch);
+		break;
+
+	case EXIT_PROGRAM:
+		/* Frame: [PROGRAM_CMD, PROGRAM_EXIT] */
+		if(Programs_ExitProgram() == PROGRAMS_OK)
+		{
+			Programs_SendProgramExitACK(ACK);
+		}
+		else
+		{
+			Programs_SendProgramExitACK(NACK);
+		}
+		break;
+
+	default:
+		/* Incorrect command! */
+		break;
 	}
+
 	return PARSER_OK;
 }
 
@@ -127,7 +147,6 @@ Parser_Error_t Parser_HardwareParser(uint8_t* cmd, uint8_t length)
 //
 // The Task
 //
-
 void vTaskParser(void *pvParameters)
 {
 	QueueParser = xQueueCreate(10, sizeof(Parser_Command_t));
@@ -140,10 +159,10 @@ void vTaskParser(void *pvParameters)
 		/* Check header */
 		switch(CommandBuffer.data[0])
 		{
-		case PROGRAM_CMD:
+		case PROGRAM_FRAME:
 			Parser_ProgramParser((CommandBuffer.data) + 1, CommandBuffer.length - 1 );
 			break;
-		case HARDWARE_CMD:
+		case HARDWARE_FRAME:
 			Parser_HardwareParser((CommandBuffer.data) + 1, CommandBuffer.length - 1 );
 			break;
 

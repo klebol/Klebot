@@ -49,7 +49,7 @@ void Programs_TaskInit(void);
 Programs_error_t Programs_SetProgram(Programs_Program_t *ProgramToSet);
 
 /* Exit current running program */
-void Programs_ExitProgram(void);
+Programs_error_t Programs_ExitProgram(void);
 
 /* Get pointer to curent running program */
 Programs_Program_t* Programs_GetProgram(void);
@@ -65,6 +65,9 @@ Programs_error_t Programs_SendProgramStartedACK(uint8_t ProgramID, uint8_t ACKor
 
 /* Function for sending ACK to controller about program exit result */
 Programs_error_t Programs_SendProgramExitACK(uint8_t ACKorNACK);
+
+/* Sends NACK after receiving a command for not currently running one */
+Programs_error_t Programs_SendInvalidProgramNACK(uint8_t ProgramID);
 
 
 

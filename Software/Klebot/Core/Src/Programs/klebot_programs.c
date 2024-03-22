@@ -21,8 +21,7 @@ TaskHandle_t xTaskProgramsHandle;
 Programs_Program_t *CurrentlyRunningProg;
 /* Current program state */
 Programs_status_t ProgramState = NO_PROGRAM_SET;
-/* Var for counting communication timout during lauch/exit program */
-uint16_t TimeoutStamp;
+
 
 
 //
@@ -56,12 +55,18 @@ Programs_error_t Programs_SetProgram(Programs_Program_t *ProgramToSet)
 }
 
 /* Function starting a exit program process */
-void Programs_ExitProgram(void)
+Programs_error_t Programs_ExitProgram(void)
 {
+	if(NULL == CurrentlyRunningProg)
+	{
+		/* No currently running program to exit */
+		return PROGRAMS_ERROR;
+	}
 	/* Call program DeInit function */
 	CurrentlyRunningProg->ProgramExitFunction();
 	/* Change state to program completed */
 	ProgramState = PROGRAM_COMPLETED;
+	return PROGRAMS_OK;
 }
 
 /* Function which returns current pointer to program */
@@ -117,15 +122,15 @@ void Programs_TaskInit(void)
 
 
 //
-// -- Functions for parser to ACK launch/exit --
+// -- Functions for parser to ACK reponses --
 //
 
-/* This functions are called after program launch / exit. Sending it is needed for controller to proper functionality and sync with robot */
+/* These functions are called after program launch / exit. Sending it is needed for controller to proper functionality and sync with robot */
 
 Programs_error_t Programs_SendProgramStartedACK(uint8_t ProgramID, uint8_t ACKorNACK)
 {
 	Radio_Frame_t Buffer;
-	Buffer.data[0] = PROGRAM_CMD;
+	Buffer.data[0] = PROGRAM_FRAME;
 	Buffer.data[1] = START_PROGRAM;
 	Buffer.data[2] = ProgramID;
 	Buffer.data[3] = ACKorNACK;
@@ -136,10 +141,21 @@ Programs_error_t Programs_SendProgramStartedACK(uint8_t ProgramID, uint8_t ACKor
 Programs_error_t Programs_SendProgramExitACK(uint8_t ACKorNACK)
 {
 	Radio_Frame_t Buffer;
-	Buffer.data[0] = PROGRAM_CMD;
+	Buffer.data[0] = PROGRAM_FRAME;
 	Buffer.data[1] = EXIT_PROGRAM;
 	Buffer.data[2] = ACKorNACK;
 	Buffer.length = 3;
 	return Radio_TxPutFrame(&Buffer);
 }
 
+/* Sends NACK after receiving a command for not currently running one */
+Programs_error_t Programs_SendInvalidProgramNACK(uint8_t ProgramID)
+{
+	Radio_Frame_t Buffer;
+	Buffer.data[0] = PROGRAM_FRAME;
+	Buffer.data[1] = PROGRAM_COMMAND;
+	Buffer.data[2] = ProgramID;
+	Buffer.data[3] = NACK;
+	Buffer.length = 4;
+	return Radio_TxPutFrame(&Buffer);
+}

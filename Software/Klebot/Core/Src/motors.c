@@ -2,17 +2,20 @@
  * motors.c
  *
  *  Created on: Dec 30, 2023
- *      Author: miqix
+ *      Author: Michal Klebokowski
  */
-
 #include "motors.h"
+/* HAL */
+#include "usart.h"
+#include "tim.h"
+/* Other */
 #include "motor_encoder.h"
 #include "FIRFilter.h"
 #include "stdio.h"
-#include "usart.h"
 #include "math.h"
 #include "PID.h"
 
+//TODO: CREATE A MUTEXES FOR HARDWARE, DO IT BY NEW MODULE (HW MANAGER) OR IN EACH HW FILE
 
 /* Motor driver variable */
 DRV8836_t MotorDriver;
@@ -40,23 +43,30 @@ uint8_t UartBufferLength;
 
 void Motors_Init(void)
 {
+	/* Init for DRV8836 */
 	DRV8836_Init(&MotorDriver, &htim3, TIM_CHANNEL_1, TIM_CHANNEL_2, TIM_CHANNEL_3, TIM_CHANNEL_4);
+	/* Encoders init */
 	MotorEnc_Init(&MotorEncoderA, &htim1);
 	MotorEnc_Init(&MotorEncoderB, &htim4);
-
+	/* Encoder filters init */
 	FIRFilter_Init(&EncoderFilterA);
 	FIRFilter_Init(&EncoderFilterB);
+	/* Start timer for sampling encoders */
+	HAL_TIM_Base_Start_IT(&htim7);
 }
 
 //
 // -- Setters --
 //
 
+/* Setting all motor parameters at once */
 void Motors_SetMotor(DRV8836_Output_t motorAB, DRV8836_Direction_t direction, uint16_t speed)
 {
 	DRV8836_SetMotor(&MotorDriver, motorAB, direction, speed);
 }
 
+
+/* Setting PWM only, direction remain the same */
 Motors_Error_t Motors_SetMotorPWM(DRV8836_Output_t motorAB, uint16_t speed)
 {
 	switch(motorAB)
@@ -75,6 +85,7 @@ Motors_Error_t Motors_SetMotorPWM(DRV8836_Output_t motorAB, uint16_t speed)
 	}
 }
 
+/* Setting direction only, PWM remain the same */
 Motors_Error_t Motors_SetMotorDirection(DRV8836_Output_t motorAB, DRV8836_Direction_t direction)
 {
 	switch(motorAB)
@@ -93,6 +104,7 @@ Motors_Error_t Motors_SetMotorDirection(DRV8836_Output_t motorAB, DRV8836_Direct
 	}
 }
 
+/* Turn all motors OFF */
 Motors_Error_t Motors_SetMotorsOff(void)
 {
 	Motors_Error_t status = 0;
@@ -101,10 +113,12 @@ Motors_Error_t Motors_SetMotorsOff(void)
 	return status;
 }
 
+
 //
 // -- Getters --
 //
 
+/* Get current motor PWM */
 uint16_t Motors_GetMotorPWM(DRV8836_Output_t motorAB)
 {
 	switch(motorAB)
@@ -122,6 +136,7 @@ uint16_t Motors_GetMotorPWM(DRV8836_Output_t motorAB)
 		}
 }
 
+/* Get current motor direction */
 DRV8836_Direction_t Motors_GetMotorDirection(DRV8836_Output_t motorAB)
 {
 	switch(motorAB)
@@ -137,11 +152,28 @@ DRV8836_Direction_t Motors_GetMotorDirection(DRV8836_Output_t motorAB)
 		}
 }
 
+/* Get real motor velocity */
+float Motors_GetMotorVelocity(DRV8836_Output_t motorAB)
+{
+	switch(motorAB)
+			{
+			case MOTOR_A:
+				return MotorEncoderA.VelocityFiltered;
+
+			case MOTOR_B:
+				return MotorEncoderB.VelocityFiltered;
+
+			default:
+				return 0;
+			}
+}
+
 //
 // -- Encoder routine --
 //
 
-void Motors_EncoderSample(void)						//call this function with encoder sampling frequency
+/* Encoder sampling routine, made to be used in timer interrupt with encoder sampling frequency */
+void Motors_EncoderSample(void)
 {
 	/* Read encoder values and calculate velocity */
 	MotorEnc_Update(&MotorEncoderA);
@@ -153,6 +185,8 @@ void Motors_EncoderSample(void)						//call this function with encoder sampling 
 
 	/* Calculate RPM */
 	//MotorEncoderB.RPM = (MotorEncoderB.Velocity * 60 * (1000/ENCODER_SAMPLING_TIME_MS)) / PULSES_PER_ROTATION;
+
+	//TODO: CHECK IF VelocityFiltered and TargerVelocity can be different types as is it now
 
 	if(MotorsControllPID == 1)
 	{

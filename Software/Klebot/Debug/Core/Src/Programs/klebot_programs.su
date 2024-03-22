@@ -1,8 +1,9 @@
-../Core/Src/Programs/klebot_programs.c:34:18:Programs_SetProgram	16	static
-../Core/Src/Programs/klebot_programs.c:59:6:Programs_ExitProgram	8	static
-../Core/Src/Programs/klebot_programs.c:68:21:Programs_GetProgram	4	static
-../Core/Src/Programs/klebot_programs.c:74:6:Programs_ClearProgram	4	static
-../Core/Src/Programs/klebot_programs.c:83:6:vTaskPrograms	16	static
-../Core/Src/Programs/klebot_programs.c:113:6:Programs_TaskInit	16	static
-../Core/Src/Programs/klebot_programs.c:125:18:Programs_SendProgramStartedACK	56	static
-../Core/Src/Programs/klebot_programs.c:136:18:Programs_SendProgramExitACK	56	static
+../Core/Src/Programs/klebot_programs.c:33:18:Programs_SetProgram	16	static
+../Core/Src/Programs/klebot_programs.c:58:18:Programs_ExitProgram	8	static
+../Core/Src/Programs/klebot_programs.c:73:21:Programs_GetProgram	4	static
+../Core/Src/Programs/klebot_programs.c:79:6:Programs_ClearProgram	4	static
+../Core/Src/Programs/klebot_programs.c:88:6:vTaskPrograms	16	static
+../Core/Src/Programs/klebot_programs.c:118:6:Programs_TaskInit	16	static
+../Core/Src/Programs/klebot_programs.c:130:18:Programs_SendProgramStartedACK	56	static
+../Core/Src/Programs/klebot_programs.c:141:18:Programs_SendProgramExitACK	56	static
+../Core/Src/Programs/klebot_programs.c:152:18:Programs_SendInvalidProgramNACK	56	static

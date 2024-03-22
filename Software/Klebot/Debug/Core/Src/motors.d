@@ -27,8 +27,8 @@ Core/Src/motors.o: ../Core/Src/motors.c ../Core/Inc/motors.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h \
- ../Core/Inc/motor_encoder.h ../Core/Inc/FIRFilter.h ../Core/Inc/usart.h \
- ../Core/Inc/PID.h
+ ../Core/Inc/usart.h ../Core/Inc/tim.h ../Core/Inc/motor_encoder.h \
+ ../Core/Inc/FIRFilter.h ../Core/Inc/PID.h
 ../Core/Inc/motors.h:
 ../Core/Inc/drv8836.h:
 ../Core/Inc/tim.h:
@@ -60,7 +60,8 @@ Core/Src/motors.o: ../Core/Src/motors.c ../Core/Inc/motors.h \
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h:
+../Core/Inc/usart.h:
+../Core/Inc/tim.h:
 ../Core/Inc/motor_encoder.h:
 ../Core/Inc/FIRFilter.h:
-../Core/Inc/usart.h:
 ../Core/Inc/PID.h:
