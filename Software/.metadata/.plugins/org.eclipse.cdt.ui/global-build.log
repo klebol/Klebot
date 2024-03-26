@@ -1,14 +1,7 @@
-08:58:28 **** Incremental Build of configuration Debug for project Klebot ****
+07:38:28 **** Incremental Build of configuration Debug for project Klecontroller ****
 make -j16 all 
-arm-none-eabi-gcc "../Core/Src/motors.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F107xC -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3 -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/motors.d" -MT"Core/Src/motors.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/motors.o"
-arm-none-eabi-gcc -o "Klebot.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\Users\zalfon\Desktop\Michal\Klebot\Software\Klebot\STM32F107RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Klebot.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: Klebot.elf
- 
-arm-none-eabi-size  Klebot.elf 
-arm-none-eabi-objdump -h -S Klebot.elf  > "Klebot.list"
+arm-none-eabi-size  Klecontroller.elf 
    text	   data	    bss	    dec	    hex	filename
-  59712	    640	  15072	  75424	  126a0	Klebot.elf
+  35140	    492	   3940	  39572	   9a94	Klecontroller.elf
 Finished building: default.size.stdout
- 
-Finished building: Klebot.list
  

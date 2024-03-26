@@ -11,7 +11,7 @@ Core/Src/parser_task.o: ../Core/Src/parser_task.c \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h \
  ../Core/Inc/klebot_commands.h ../Core/Inc/Programs/klebot_programs.h \
- ../Core/Inc/Programs/DiodeTest_Prog.h \
+ ../Core/Inc/hw_manager.h ../Core/Inc/Programs/DiodeTest_Prog.h \
  ../Core/Inc/Programs/MotorsDebug_Prog.h \
  ../Core/Inc/Programs/CalibPID_Prog.h
 ../Core/Inc/parser_task.h:
@@ -28,6 +28,7 @@ Core/Src/parser_task.o: ../Core/Src/parser_task.c \
 ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h:
 ../Core/Inc/klebot_commands.h:
 ../Core/Inc/Programs/klebot_programs.h:
+../Core/Inc/hw_manager.h:
 ../Core/Inc/Programs/DiodeTest_Prog.h:
 ../Core/Inc/Programs/MotorsDebug_Prog.h:
 ../Core/Inc/Programs/CalibPID_Prog.h:

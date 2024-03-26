@@ -1,0 +1,22 @@
+/*
+ * hw_manager.h
+ *
+ *  Created on: Mar 25, 2024
+ *      Author: Michal Klebokowski
+ */
+
+#ifndef INC_HW_MANAGER_H_
+#define INC_HW_MANAGER_H_
+
+
+
+typedef enum
+{
+	HW_OK,
+	HW_BUSY,
+	HW_ERROR
+}HW_Error_t;
+
+
+
+#endif /* INC_HW_MANAGER_H_ */

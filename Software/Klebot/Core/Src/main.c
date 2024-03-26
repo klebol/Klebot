@@ -130,7 +130,6 @@ int main(void)
   Programs_TaskInit();
 
 
-  //TODO: UNIFY FRAME FORMAT, TAKE CARE OF PROGRAMS MODULE - START AND STOP PROGRAMS.
 
   xTaskCreate(vTaskOnboardDiode, "PCB Diode Task", 128, NULL, 1, NULL);
 

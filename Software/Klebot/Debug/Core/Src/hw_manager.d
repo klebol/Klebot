@@ -1,17 +1,6 @@
-Core/Src/motors_task.o: ../Core/Src/motors_task.c \
- ../Core/Inc/motors_task.h \
- ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h \
- ../Core/Inc/FreeRTOSConfig.h \
- ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h \
- ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h \
- ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h \
- ../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/portmacro.h \
- ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h \
- ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h \
- ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h \
- ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h \
- ../Core/Inc/usart.h ../Core/Inc/main.h \
- ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h \
+Core/Src/hw_manager.o: ../Core/Src/hw_manager.c ../Core/Inc/hw_manager.h \
+ ../Core/Inc/motors.h ../Core/Inc/drv8836.h ../Core/Inc/tim.h \
+ ../Core/Inc/main.h ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h \
  ../Core/Inc/stm32f1xx_hal_conf.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h \
@@ -38,20 +27,12 @@ Core/Src/motors_task.o: ../Core/Src/motors_task.c \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h \
- ../Core/Inc/PID.h ../Core/Inc/FIRFilter.h ../Core/Inc/motor_encoder.h \
- ../Core/Inc/tim.h
-../Core/Inc/motors_task.h:
-../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
-../Core/Inc/FreeRTOSConfig.h:
-../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h:
-../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h:
-../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h:
-../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/portmacro.h:
-../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h:
-../Middlewares/Third_Party/FreeRTOS/Source/include/task.h:
-../Middlewares/Third_Party/FreeRTOS/Source/include/list.h:
-../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h:
-../Core/Inc/usart.h:
+ ../Core/Inc/onboard_diode_task.h ../Core/Inc/klebot_commands.h \
+ ../Core/Inc/radio_task.h ../Core/Inc/klebot_commands.h
+../Core/Inc/hw_manager.h:
+../Core/Inc/motors.h:
+../Core/Inc/drv8836.h:
+../Core/Inc/tim.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:
 ../Core/Inc/stm32f1xx_hal_conf.h:
@@ -80,7 +61,7 @@ Core/Src/motors_task.o: ../Core/Src/motors_task.c \
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h:
-../Core/Inc/PID.h:
-../Core/Inc/FIRFilter.h:
-../Core/Inc/motor_encoder.h:
-../Core/Inc/tim.h:
+../Core/Inc/onboard_diode_task.h:
+../Core/Inc/klebot_commands.h:
+../Core/Inc/radio_task.h:
+../Core/Inc/klebot_commands.h:

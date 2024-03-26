@@ -1,0 +1,77 @@
+/*
+ * hw_manager.c
+ *
+ *  Created on: Mar 25, 2024
+ *      Author: Michal Klebokowski
+ */
+#include "hw_manager.h"
+/* HAL */
+
+/* Hardware modules */
+#include "motors.h"
+#include "onboard_diode_task.h"
+
+/* Very simple flag mechanism, to identify if currently running program is using specific hardware module or not */
+uint8_t MotorsControllFlag;
+uint8_t DiodeControllFlag;
+
+
+
+/* Get or give back controll over hardware */
+HW_Error_t HW_Manager_SetControll(uint8_t hw_id, uint8_t controll_state)
+{
+	uint8_t *FlagToSet;
+
+	if(controll_state != 0 && controll_state != 1)
+	{
+		return HW_ERROR;
+	}
+
+	switch(hw_id)
+	{
+	case HW_MOTORS:
+		FlagToSet = &MotorsControllFlag;
+		break;
+	case HW_DIODE:
+		FlagToSet = &DiodeControllFlag;
+		break;
+	default:
+		return HW_ERROR;
+	}
+	if(*FlagToSet != controll_state)
+	{
+		*FlagToSet = controll_state;
+		return HW_OK;
+	}
+	else return HW_ERROR;
+}
+
+/* Check if hardware is controlled */
+uint8_t HW_Manager_CheckControll(uint8_t hw_id)
+{
+	uint8_t *FlagToCheck;
+	switch(hw_id)
+	{
+	case HW_MOTORS:
+		FlagToCheck = &MotorsControllFlag;
+		break;
+	case HW_DIODE:
+		FlagToCheck = &DiodeControllFlag;
+		break;
+	default:
+		return 0;
+	}
+
+	return *FlagToCheck;
+}
+
+
+HW_Error_t HW_Manager_Parser(uint8_t* cmd, uint8_t length)
+{
+	uint8_t *CurrentByte = cmd;
+	uint8_t Length = length;
+
+	switch(*CurrentByte)
+	{
+	case
+}

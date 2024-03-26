@@ -1,0 +1,159 @@
+/*
+ * hw_manager.c
+ *
+ *  Created on: Mar 25, 2024
+ *      Author: Michal Klebokowski
+ */
+#include "hw_manager.h"
+/* HAL */
+
+/* Hardware modules */
+#include "motors.h"
+#include "onboard_diode_task.h"
+/* Other */
+#include "klebot_commands.h"
+
+/* Very simple flag mechanism, to identify if currently running program is using specific hardware module or not */
+uint8_t MotorsControllFlag;
+uint8_t DiodeControllFlag;
+
+
+
+/* Get or give back controll over hardware */
+HW_Error_t HW_Manager_SetControll(uint8_t hw_id, uint8_t controll_state)
+{
+	uint8_t *FlagToSet;
+
+	if(controll_state != 0 && controll_state != 1)
+	{
+		return HW_ERROR;
+	}
+
+	switch(hw_id)
+	{
+	case HW_MOTORS:
+		FlagToSet = &MotorsControllFlag;
+		break;
+	case HW_DIODE:
+		FlagToSet = &DiodeControllFlag;
+		break;
+	default:
+		return HW_ERROR;
+	}
+	if(*FlagToSet != controll_state)
+	{
+		*FlagToSet = controll_state;
+		return HW_OK;
+	}
+	else return HW_ERROR;
+}
+
+/* Check if hardware is controlled */
+uint8_t HW_Manager_CheckControll(uint8_t hw_id)
+{
+	uint8_t *FlagToCheck;
+	switch(hw_id)
+	{
+	case HW_MOTORS:
+		FlagToCheck = &MotorsControllFlag;
+		break;
+	case HW_DIODE:
+		FlagToCheck = &DiodeControllFlag;
+		break;
+	default:
+		return 0;
+	}
+
+	return *FlagToCheck;
+}
+
+
+
+HW_Error_t HW_Manager_Parser(uint8_t* cmd, uint8_t length)
+{
+	uint8_t *CurrentByte = cmd;
+
+	uint8_t HW_ID;
+
+
+	switch(*CurrentByte)
+	{
+	/* Frame: [HARDWARE_CMD, HW_SET, HW_ID, Specific hardware commands...] */
+	case HW_SET:
+		CurrentByte++;
+		HW_ID = *CurrentByte;
+		/* Check if hardware is busy */
+		if(HW_Manager_CheckControll(HW_ID) == 0)
+		{
+			switch(HW_ID)
+			{
+			case HW_MOTORS:
+				//MOTORS SPECIFIED FUN
+				break;
+			case HW_DIODE:
+				//DIODE SPECIFIED FUN
+				break;
+			}
+			return HW_OK;
+
+		}
+		else
+		{
+			return HW_BUSY;
+		}
+		break;
+	case HW_GET:
+		/* Frame: [HARDWARE_CMD, HW_GET, HW_ID, Specific hardware commands...] */
+		CurrentByte++;
+		HW_ID = *CurrentByte;
+
+		switch(HW_ID)
+		{
+		case HW_MOTORS:
+			//MOTORS SPECIFIED FUN
+			break;
+		case HW_DIODE:
+			//DIODE SPECIFIED FUN
+			break;
+		}
+		return HW_OK;
+
+	default:
+		return HW_ERROR;
+	}
+}
+
+
+//
+// -- SPECIFIC HARDWARE PARSERS --
+//
+
+/* Onboard Diode Parser */
+HW_Error_t HW_Manager_OnboardDiode_Parser(uint8_t* cmd)
+{
+	uint8_t *CurrentByte = cmd;
+	switch(*CurrentByte)
+	{
+	case DIODE_STATE_ON:
+		OnboardDiode_SetStaticState(1);
+		break;
+	case DIODE_STATE_OFF:
+		OnboardDiode_SetStaticState(0);
+		break;
+
+	case DIODE_STATE_BLINK:
+		uint16_t BlinkDelay = ((*CurrentByte) << 8 ) | *(CurrentByte + 1);
+		OnboardDiode_SetNormalBlink(BlinkDelay);
+		break;
+
+	case DIODE_STATE_SHORT_BLINK:
+		uint16_t TimeOn = ((*CurrentByte) << 8 ) | *(CurrentByte + 1);
+		uint16_t TimeOff = ((*CurrentByte + 2) << 8 ) | *(CurrentByte + 3);
+		OnboardDiode_SetShortBlink(TimeOn, TimeOff);
+		break;
+
+	case DIODE_GET_STATE:
+		OnboardDiode_GetState();
+		break;
+	}
+}

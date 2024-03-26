@@ -1,0 +1,4 @@
+../Core/Src/hw_manager.c:26:12:HW_Manager_SetControll	6
+../Core/Src/hw_manager.c:55:9:HW_Manager_CheckControll	3
+../Core/Src/hw_manager.c:82:12:HW_Manager_OnboardDiode_Parser	6
+../Core/Src/hw_manager.c:123:12:HW_Manager_Parser	8

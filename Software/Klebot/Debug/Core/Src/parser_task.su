@@ -1,7 +1,7 @@
-../Core/Src/parser_task.c:38:6:Parser_ParseProgramLaunchCommand	24	static
-../Core/Src/parser_task.c:72:16:Parser_ProgramParser	32	static
-../Core/Src/parser_task.c:137:16:Parser_HardwareParser	16	static
-../Core/Src/parser_task.c:150:6:vTaskParser	56	static
-../Core/Src/parser_task.c:175:6:Parser_TaskInit	16	static
-../Core/Src/parser_task.c:186:16:Parser_AddElementToCmd	16	static
-../Core/Src/parser_task.c:199:16:Parser_WriteCommand	16	static
+../Core/Src/parser_task.c:41:6:Parser_ParseProgramLaunchCommand	24	static
+../Core/Src/parser_task.c:75:16:Parser_ProgramParser	32	static
+../Core/Src/parser_task.c:140:16:Parser_HardwareParser	16	static
+../Core/Src/parser_task.c:153:6:vTaskParser	56	static
+../Core/Src/parser_task.c:178:6:Parser_TaskInit	16	static
+../Core/Src/parser_task.c:189:16:Parser_AddElementToCmd	16	static
+../Core/Src/parser_task.c:202:16:Parser_WriteCommand	16	static

@@ -35,7 +35,6 @@
 //
 // --- Type Of Commands ---
 //
-
 #define PROGRAM_FRAME 0x10
 	#define START_PROGRAM 0x11
 	#define EXIT_PROGRAM 0x12
@@ -43,8 +42,32 @@
 
 
 #define HARDWARE_FRAME 0x20
-	#define HW_READ 0x21
-	#define HW_SET 0x22
+	#define HW_SET		0x31
+	#define HW_GET		0x32
+
+//
+// --- Hardware ---
+//
+
+#define HW_MOTORS 	0x33
+#define HW_DIODE	0x34
+
+//
+//	-- ONBOARD DIODE --
+//
+
+/* [HARDWARE, SET, HW_DIODE, DIODE_ON] */
+#define DIODE_STATE_ON 0x11
+/* [HARDWARE, SET, HW_DIODE, DIODE_OFF] */
+#define DIODE_STATE_OFF 0x12
+/* [HARDWARE, SET, HW_DIODE, DIODE_BLINK, DELAY_HIGH, DELAY_LOW] */
+#define DIODE_STATE_BLINK 0x13
+/* [HARDWARE, SET, HW_DIODE, DIODE_BLINK, ON_TIME_HIGH, ON_TIME_LOW, OFF_TIME_HIGH, OFF_TIME_LOW] */
+#define DIODE_STATE_SHORT_BLINK 0x14
+/* [HARDWARE, GET, HW_DIODE, DIODE_GET_STATE] */
+#define DIODE_GET_STATE 0x15
+
+
 
 // --- TEMPLATE ---
 

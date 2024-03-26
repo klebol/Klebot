@@ -47,7 +47,7 @@ struct Menu_Struct {
 extern Menu_t RobotModes;
 	//extern Menu_t FreeRide;
 
-extern Menu_t DebugTools;
+extern Menu_t HardwareControll;
 	extern Menu_t DiodeTest;
 	extern Menu_t MotorsTest;
 

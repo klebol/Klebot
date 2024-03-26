@@ -1,0 +1,13 @@
+/*
+ * hw_manager.h
+ *
+ *  Created on: Mar 25, 2024
+ *      Author: Michal Klebokowski
+ */
+
+#ifndef INC_HW_MANAGER_H_
+#define INC_HW_MANAGER_H_
+
+
+
+#endif /* INC_HW_MANAGER_H_ */

@@ -14,6 +14,7 @@
 /* Other */
 #include "klebot_commands.h"
 #include "Programs/klebot_programs.h"
+#include "hw_manager.h"
 
 /* Programs */
 #include "Programs/klebot_programs.h"
@@ -31,6 +32,8 @@
 //TODO: COMMAND -> PROGRAM -> CHECK IF ITS RUNNING
 
 QueueHandle_t QueueParser;
+
+
 
 //
 // Programs side Parsers
@@ -163,7 +166,7 @@ void vTaskParser(void *pvParameters)
 			Parser_ProgramParser((CommandBuffer.data) + 1, CommandBuffer.length - 1 );
 			break;
 		case HARDWARE_FRAME:
-			Parser_HardwareParser((CommandBuffer.data) + 1, CommandBuffer.length - 1 );
+			HW_Manager_Parser((CommandBuffer.data) + 1, CommandBuffer.length - 1 );
 			break;
 
 		default:

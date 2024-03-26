@@ -19,15 +19,15 @@
  * WARNING: First member's *Prev pointer have to be NULL,
  * & Last member's *Next pointer have to be NULL!  */
 
-Menu_t RobotModes = {"Robot's modes", &DebugTools, NULL, NULL, NULL, NULL};
+Menu_t RobotModes = {"Robot's modes", &HardwareControll, NULL, NULL, NULL, NULL};
 	//Menu_t FreeRide = {"Free Ride", NULL, NULL, NULL, &RobotModes, &SetFreeRideControll};
 
-Menu_t DebugTools = {"Debug tools", &Settings, &RobotModes, &DiodeTest, NULL, NULL};
-	Menu_t DiodeTest = {"Diode test", &MotorsTest, NULL, NULL, &DebugTools, &Prog_DiodeTest_Launch};
-	Menu_t MotorsTest = {"Motors test", NULL, &DiodeTest, NULL, &DebugTools, &Prog_MotorsDebug_Launch};
+Menu_t HardwareControll = {"Hardware controll", &Settings, &RobotModes, &DiodeTest, NULL, NULL};
+	Menu_t DiodeTest = {"Onboard diode", &MotorsTest, NULL, NULL, &HardwareControll, &Prog_DiodeTest_Launch};
+	Menu_t MotorsTest = {"Motors test", NULL, &DiodeTest, NULL, &HardwareControll, &Prog_MotorsDebug_Launch};
 
 
-Menu_t Settings = {"Settings", NULL, &DebugTools, &JoyCalib, NULL, NULL};
+Menu_t Settings = {"Settings", NULL, &HardwareControll, &JoyCalib, NULL, NULL};
 	Menu_t JoyCalib = {"Joystick Calib", &PIDCalib, NULL, &JoyCalib1, &Settings, NULL};
 	Menu_t PIDCalib = {"PID Calib", NULL, &JoyCalib, NULL, &Settings, &Prog_CalibPID_Launch};
 		Menu_t JoyCalib1 = {"Left X", &JoyCalib2, NULL, NULL, &JoyCalib, NULL};
